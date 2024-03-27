@@ -1,0 +1,63 @@
+<div class="container mt-5">
+    <div class="card">
+      <div class="card-body">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label for="monthInput" class="form-label">Month</label>
+            <input type="month" class="form-control form-control-alternative" id="monthInput" formControlName="monthInput">
+          </div>
+          <div class="mb-3">
+            <label for="dropdownInput" class="form-label">Employee Id </label>
+            <select class="form-control form-control-alternative" id="dropdownInput" formControlName="dropdownInput">
+              <option value="">Select an option</option>
+              <option *ngFor="let data of empId"  [value]="data.employeeId">{{data.employeeId}}</option>
+              <!-- <option value="option2">Option 2</option> -->
+              <!-- Add more options here -->
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+
+
+
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="table-responsive">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Date</th>
+                <th scope="col">Day</th>
+                <th scope="col">Punch-In</th>
+                <th scope="col">Punch-Out</th>
+                <th scope="col">Half-Day leave</th>
+                <th scope="col">Overtime Hours</th>
+                <th scope="col">Working Hours</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of serachByMonthObj?.attendence; index as i " >
+                <th scope="row">{{i+1}}</th>
+                <td>{{data?.date}}</td>
+                <td>{{data?.day}}</td>
+                <td>{{data?.punchInTime}}</td>
+                <td>{{data?.punchOutTime}}</td>
+                <td>{{data?.halfDay}}</td>
+                <td>{{data?.overTime}}</td>
+                <td>{{data?.workingHours}}</td>
+              </tr>
+  
+            </tbody>
+          </table>
+        </div>
+  
+  
+      </div>
+    </div>
+  </div>

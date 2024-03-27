@@ -1,0 +1,33 @@
+.card-header {
+    background-color: #007bff;
+    color: white;
+}
+
+.row {
+    margin: 0;
+}
+
+.row > div {
+    padding: 5px;
+}
+
+.font-weight-bold {
+    color: #333;
+}
+
+
+
+
+
+#personalDetails:hover, #salaryTaxes:hover, #payment:hover {
+    background-color: #f8f9fa; /* Bootstrap 4 light gray background color */
+    cursor: pointer;
+  }
+  
+  /* For mobile responsiveness, you can use Bootstrap's classes or write custom media queries */
+  @media (max-width: 576px) {
+    .navbar-nav {
+      flex-direction: row;
+    }
+  }
+  

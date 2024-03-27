@@ -1,0 +1,24 @@
+@media (max-width: 768px) {
+    .form-inline .form-group {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+    .form-inline button {
+      width: 100%;
+    }
+  }
+  
+  /* Optional: Simple fade-in animation */
+  .card {
+    animation: fadeIn 1s;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  

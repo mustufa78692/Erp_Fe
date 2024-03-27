@@ -1,0 +1,111 @@
+<!-- <div class="card">
+  <div class="card-body">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+   
+      <div class="form-group">
+        <label for="designationId">Task Id:</label>
+        <input type="text" class="form-control" formControlName="taskId" />
+      </div>
+
+   
+      <div *ngFor="let duty of duties.controls; let i = index" class="form-group">
+        <label for="duties">Duty {{ i + 1 }}:</label>
+        <div class="input-group">
+          <input type="text" class="form-control" [formControl]="duties.at(i)" />
+          <div class="input-group-append">
+            <button type="button" class="btn btn-danger" (click)="removeDuty(i)">Remove</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <button type="button" class="btn btn-primary" (click)="addDuty()">Add Duty</button>
+      </div>
+
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-success">Submit</button>
+      </div>
+
+    </form>
+  </div>
+</div> -->
+
+
+
+<div class="card animated-form">
+  <div class="card-body">
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+
+      <!-- Designation ID Dropdown -->
+      <div class="mb-3">
+        <label for="designationId" class="form-control-label">Designation Name</label>
+        <select class="form-control form-control-alternative" id="designationId" formControlName="designationId">
+          <!-- Dropdown options go here -->
+          <option value="1"  *ngFor="let data of getDesignationId"  [value]="data.designationId">{{data.designationName}} </option>
+          <!-- <option value="2">Designation 2</option> -->
+          <!-- Add more options as needed -->
+        </select>
+      </div>
+
+      <!-- Duties -->
+      <div class="mb-3">
+        <label for="duties" class="form-control-label">Duties</label>
+        <input type="text" class="form-control form-control-alternative" id="duties" formControlName="duties">
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div>
+
+
+
+<div class="card animated-form  mt-5">
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">S.No</th>
+            <th scope="col">Duty Id</th>
+            <th scope="col">Duty Name</th>
+            <th scope="col">Designation Id </th>
+            <th scope="col">Operation </th>
+            <!-- <th scope="col">Leave Days </th> -->
+         
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of tableData;let i=index">
+            <td>{{i+1}}</td>
+            <td>{{data?.dutiesId}}</td>
+            <td>{{data?.dutyName}}</td>
+            <td>{{data?.designationId}}</td>
+            <td> <button class="btn btn-primary" (click)="editData(data?.dutiesId)">Edit</button></td>
+
+
+          </tr>
+
+
+          <!-- <ng-container *ngFor="let data of getData; let i = index">
+            <tr *ngFor="let location_data of data.locations; let first = first">
+              <td *ngIf="first">{{ i + 1 }}</td>
+              <td *ngIf="first">{{ data.firstApproverEmpId }}</td>
+              <td *ngIf="first">{{ data.secondApproverEmpId }}</td>
+              <td *ngIf="first">{{ data.startDate | date }}</td>
+              <td *ngIf="first">{{ data.endDate | date }}</td>
+              <td>{{ location_data.name }}</td>
+              <td>{{ location_data.address }}</td>
+            </tr>
+          </ng-container> -->
+         
+         
+        </tbody>
+      </table>
+    </div>
+    
+  </div>
+</div>

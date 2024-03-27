@@ -1,0 +1,105 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="text-center">Leave  Form</h4>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="leaveForm" (ngSubmit)="onSubmit()">
+              <!-- Leave Name Field -->
+              <div class="form-group">
+                <label for="leaveName">Leave Name</label>
+                <input
+                  class="form-control"
+                  id="leaveName"
+                  placeholder="Enter leave name"
+                  type="text"
+                  formControlName="leaveName"
+                />
+                <div 
+                  *ngIf="leaveForm.controls.leaveName.invalid && leaveForm.controls.leaveName.touched" 
+                  class="text-danger">
+                  Leave name is required.
+                </div>
+              </div>
+  
+              <!-- Leave Days Field -->
+              <div class="form-group">
+                <label for="leaveDays">Leave Days</label>
+                <input
+                  class="form-control"
+                  id="leaveDays"
+                  placeholder="Enter number of days"
+                  type="number"
+                  formControlName="leaveDays"
+                />
+                <!-- <div *ngIf="leaveForm.controls.leaveDays.errors?.required && leaveForm.controls.leaveDays.touched" class="text-danger">
+                  Leave days are required.
+                </div>
+                <div *ngIf="leaveForm.controls.leaveDays.errors?.pattern && leaveForm.controls.leaveDays.touched" class="text-danger">
+                  Enter a valid number.
+                </div> -->
+              </div>
+  
+              <!-- Submit Button -->
+              <div class="text-center">
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  [disabled]="!leaveForm.valid"
+                >
+                  Submit 
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="card animated-form  mt-5">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table">
+          <thead class="bg-light">
+            <tr>
+              <th scope="col">S.No</th>
+              <th scope="col">Leave Type  Id</th>
+              <th scope="col">Leave Name</th>
+              <th scope="col">Leave Days </th>
+           
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of getData;let i=index">
+              <td>{{i+1}}</td>
+              <td>{{data?.leaveTypeId}}</td>
+              <td>{{data?.leaveName}}</td>
+              <td>{{data?.leaveDays}}</td>
+
+            </tr>
+  
+  
+            <!-- <ng-container *ngFor="let data of getData; let i = index">
+              <tr *ngFor="let location_data of data.locations; let first = first">
+                <td *ngIf="first">{{ i + 1 }}</td>
+                <td *ngIf="first">{{ data.firstApproverEmpId }}</td>
+                <td *ngIf="first">{{ data.secondApproverEmpId }}</td>
+                <td *ngIf="first">{{ data.startDate | date }}</td>
+                <td *ngIf="first">{{ data.endDate | date }}</td>
+                <td>{{ location_data.name }}</td>
+                <td>{{ location_data.address }}</td>
+              </tr>
+            </ng-container> -->
+           
+           
+          </tbody>
+        </table>
+      </div>
+      
+    </div>
+  </div>
+  

@@ -1,0 +1,532 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+        <div class="header-body">
+        </div>
+    </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt-7">
+<!-- app.component.html -->
+<div class="container mt-3">
+    <form>
+        <div class="row">
+            <!-- Year input -->
+            
+
+            <!-- Month input -->
+            <div class="col-md-6 mb-3">
+                <input type="month" class="form-control" [(ngModel)]="selectMonth" placeholder="Month">
+            </div>
+
+            <!-- Search button -->
+            <div class="col-md-6 mb-3">
+                <button class="btn btn-primary" type="submit" (click)="serach()">Search</button>
+            </div>
+        </div>
+    </form>
+</div>
+    <div class="row mbg">
+        <div class="d-flex justify-content-between flex-nowrap scroll-display-none overflow-x-scroll py-4">
+            <!-- Existing Buttons -->
+    
+            <!-- Personal Information & Attendance Button -->
+            <div class="mtext-14 mtext-weight-700 font-nunito mx-2 mx-sm-0 text-nowrap"
+                [class.active]="selectedTab === 'personalDetails'" (click)="selectedTab = 'personalDetails'">
+                <button class="btn custom-btn">Personal Information & Attendance</button>
+            </div>
+    
+            <!-- Salary & Taxes Button -->
+            <div class="mtext-14 mtext-weight-700 font-nunito mx-2 mx-sm-0 text-nowrap"
+                [class.active]="selectedTab === 'salaryTaxes'" (click)="selectedTab = 'salaryTaxes'">
+                <button class="btn custom-btn">Salary & Taxes</button>
+            </div>
+    
+            <!-- Payment Button -->
+            <div class="mtext-14 mtext-weight-700 font-nunito mx-2 mx-sm-0 text-nowrap"
+                [class.active]="selectedTab === 'payment'" (click)="selectedTab = 'payment'">
+                <button class="btn custom-btn">Payment</button>
+            </div>
+    
+            <!-- Pay Slip Button -->
+            <div class="mtext-14 mtext-weight-700 font-nunito mx-2 mx-sm-0 text-nowrap"
+                [class.active]="selectedTab === 'PaySlip'" (click)="selectedTab = 'PaySlip'">
+                <button class="btn custom-btn">Pay Slip</button>
+            </div>
+    
+               <!-- Month Input and Apply for Salary Certificate Button in a Group -->
+        <div class="d-flex align-items-center mx-2 mx-sm-0">
+            <!-- Month Input -->
+            <input type="month" class="form-control mr-2" [(ngModel)]="selectedMonthForSalaryCertificate" name="month">
+
+            <!-- Apply for Salary Certificate Button -->
+            <div class="mtext-14 mtext-weight-700 font-nunito text-nowrap"
+                 [class.active]="selectedTab === 'applyForSalaryCertificate'"
+                 (click)="selectedTab = 'applyForSalaryCertificate'">
+                <button class="btn custom-btn bg-primary text-white" [disabled]="!selectedMonthForSalaryCertificate"   (click)="applyForCertificate()">
+                    Apply for Salary Certificate
+                </button>
+            </div>
+        </div>
+        </div>
+    </div>
+    
+
+    <!-- <div class="row  mbg">
+        <div class="d-flex justify-content-between flex-nowrap scroll-display-none overflow-x-scroll py-4">
+            <div class="mtext-14 mtext-weight-700 font-nunito mx-2 mx-sm-0 text-nowrap"
+                [class.active]="selectedTab === 'personalDetails'" (click)="selectedTab = 'personalDetails'">
+                <button class="btn custom-btn">Personal Information & Attendance</button>
+            </div>
+
+            <div class="mtext-14 mtext-weight-700 font-nunito mx-2 mx-sm-0 text-nowrap"
+                [class.active]="selectedTab === 'salaryTaxes'" (click)="selectedTab = 'salaryTaxes'">
+                <button class="btn custom-btn">Salary & Taxes</button>
+            </div>
+
+            <div class="mtext-14 mtext-weight-700 font-nunito mx-2 mx-sm-0 text-nowrap"
+                [class.active]="selectedTab === 'payment'" (click)="selectedTab = 'payment'">
+                <button class="btn custom-btn">Payment</button>
+            </div>
+
+            <div class="mtext-14 mtext-weight-700 font-nunito mx-2 mx-sm-0 text-nowrap"
+                [class.active]="selectedTab === 'PaySlip'" (click)="selectedTab = 'PaySlip'">
+                <button class="btn custom-btn">Pay Slip</button>
+            </div>
+        </div>
+    </div> -->
+
+
+
+    <div [ngSwitch]="selectedTab">
+        <div *ngSwitchCase="'personalDetails'">
+            <div class="container">
+                <div class="row">
+                    <!-- employee info -->
+                    <div class="col-lg-6 mb-4 d-flex align-items-stretch">
+                        <div class="card w-100 shadow-sm">
+                            <div class="card-header bg-primary text-white">
+                                <h4 class="my-0 font-weight-normal"><i class="bi bi-person-badge-fill mr-2"></i>Employee
+                                    Information</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="row mb-2">
+                                    <div class="col-md-4 font-weight-bold">Name:</div>
+                                    <div class="col-md-8">{{ obj.payroll.name}}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 font-weight-bold">Employee ID:</div>
+                                    <div class="col-md-8">{{ obj.payroll.employeeId }}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 font-weight-bold">Job Designation:</div>
+                                    <div class="col-md-8"> {{ obj.payroll.jobDesignation }}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 font-weight-bold"> Job Level:</div>
+                                    <div class="col-md-8"> {{ obj.payroll.jobLevel }}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 font-weight-bold"> Job Location:</div>
+                                    <div class="col-md-8">{{ obj.payroll.jobLocation }}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 font-weight-bold"> Department:</div>
+                                    <div class="col-md-8">{{ obj.payroll.department }}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 font-weight-bold">Contact:</div>
+                                    <div class="col-md-8">{{ obj.payroll.contact }}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 font-weight-bold"> Address:</div>
+                                    <div class="col-md-8">{{ obj.payroll.address }}</div>
+                                </div>
+                                <!-- Repeat for other fields -->
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- attendance -->
+                    <div class="col-lg-6 mb-4 d-flex align-items-stretch">
+                        <div class="card w-100 shadow-sm">
+                            <div class="card-header bg-primary text-white">
+                                <h4 class="my-0 font-weight-normal"><i
+                                        class="bi bi-person-badge-fill mr-2"></i>Attendance Information</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="row mb-2">
+                                    <div class="col-md-4 font-weight-bold"> No of Days Worked regular hours:</div>
+                                    <div class="col-md-8">{{ obj.attendence.noOfDaysWorkedRegularHours}}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 font-weight-bold"> Overtime hours:</div>
+                                    <div class="col-md-8">{{ obj.attendence.totalOvertimeHoursInMonth}}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 font-weight-bold"> Half Day Leaves:</div>
+                                    <div class="col-md-8">{{ obj.attendence.totalHalfDaysInMonth}}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 font-weight-bold"> Leave Days:</div>
+                                    <div class="col-md-8">{{ obj.attendence.totalOvertimeHoursInMonth}}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 font-weight-bold"> Tardy Days:</div>
+                                    <div class="col-md-8">{{ obj.attendence.totalTardyDays}}</div>
+                                </div>
+                                <!-- Repeat for other fields -->
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div *ngSwitchCase="'salaryTaxes'">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 mb-4 d-flex align-items-stretch">
+                        <div class="card w-100">
+                            <div class="card-header bg-primary text-white">
+                                Salary & Bonuses
+                            </div>
+                            <div class="card-body">
+                                <!-- Basic Pay -->
+                                <div class="row mb-2">
+                                    <div class="col-md-6 font-weight-bold">Basic Pay:</div>
+                                    <div class="col-md-6">{{ obj.payroll.basicPay }}</div>
+                                </div>
+
+                                <!-- Allowances -->
+                                <div class="row mb-2">
+                                    <div class="col-md-6 font-weight-bold">House Rent Allowances:</div>
+                                    <div class="col-md-6">{{ obj.payroll.allowances.houseRentAmount }}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-6 font-weight-bold">Food Allowances:</div>
+                                    <div class="col-md-6">{{ obj.payroll.allowances.foodAllowanceAmount }}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-6 font-weight-bold">Vehicle Allowances:</div>
+                                    <div class="col-md-6">{{ obj.payroll.allowances.vehicleAllowanceAmount }}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-6 font-weight-bold">Uniform Allowances:</div>
+                                    <div class="col-md-6">{{ obj.payroll.allowances.uniformAllowanceAmount }}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-6 font-weight-bold">Travelling Allowances:</div>
+                                    <div class="col-md-6">{{ obj.payroll.allowances.travellingAllowancesAmount }}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-6 font-weight-bold">Education Allowances:</div>
+                                    <div class="col-md-6">{{ obj.payroll.allowances.educationalAllowanceAmount }}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-6 font-weight-bold">Other Allowances:</div>
+                                    <div class="col-md-6">{{ obj.payroll.allowances.otherAllowanceAmount }}</div>
+                                </div>
+
+                                <!-- Perquisites -->
+                                <div class="row mb-2">
+                                    <div class="col-md-6 font-weight-bold"> Vehicle Cash Amount:</div>
+                                    <div class="col-md-6">{{ obj.payroll.vehicleCashAmount}}</div>
+                                </div>
+
+                                <div class="row mb-2">
+                                    <div class="col-md-6 font-weight-bold"> Electricity Allocation Amount:</div>
+                                    <div class="col-md-6">{{ obj.payroll.electricityAllocationAmount}}</div>
+                                </div>
+
+
+                                <div class="row mb-2">
+                                    <div class="col-md-6 font-weight-bold">Rent Allocation Amount:</div>
+                                    <div class="col-md-6">{{ obj.payroll.rentAllocationAmount}}</div>
+                                </div>
+
+
+                                <!-- Incentives -->
+                                <div class="row mb-2">
+                                    <div class="col-md-6 font-weight-bold">Incentives Name:</div>
+                                    <div class="col-md-6">{{ obj.payroll.incentivesName}}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-6 font-weight-bold">Incentives Amount:</div>
+                                    <div class="col-md-6">{{ obj.payroll.incentiveAmount}}</div>
+                                </div>
+
+                                <!-- Special Rewards -->
+                                <div class="row mb-2">
+                                    <div class="col-md-6 font-weight-bold">Special Rewards Name:</div>
+                                    <div class="col-md-6">{{ obj.payroll.anySpecialReward }}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-6 font-weight-bold">Special Amount:</div>
+                                    <div class="col-md-6">{{ obj.payroll.anySpecialRewardAmount }}</div>
+                                </div>
+
+                                <!-- Bonus -->
+                                <div class="row mb-2">
+                                    <div class="col-md-6 font-weight-bold">Bonus:</div>
+                                    <div class="col-md-6">{{ obj.payroll.bonus }}</div>
+                                </div>
+
+                                <!-- Overtime Pay -->
+                                <div class="row mb-2">
+                                    <div class="col-md-6 font-weight-bold">Overtime Pay:</div>
+                                    <div class="col-md-6">{{ obj.payroll.overtimePay }}</div>
+                                </div>
+
+                                <!-- Monthly Performance Pay -->
+                                <div class="row mb-2">
+                                    <div class="col-md-6 font-weight-bold">Monthly Performance Pay:</div>
+                                    <div class="col-md-6">{{ obj.payroll.monthlyPerformancePay }}</div>
+                                </div>
+
+                                <!-- Total Payment -->
+                                <div class="row mb-2">
+                                    <div class="col-md-6 font-weight-bold">Total Payment:</div>
+                                    <div class="col-md-6">{{ obj.payroll.totalPay}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mb-4 d-flex align-items-stretch">
+                        <div class="card w-100">
+                            <div class="card-header bg-primary text-white">
+                                Deductions & Tax
+                            </div>
+                            <div class="card-body">
+                                <!-- Tax -->
+                                <div class="row mb-2">
+                                    <div class="col-md-6 font-weight-bold">Tax:</div>
+                                    <div class="col-md-6">{{ obj.payroll.deductions }}</div>
+                                </div>
+
+                                <!-- Leave Day Cut -->
+                                <div class="row mb-2">
+                                    <div class="col-md-6 font-weight-bold">Leave Day Cut:</div>
+                                    <div class="col-md-6">{{ obj.payroll.deductions.leaveDayCut }}</div>
+                                </div>
+
+                                <!-- Tardy Day Cut -->
+                                <div class="row mb-2">
+                                    <div class="col-md-6 font-weight-bold">Tardy Day Cut:</div>
+                                    <div class="col-md-6">{{ obj.payroll.deductions.tardyDayCut}}</div>
+                                </div>
+
+                                <!-- Half Day Cut -->
+                                <div class="row mb-2">
+                                    <div class="col-md-6 font-weight-bold">Half Day Cut:</div>
+                                    <div class="col-md-6">{{ obj.payroll.deductions.halfDayCut}}</div>
+                                </div>
+
+                                <!-- Specific Deduction -->
+                                <div class="row mb-2">
+                                    <div class="col-md-6 font-weight-bold">Specific Deduction:</div>
+                                    <div class="col-md-6">{{ obj.payroll.deductions.anyOtherSpecificDeduction}}</div>
+                                </div>
+
+                                <!-- Other Deductions -->
+                                <div class="row mb-2">
+                                    <div class="col-md-6 font-weight-bold">Other Deductions Name:</div>
+                                    <div class="col-md-6">{{ obj.payroll.deductions.otherDeductionsName }}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-6 font-weight-bold">Other Deductions :</div>
+                                    <div class="col-md-6">{{ obj.payroll.deductions.otherDeductions }}</div>
+                                </div>
+
+                                <!-- Total Deductions -->
+                                <div class="row mb-2">
+                                    <div class="col-md-6 font-weight-bold">Total Deductions:</div>
+                                    <div class="col-md-6">{{ obj.payroll.deductions.totalDeductions}}</div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div *ngSwitchCase="'payment'">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6  mb-4 d-flex align-items-stretch">
+                        <div class="card w-100">
+                            <div class="card-header bg-success text-white">
+                                Payment Method
+                            </div>
+                            <div class="card-body">
+                                <!-- Method of Payment -->
+                                <div class="row mb-3">
+                                    <div class="col-md-6 font-weight-bold">Method of Payment:</div>
+                                    <div class="col-md-6">{{ obj.payroll.methodUsedForPayment}}</div>
+                                </div>
+
+                                <!-- Date of Payment -->
+                                <div class="row mb-3">
+                                    <div class="col-md-6 font-weight-bold">Date of Payment:</div>
+                                    <div class="col-md-6">{{ obj.payroll.dateOfPayment }}</div>
+                                </div>
+
+                                <!-- Salary Cycle Note -->
+                                <p class="text-muted">
+                                    <small>
+                                        Note: Salary is credited on the 3rd last working day of each month. Salary cycle
+                                        is from the 27th to the 26th of each month.
+                                    </small>
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div *ngSwitchCase="'PaySlip'">
+            <div class="row">
+                <div class="col-lg-6 mb-4 d-flex align-items-stretch">
+                    <div class="card w-100">
+                        <div class="card-header bg-info text-white">
+                            Pay Slip
+                        </div>
+                        <div class="card-body">
+                            <!-- Employee Name -->
+                            <div class="row mb-3">
+                                <div class="col-md-4 font-weight-bold">Name:</div>
+                                <div class="col-md-8">{{ obj.payroll.name }}</div>
+                            </div>
+            
+                            <!-- Total Salary -->
+                            <div class="row mb-3">
+                                <div class="col-md-4 font-weight-bold">Total Salary:</div>
+                                <div class="col-md-8">{{ obj.payroll.totalPay | currency }}</div>
+                            </div>
+            
+                            <!-- Deductions -->
+                            <div class="row mb-3">
+                                <div class="col-md-4 font-weight-bold">Deductions:</div>
+                                <div class="col-md-8">{{ obj.payroll.deductions.totalDeductions | currency }}</div>
+                            </div>
+            
+                            <!-- Period of the Salary -->
+                            <div class="row mb-3">
+                                <div class="col-md-4 font-weight-bold">Salary Period:</div>
+                                <div class="col-md-8">{{ obj.payroll.month }}/{{ obj.payroll.year }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
+        </div>
+        <div *ngSwitchDefault>
+            <div class="container">
+                <div class="row">
+                    <!-- employee info -->
+                    <div class="col-lg-6 mb-4 d-flex align-items-stretch">
+                        <div class="card w-100 shadow-sm">
+                            <div class="card-header bg-primary text-white">
+                                <h4 class="my-0 font-weight-normal"><i class="bi bi-person-badge-fill mr-2"></i>Employee
+                                    Information</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="row mb-2">
+                                    <div class="col-md-4 font-weight-bold">Name:</div>
+                                    <div class="col-md-8">{{ "Syed" }}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 font-weight-bold">Employee ID:</div>
+                                    <div class="col-md-8">{{ "employee.employeeId" }}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 font-weight-bold">Job Designation:</div>
+                                    <div class="col-md-8">{{ "employee.Designation" }}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 font-weight-bold"> Job Level:</div>
+                                    <div class="col-md-8">{{ "employee.Level" }}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 font-weight-bold"> Job Location:</div>
+                                    <div class="col-md-8">{{ "employee.Location" }}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 font-weight-bold"> Department:</div>
+                                    <div class="col-md-8">{{ "employee. Department:" }}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 font-weight-bold">Contact:</div>
+                                    <div class="col-md-8">{{ "employee.Contact" }}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 font-weight-bold"> Address:</div>
+                                    <div class="col-md-8">{{ "employee. Address: " }}</div>
+                                </div>
+                                <!-- Repeat for other fields -->
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- attendance -->
+                    <div class="col-lg-6 mb-4 d-flex align-items-stretch">
+                        <div class="card w-100 shadow-sm">
+                            <div class="card-header bg-primary text-white">
+                                <h4 class="my-0 font-weight-normal"><i
+                                        class="bi bi-person-badge-fill mr-2"></i>Attendance Information</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="row mb-2">
+                                    <div class="col-md-4 font-weight-bold"> No of Days Worked regular hours:</div>
+                                    <div class="col-md-8">{{ "Syed" }}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 font-weight-bold"> Overtime hours:</div>
+                                    <div class="col-md-8">{{ "employee.employeeId" }}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 font-weight-bold"> Half Day Leaves:</div>
+                                    <div class="col-md-8">{{ "employee.employeeId" }}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 font-weight-bold"> Leave Days:</div>
+                                    <div class="col-md-8">{{ "employee.employeeId" }}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 font-weight-bold"> Tardy Days:</div>
+                                    <div class="col-md-8">{{ "employee.employeeId" }}</div>
+                                </div>
+                                <!-- Repeat for other fields -->
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>

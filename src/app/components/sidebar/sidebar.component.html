@@ -1,0 +1,72 @@
+<nav class="navbar navbar-vertical navbar-expand-md navbar-light bg-white" id="sidenav-main">
+  <div class="container-fluid">
+    <!-- Toggler -->
+    <button class="navbar-toggler" type="button" (click)="isCollapsed=!isCollapsed"
+       aria-controls="sidenav-collapse-main">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- Brand -->
+    <a class="navbar-brand pt-0" routerLinkActive="active" [routerLink]="['/user-profile']">
+      <img src="./assets/img/brand/logo.png" class="brand-logo navbar-brand-img" alt="..."><br>
+      <span><i>  <b style="font-size: 15px;"> AN SIG GROUP OF ERP</b></i></span>
+
+     
+    </a>
+    
+    <div class="collapse navbar-collapse"  [ngbCollapse]="isCollapsed" id="sidenav-collapse-main">
+     
+     
+      <ul class="navbar-nav">
+          <li *ngFor="let menuItem of menuItems | slice:0 " class="{{menuItem.class}} nav-item">
+              <a routerLinkActive="active" [routerLink]="[menuItem.path]" class="nav-link">
+                  <i class="ni {{menuItem.icon}}" [style.color]="menuItem.color"></i>
+                  {{menuItem.title}}
+                  <i *ngIf="menuItem?.child?.length > 0 && !menuItem?.isModuleOpen" (click)="moduleOpen(menuItem?.id)" [class.chevronOpen]="menuItem?.isModuleOpen" class="fa-solid fa-chevron-down"></i>
+                  <i *ngIf="menuItem?.isModuleOpen" (click)="moduleOpen(menuItem?.id)" class="fa-solid fa-chevron-up"></i>
+                </a>
+                <!-- <div class="navbar"> -->
+                <ul *ngIf="menuItem.isModuleOpen" class="navbar-nav">
+                  <li *ngFor="let module of menuItem.child" class="modules nav-item">
+                    <a routerLinkActive="active" [routerLink]="[module.path]" class="nav-link">
+                        {{module.name}}
+                      </a>
+                  </li>
+                </ul>
+              <!-- </div> -->
+          </li>
+      </ul>
+      <!-- Divider -->
+      <!-- <hr class="my-3"> -->
+      <!-- Heading -->
+      <!-- <h6 class="navbar-heading text-muted">User Account</h6> -->
+      <!-- Navigation -->
+      <!-- <ul class="navbar-nav mb-md-3"> -->
+        <!-- <li class="{{menuItems[9].class}} nav-item"> -->
+        <!-- <li *ngFor="let menuItem of menuItems | slice:9 " class="{{menuItem.class}} nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="[menuItem.path]" class="nav-link">
+            <i class="ni {{menuItem.icon}}"></i>
+            {{menuItem.title}}
+          </a>
+        </li> -->
+        <!-- <li class="{{menuItems[10].class}} nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="[menuItems[10].path]" class="nav-link">
+            <i class="ni {{menuItems[10].icon}}"></i>
+            {{menuItems[10].title}}
+          </a>
+        </li>
+        <li class="{{menuItems[11].class}} nav-item">
+          <a style="cursor: pointer;" class="nav-link" routerLinkActive="active" (click)="_authService.logOut()" class="nav-link">
+            <i class="ni {{menuItems[11].icon}}"></i>
+            {{menuItems[11].title}}
+          </a>
+        </li> -->
+      <!-- </ul> -->
+    </div>
+  </div>
+
+  <!-- Close Button (Visible on Mobile Only) -->
+  <button type="button" class="navbar-toggler d-md-none" *ngIf="!isCollapsed" (click)="toggleSidebar()" style="position: absolute; top: 0; right: 0; z-index: 2000;">
+    <span>X</span> <!-- Use an X icon here -->
+  </button>
+
+</nav>

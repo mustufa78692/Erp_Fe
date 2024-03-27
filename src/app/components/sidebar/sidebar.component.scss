@@ -1,0 +1,23 @@
+.brand-logo {
+ width: 150px;   
+}
+
+.navbar-vertical.navbar-expand-md .navbar-brand-img {
+    max-height: 8rem;
+}
+
+.navbar-vertical.navbar-expand-md .navbar-brand {
+    padding-bottom: 0;
+}
+
+.chevronOpen {
+    transform: rotate(180deg);
+}
+
+.modules {
+    padding-left: 25px;
+}
+
+.modules > a::before {
+    border-color: white !important;
+}

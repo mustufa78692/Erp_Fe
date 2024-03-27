@@ -1,0 +1,118 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+      <div class="header-body">
+      </div>
+    </div>
+  </div>
+  <!-- Page content -->
+  <div class="container-fluid mt-7">
+    <div class="row">
+        <div class="col">
+          <div class="card shadow border-0">
+            <div class="col-xl-12 m-0 p-0">
+              <div class="card shadow">
+                <div class="card-header border-0">
+                  <div class="row align-items-center">
+                    <div class="col">
+                      <h3 class="mb-0">Notification</h3>
+                    </div>
+                    <div class="col text-right">
+                      <div class="input-group">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Search By"
+                          aria-label="Search By"
+                          #searchInput
+                        />
+                        <div class="input-group-append">
+                          <select class="btn btn-sm btn-outline-primary">
+                            <!-- <option value="email" selected>Email</option> -->
+                            <option value="id">ID</option>
+                          </select>
+                          <button
+                            class="btn btn-sm btn-primary"
+                            type="button"
+                            (click)="searchEmpByemployee_Id(searchInput.value)"
+                          >
+                            Search
+                          </button>
+                        </div>
+                      </div>
+                      <!-- <a class="btn btn-sm btn-primary">See all</a> -->
+                    </div>
+                  </div>
+                </div>
+    
+                <div class="table-responsive min-height-630" id="table-scroll">
+                  <!-- Projects table -->
+                  <table class="table align-items-center table-flush">
+                    <thead class="thead-light">
+                      <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Designation</th>
+                        <th scope="col">Status</th>
+                        <!-- <th scope="col">Action</th> -->
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr
+                        *ngFor="let employee of response | async"
+                        (click)="navigate(employee.leaveRequestId)"
+                      >
+                        <th scope="row">{{ employee.employeeId }}</th>
+                        <td>
+                          {{ employee.nameOfEmployee }}
+                        </td>
+                        <td>
+                          {{ employee.email }}
+                        </td>
+                        <td>{{ employee.designation }}</td>
+                        <td>{{employee.approvalStatus}}</td>
+<!--                         
+                        <td *ngIf="employee.status == 'Active'">
+                          <i class="fas fa-circle text-info mr-3"></i>
+                        </td> -->
+                        <!-- <td *ngIf="employee.status != 'Active'">
+                          <i class="fas fa-circle text-danger mr-3"></i>
+                        </td> -->
+    
+                        <!-- <td *ngIf="employee.status == 'Active'">
+                          <button
+                            class="btn btn-sm btn-danger w-75"
+                            (click)="delEmployee(employee.email)"
+                          >
+                            Deactivate
+                          </button>
+                        </td> -->
+                        <!-- <td *ngIf="employee.status != 'Active'">
+                          <button
+                            class="btn btn-sm btn-info w-75"
+                            (click)="rejoinEmployee(employee.email)"
+                          >
+                            Activate
+                          </button>
+                        </td> -->
+                      </tr>
+                    </tbody>
+                  </table>
+    
+                  <!-- spinner -->
+                  <div
+                    class="d-flex justify-content-center mt-5 pt-5"
+                    *ngIf="isLoading | async"
+                  >
+                    <div class="spinner-border text-info" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  

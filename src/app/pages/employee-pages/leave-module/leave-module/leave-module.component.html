@@ -1,0 +1,238 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+        <div class="header-body">
+            <!-- employee details  -->
+
+
+
+            <!-- <div class="container my-5">
+    <div class="row">
+       
+          <div class="col-md-6 col-lg-4 mb-3">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Name</h5>
+                    <p class="card-text">[Employee Full Name]</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4 mb-3">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Employee ID</h5>
+                    <p class="card-text">[Unique Employee ID]</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4 mb-3">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Job Designation</h5>
+                    <p class="card-text">[Employee's Job Designation]</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 mb-3">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Job Level</h5>
+                    <p class="card-text">[Job Level]</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 mb-3">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Job Location</h5>
+                    <p class="card-text">[Job Location]</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 mb-3">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Department</h5>
+                    <p class="card-text">[Department Name]</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+        </div>
+    </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt-2">
+
+
+    <!-- <div class="container my-5">
+     
+        <div class="row mb-4">
+     
+            <div class="col-md-3">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Casual Leaves</h5>
+                        <p class="card-text">30 days</p>
+                    </div>
+                </div>
+            </div>
+    
+     
+            <div class="col-md-3">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Medical Leaves</h5>
+                        <p class="card-text">15 days</p>
+                    </div>
+                </div>
+            </div>
+    
+     
+            <div class="col-md-3">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Maternity Leaves</h5>
+                        <p class="card-text">As per law</p>
+                    </div>
+                </div>
+            </div>
+    
+     
+            <div class="col-md-3">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Available Leave Balance</h5>
+                        <p class="card-text">[Number of Days]</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <!-- Table -->
+    <!-- <div class="container mt-1">
+        
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Date of Leave</th>
+                    <th scope="col">Time Period for Leave</th>
+                    <th scope="col">Reason of Leave</th>
+                    <th scope="col">Approving Manager</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let leave of leaves | slice:(page-1)*pageSize:(page*pageSize)">
+                    <td>{{ leave.dateOfLeave | date:'dd-MM-yyyy' }}</td>
+                    <td>{{ leave.startDate | date:'dd-MM-yyyy' }} to {{ leave.endDate | date:'dd-MM-yyyy' }}</td>
+                    <td>{{ leave.reasonOfLeave }}</td>
+                    <td>{{ leave.approvingManager }}</td>
+                </tr>
+            </tbody>
+        </table>
+    
+        
+        <ngb-pagination [collectionSize]="leaves.length" [(page)]="page" [pageSize]="pageSize" aria-label="Default pagination"></ngb-pagination>
+    </div> -->
+
+
+
+
+    <!-- //METOD FOR GETTING LEAVE DETAILS BY YEAR -->
+
+
+<!-- <div class="container-fluid">
+    <div class="row">
+        <div class="col-6"><button class="btn bg-light">Leave Details By Year</button></div>
+        <div class="col-6">  <button class="btn bg-light" (click)="navigate()">Leave Details By Date</button> </div>
+    </div>
+</div> -->
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <label class="form-control-label" for="employeeId">Employee ID</label>
+                        <input type="text" name="employeeId" id="" class="form-control form-control-sm"
+                            formControlName="employeeId" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label" for="year">Year</label>
+                        <select class="form-control form-control-sm" formControlName="year">
+                            <option *ngFor="let year of years" [ngValue]="year">{{ year }}</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card animated-form  mt-5">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="bg-light">
+                        <tr>
+                            <th scope="col">S.No</th>
+                            <th scope="col">Leave Name</th>
+                            <th scope="col">Total Leave Days In A Month </th>
+                            <!-- <th scope="col">Level</th> -->
+                            <!-- <th scope="col">Leave Days </th> -->
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of tableData;let i=index">
+                            <td>{{i+1}}</td>
+                            <td>{{data?.leaveName}}</td>
+                            <td>{{data?.totalLeaveDays}}</td>
+                            <!-- <td>{{data?.jobLevel}}</td> -->
+
+                        </tr>
+
+
+                        <!-- <ng-container *ngFor="let data of getData; let i = index">
+              <tr *ngFor="let location_data of data.locations; let first = first">
+                <td *ngIf="first">{{ i + 1 }}</td>
+                <td *ngIf="first">{{ data.firstApproverEmpId }}</td>
+                <td *ngIf="first">{{ data.secondApproverEmpId }}</td>
+                <td *ngIf="first">{{ data.startDate | date }}</td>
+                <td *ngIf="first">{{ data.endDate | date }}</td>
+                <td>{{ location_data.name }}</td>
+                <td>{{ location_data.address }}</td>
+              </tr>
+            </ng-container> -->
+
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    <!-- method for getting data by date  -->
+
+    
+
+
+
+
+
+</div>

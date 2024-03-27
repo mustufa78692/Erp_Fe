@@ -1,0 +1,82 @@
+<div class="container mt-5">
+    <div class="card mb-3">
+        <div class="card-body">
+            <h2 class="mb-4">Add Level Form</h2>
+            
+            <form [formGroup]="levelForm" (ngSubmit)="onSubmit()">
+                <!-- <div class="mb-3">
+                    <label for="inputField" class="form-label">Level</label>
+                    
+                    <input type="text" formControlName="levelName" pattern="Level[0-9]*" class="form-control" id="inputField" title="Input must contain 'Level' followed by one or two digits">
+
+                    <div *ngIf="levelForm.get('levelName').hasError('required') && levelForm.get('levelName').touched" class="text-danger">
+                        Level is required.
+                    </div>
+                </div> -->
+
+                <div class="mb-3">
+                  <label for="inputField" class="form-label">Level</label>
+                  <input type="text" formControlName="levelName" pattern="Level[0-9]*" class="form-control" id="inputField" title="Input must contain 'Level' followed by one or more digits">
+                  <div *ngIf="levelForm.get('levelName').hasError('required') && levelForm.get('levelName').touched" class="text-danger">
+                      Level is required.
+                  </div>
+                  <div *ngIf="levelForm.get('levelName').hasError('pattern') && levelForm.get('levelName').touched" class="text-danger">
+                      Input must contain 'Level' followed by one or more digits.
+                  </div>
+              </div>
+              
+
+                <button type="submit" class="btn btn-primary" [disabled]="!levelForm.valid">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="card animated-form  mt-5">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table">
+          <thead  class="bg-light">
+            <tr>
+              <th scope="col">S.No</th>
+              <th scope="col">Level Id</th>
+              <th scope="col">Level Name</th>
+              <th scope="col">Operation</th>
+              <!-- <th scope="col">Leave Days </th> -->
+           
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of getData;let i=index" >
+            <!-- <tr *ngFor="let data of getData;let i=index"  *ngIf="data?.levelName !== 'Default'"> -->
+              <td>{{i+1}}</td>
+              <td>{{data?.levelId}}</td>
+              <td>{{data?.levelName}}</td>
+              <!-- <td>{{data.leaveDays}}</td> -->
+              
+            <td> <button class="btn btn-primary" (click)="editData(data?.levelId)">Edit</button></td>
+
+
+            </tr>
+  
+  
+            <!-- <ng-container *ngFor="let data of getData; let i = index">
+              <tr *ngFor="let location_data of data.locations; let first = first">
+                <td *ngIf="first">{{ i + 1 }}</td>
+                <td *ngIf="first">{{ data.firstApproverEmpId }}</td>
+                <td *ngIf="first">{{ data.secondApproverEmpId }}</td>
+                <td *ngIf="first">{{ data.startDate | date }}</td>
+                <td *ngIf="first">{{ data.endDate | date }}</td>
+                <td>{{ location_data.name }}</td>
+                <td>{{ location_data.address }}</td>
+              </tr>
+            </ng-container> -->
+           
+           
+          </tbody>
+        </table>
+      </div>
+      
+    </div>
+  </div>

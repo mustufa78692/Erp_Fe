@@ -1,0 +1,106 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+      <div class="header-body">
+      </div>
+    </div>
+  </div>
+  <!-- Page content -->
+  <div class="container-fluid mt-7">
+<div class="cred-body">
+    <form [formGroup]="updateOvertime"  (ngSubmit)="submitRequest()" >
+        <h6 class="heading-small text-muted mb-4">Update Over Time </h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-first-name">Employee Id</label>
+                    <input type="text" id="input-first-name" class="form-control form-control-alternative" formControlName="employeeId">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-last-name">Attendance Id</label>
+                    <input type="text" id="input-last-name" class="form-control form-control-alternative" formControlName="attendenceId" >
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-father-name">Day</label>
+                    <input type="text" id="input-father-name" class="form-control form-control-alternative" formControlName="day" >
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-age">Date</label>
+                    <input type="text" id="input-age" class="form-control form-control-alternative" formControlName="date">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-contact-number">Punch In </label>
+                    <input type="text" id="input-contact-number" class="form-control form-control-alternative" formControlName="punchInTime" >
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="form-control-label" for="input-email">Punch Out</label>
+                        <input type="text" id="input-email" class="form-control form-control-alternative" formControlName="punchOutTime">
+                    </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-contact-number">Working Hours </label>
+                    <input type="text" id="input-contact-number" class="form-control form-control-alternative" formControlName="workingHours" >
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-email">Half Day</label>
+                    <input type="text" id="input-email" class="form-control form-control-alternative" formControlName="halfDay">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-contact-number">Over Time </label>
+                    <input type="text" id="input-contact-number" class="form-control form-control-alternative" formControlName="overTime"  >
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-email">Over Time Status</label>
+                    <input type="text" id="input-email" class="form-control form-control-alternative" formControlName="overtimeStatus" >
+                    
+                </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <!-- <div class="form-group">
+                    <label class="form-control-label" for="input-contact-number">Over Time </label>
+                    <input type="text" id="input-contact-number" class="form-control form-control-alternative" formControlName="overTime" readonly >
+                  </div> -->
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-email"></label>
+                    <input type="submit" id="input-email" class="form-control form-control-alternative btn btn-primary" value="Submit">
+                    
+                </div>
+                </div>
+              </div>
+            </div>
+    </form>
+</div>    
+
+
+
+  </div>
+  

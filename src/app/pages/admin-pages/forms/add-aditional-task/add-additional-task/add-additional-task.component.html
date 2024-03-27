@@ -1,0 +1,105 @@
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+
+      <!-- Employee ID -->
+      <div class="mb-3">
+        <label class="form-control-label" for="empId">Employee ID</label>
+        <select class="form-control form-control-alternative" id="empId" formControlName="empId">
+          <!-- Employee ID options will be populated here -->
+          <!-- <option *ngFor="let data of getEmp" [value]="data.employeeId">{{data.firstName +data.middleName+data.lastName}}</option> -->
+          <option *ngFor="let data of getEmp" [value]="data.employeeId">{{data.employeeId}}</option>
+        </select>
+      </div>
+
+      <!-- Start Date -->
+      <div class="mb-3">
+        <label class="form-control-label" for="startDate">Start Date</label>
+        <input type="date" class="form-control form-control-alternative" id="startDate" formControlName="startDate">
+      </div>
+
+      <!-- Location ID -->
+      <div class="mb-3">
+        <label class="form-control-label" for="locationId">Location </label>
+        <select class="form-control form-control-alternative" id="locationId" formControlName="locationId">
+          <option *ngFor="let data of getLocation" [value]="data.locationId">{{data.name}}</option>
+          <!-- Location ID options will be populated here -->
+        </select>
+      </div>
+
+      <!-- Designation ID -->
+      <div class="mb-3">
+        <label class="form-control-label" for="designationId">Designation </label>
+        <select class="form-control form-control-alternative" id="designationId" formControlName="designationId">
+          <!-- Designation ID options will be populated here -->
+          <option *ngFor="let data of getDesignation" [value]="data.designationId">{{data.designationName}}</option>
+        </select>
+      </div>
+
+      <!-- Task ID -->
+      <div class="mb-3">
+        <label class="form-control-label" for="taskId">Task </label>
+        <select class="form-control form-control-alternative" id="taskId" formControlName="taskId">
+          <!-- Task ID options will be populated here -->
+          <option *ngFor="let data of getaskId" [value]="data.taskId">{{data.taskName}}</option>
+        </select>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div>
+
+
+
+
+<div class="card animated-form  mt-5">
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">S.No</th>
+            <th scope="col">Task Id</th>
+            <th scope="col">Task Name</th>
+            <th scope="col">Operation</th>
+
+            <!-- <th scope="col">Level</th> -->
+            <!-- <th scope="col">Leave Days </th> -->
+         
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of tableData;let i=index">
+            <td>{{i+1}}</td>
+            <td>{{data?.taskId}}</td>
+            <td>{{data?.taskName}}</td>
+            
+            <td> <button class="btn btn-primary" (click)="editData(data?.taskId)">See All</button></td>
+
+            <!-- <td>{{data?.jobLevel}}</td> -->
+
+          </tr>
+
+
+          <!-- <ng-container *ngFor="let data of getData; let i = index">
+            <tr *ngFor="let location_data of data.locations; let first = first">
+              <td *ngIf="first">{{ i + 1 }}</td>
+              <td *ngIf="first">{{ data.firstApproverEmpId }}</td>
+              <td *ngIf="first">{{ data.secondApproverEmpId }}</td>
+              <td *ngIf="first">{{ data.startDate | date }}</td>
+              <td *ngIf="first">{{ data.endDate | date }}</td>
+              <td>{{ location_data.name }}</td>
+              <td>{{ location_data.address }}</td>
+            </tr>
+          </ng-container> -->
+         
+         
+        </tbody>
+      </table>
+    </div>
+    
+  </div>
+</div>
+

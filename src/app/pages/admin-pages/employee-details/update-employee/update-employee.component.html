@@ -1,0 +1,2252 @@
+<div id="section">
+  <div style="padding: 75px 0px">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h5 class="pb-3 text-light mt-3">New Employee</h5>
+        </div>
+      </div>
+    </div>
+    <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+      <div class="container">
+        <!-- <h1>New Employee</h1> -->
+        <div class="row">
+          <div class="col-xl-12 order-xl-1">
+            <div class="card bg-secondary shadow">
+
+              <div class="card-header bg-white border-0">
+
+              </div>
+              <div class="card-body">
+                <div class="pl-lg-4">
+                  <div *ngIf=" step == 1">
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="namePrefix" class="form-control-label">Prefix</label>
+                          <input type="text" name="namePrefix" id="namePrefix"
+                            class="form-control form-control-alternative" formControlName="namePrefix" >
+
+
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label class="form-control-label" for="input-last-name">First Name</label>
+                          <input type="text" id="input-last-name" class="form-control form-control-alternative"
+                            placeholder=" " formControlName="firstName" >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label class="form-control-label" for="input-father-name">Middle Name</label>
+                          <input type="text" id="input-father-name" class="form-control form-control-alternative"
+                            placeholder="" value="" formControlName="middleName" >
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label class="form-control-label" for="input-age">Last Name</label>
+                          <input type="text" id="input-age" class="form-control form-control-alternative"
+                            placeholder="23" formControlName="lastName" >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="code">Code</label>
+
+                          <input type="text" name="code" id="code" class="form-control form-control-alternative"
+                            formControlName="phoneCode" >
+
+
+                        </div>
+
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label class="form-control-label" for="input-email">Contact</label>
+                          <input type="number" id="input-email" class="form-control form-control-alternative"
+                            placeholder="" formControlName="personalContactNo" >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="maritalStatus" class="form-control-label">Martial Status</label>
+
+                          <input type="text" name="maritalStatus" id="maritalStatus"
+                            class="form-control form-control-alternative" formControlName="maritalStatus" >
+
+
+                        </div>
+
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label class="form-control-label" for="input-email">Email </label>
+                          <input type="email" id="input-email" class="form-control form-control-alternative"
+                            placeholder="" formControlName="email" >
+                        </div>
+
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="">Citizenship</label>
+                          <input type="text" name="citizenship" id="" class="form-control form-control-alternative"
+                            formControlName="citizenship" >
+
+
+                        </div>
+
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="">Passport Issuing Country</label>
+
+                          <input type="text" name="passportIssuingCountry" id=""
+                            class="form-control form-control-alternative" formControlName="passportIssuingCountry"
+                            >
+
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label class="form-control-label" for="input-email">Date Of Birth </label>
+                          <input type="text" (change)="getAge($event)" min="" [max]="currentDate"
+                            class="form-control form-control-alternative" id="floatingTextInput1"
+                            formControlName="dateOfBirth" placeholder="Date Of Birth"  />
+                        </div>
+
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label class="form-control-label" for="input-email">Age </label>
+                          <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
+                            formControlName="age" placeholder="Age"  />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label class="form-control-label" for="input-email">Passport Size Photo </label>
+                          <input type="file" name="passportSizePhoto" (change)="uploadFile($event)"
+                            class="form-control form-control-alternative" id="floatingTextInput1"
+                            placeholder="Passport Size Photo" title="File Uploaded" />
+                        </div>
+
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label class="form-control-label" for="input-email">Passport Number </label>
+                          <input type="text" class="form-control form-control-alternative" id="floatingTextInput2"
+                            formControlName="passportNumber" placeholder="Passport Number"  />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label class="form-control-label" for="input-email">Passport Scanned Copy</label>
+                          <input type="file" class="form-control form-control-alternative" id="floatingTextInput2"
+                            name="passportScannedCopy" (change)="uploadFile($event)" placeholder="Smith" />
+
+                        </div>
+
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label class="form-control-label" for="input-email">Passport Expiry Date </label>
+                          <input type="text" class="form-control form-control-alternative"
+                            formControlName="passportExpiryDate" id="floatingTextInput1" placeholder="John" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label class="form-control-label" for="input-email">Driving License</label>
+                          <input type="text" name="drivinglicense" class="form-control form-control-alternative"
+                            formControlName="drivinglicense" id="" >
+
+                        </div>
+
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="drivinglicense" class="form-control-label">Type Of Lincense</label>
+                          <input type="text" name="licenseType" class="form-control form-control-alternative"
+                            formControlName="licenseType" >
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label class="form-control-label" for="input-email"> Scanned Copy Lincense</label>
+                          <input type="file" class="form-control form-control-alternative" id="floatingTextInput1 "
+                            name="scannedCopyOfLincense" formControlName="scannedCopyOfLincense"
+                            (change)="uploadFile($event)"   />
+
+                        </div>
+
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label class="form-control-label" for="">Personal Vehicle </label>
+                          <input type="text" name="ownvehicle" class="form-control form-control-alternative"
+                            formControlName="ownvehicle" id="" >
+
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div *ngIf=" step == 2 ">
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label class="form-control-label" for="">Type Of Visa </label>
+                          <input type="text" name="VisaType" class="form-control form-control-alternative"
+                            formControlName="VisaType" >
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label"> Emirates ID </label>
+                          <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
+                            formControlName="workVisaEmirateId" placeholder="Emirates ID"  />
+
+                        </div>
+
+                      </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+
+                          <label for="" class="form-control-label">Categories Of Visa </label>
+                          <input type="text" name="" id="" name="categoryOfVisa" class="form-control form-control-alternative"
+                            formControlName="categoryOfVisa" >
+
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label class="form-control-label" for="">Visa issuing company</label>
+                          <input type="text" name="siGlobalWorkVisaCompany" class="form-control form-control-alternative"
+                            formControlName="siGlobalWorkVisaCompany" id="" >
+
+
+                        </div>
+
+                      </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <!-- <label class="form-control-label" for="">Type Of Visa </label> -->
+                          <label for="floatingTextInput1" class="form-control-label"> Visa Issue Date </label>
+                          <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
+                            formControlName="visaIssueyDate" placeholder=""  />
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label"> Visa Expiry Date . </label>
+                          <input type="text" class="form-control form-control-alternative"
+                            formControlName="visaExpiryDate" id="floatingTextInput1" placeholder=""  />
+
+                        </div>
+
+                      </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <!-- <label class="form-control-label" for="">Type Of Visa </label> -->
+                          <label for="floatingTextInput1" class="form-control-label">
+                            Visa Scanned Copy Of ID
+                          </label>
+                          <input type="file" class="form-control form-control-alternative" id="floatingTextInput1"
+                            name="VisaScannedCopyOfID" placeholder="" (change)="uploadFile($event)"  />
+                        </div>
+                      </div>
+
+
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label">Secondary Issuing Authority
+                          </label>
+                          <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
+                            formControlName="secondaryIssuingAuthority" placeholder="Secondary Issuing Authority"
+                             />
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label">
+                            Percentage Or Grade
+                          </label>
+                          <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
+                            formControlName="secondarymarksOrGrade" placeholder="Secondary Percentage"  />
+
+                        </div>
+
+                      </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label"> Year </label>
+                          <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
+                            placeholder="Year" formControlName="secondaryyear"  />
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label"> Scanned Copy </label>
+                          <input type="file" class="form-control form-control-alternative" id="floatingTextInput1"
+                            placeholder="" name="ScannedCopyOfSecondary" (change)="uploadFile($event)"  />
+
+                        </div>
+
+                      </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label"> Senior Secondary Issuing Authority
+                          </label>
+                          <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
+                            formControlName="seniorSecondaryIssuingAuthority"
+                            placeholder="Senior Secondary Issuing Authority"  />
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label">
+                            Senior Secondary Percentage Or Grade
+                          </label>
+                          <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
+                            placeholder="Senior Secondary Percentage" formControlName="seniorSecondaryMarksOrGrade"
+                             />
+
+                        </div>
+
+                      </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label"> Year </label>
+                          <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
+                            placeholder="Year" formControlName="seniorSecondaryYear"  />
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label"> Scanned Copy </label>
+                          <input type="file" class="form-control form-control-alternative" id="floatingTextInput1"
+                            placeholder="John" name="ScannedCopyOfSeniorSecondary" (change)="uploadFile($event)"
+                             />
+                        </div>
+
+                      </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label"> Graduation Issuing Authority
+                          </label>
+                          <input type="text" class="form-control" id="floatingTextInput1"
+                            placeholder="Graduation Issuing Authority" formControlName="graduationIssuingAuthority"
+                             />
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label">
+                            Graduation Percentage Or Grade
+                          </label>
+                          <input type="text" class="form-control" id="floatingTextInput1"
+                            placeholder="Graduation Percentage " formControlName="graduationMarksOrGrade"  />
+                        </div>
+
+                      </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label"> Year </label>
+                          <input type="text" class="form-control" id="floatingTextInput1" placeholder="Year"
+                            formControlName="graduationYear"  />
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label"> Scanned Copy </label>
+                          <input type="file" class="form-control" id="floatingTextInput1" placeholder="John"
+                            name="ScannedCopyOfGraduation" (change)="uploadFile($event)"  />
+                        </div>
+
+                      </div>
+
+                    </div>
+                  </div>
+                  <div *ngIf=" step == 3">
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label"> Post Graduation Issuing Authority
+                          </label>
+                          <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
+                            placeholder="Post Graduation Issuing Authority"
+                            formControlName="postGraduationIssuingAuthority"  />
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label">
+                            Post Graduation Percentage Or Grade
+                          </label>
+                          <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
+                            placeholder="John" formControlName="postGraduationMarksOrGrade"  />
+                        </div>
+
+                      </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label"> Year </label>
+                          <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
+                            placeholder="Year" formControlName="postGraduationYear"  />
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label"> Scanned Copy </label>
+                          <input type="file" class="form-control form-control-alternative" id="floatingTextInput1"
+                            placeholder="" name="ScannedCopyOfPostGraduation" (change)="uploadFile($event)"  />
+                        </div>
+
+                      </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label"> Previous Company Name
+                          </label>
+                          <input type="text" class="form-control form-control-alternative" formControlName="companyName"
+                            id="floatingTextInput1" placeholder="Company Name "  />
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label">
+                            Previous Designation
+                          </label>
+                          <input type="text" class="form-control form-control-alternative" formControlName="designation"
+                            id="floatingTextInput1" placeholder="Designation"  />
+                        </div>
+
+                      </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label"> Worked From </label>
+                          <input type="text" class="form-control form-control-alternative" formControlName="dateFrom"
+                            id="floatingTextInput1"  />
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label"> Worked To</label>
+                          <input type="text" class="form-control form-control-alternative" formControlName="dateTo"
+                            id="floatingTextInput1"  />
+                        </div>
+
+                      </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="" class="form-control-label">Background Check</label>
+                          <input type="text" name="status" class="form-control form-control-alternative"
+                            formControlName="status" id="" >
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <div class="form-floating mb-3">
+                            <label for="" class="form-control-label">Checked By</label>
+                            <input type="text" name="doneBy" formControlName="doneBy"
+                              class="form-control form-control-alternative" id="" >
+
+                          </div>
+                        </div>
+
+                      </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label">
+                            Name the Concerned Manager for Internal
+                          </label>
+                          <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
+                            formControlName="internalConcernedManager" placeholder="Name the Concerned Manager"
+                             />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <div>
+
+                            <div>
+                              <label for="floatingTextInput1" class="form-control-label">
+                                Name the Concerned Person
+                              </label>
+                              <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
+                                placeholder="Name the Concerned Person" formControlName="externalConcernedPerson"
+                                 />
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <div>
+                            <!-- <div class="form-floating mb-3" *ngIf="getPostFormControls['doneBy'].value=='External'"> -->
+                            <div class="form-floating mb-3">
+                              <label for="floatingTextInput1" class="form-control-label"> Post </label>
+                              <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
+                                placeholder="Post" formControlName="externalPost"  />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <div>
+                            <!-- <div class="form-floating mb-3" *ngIf="getPostFormControls['doneBy'].value=='External'"> -->
+                            <div class="form-floating mb-3 form-control-label" >
+                              <label for="floatingTextInput1"> Company Name </label>
+                              <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
+                                placeholder="Company Name " formControlName="externalCompanyName"  />
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <div>
+                            <div class="form-floating mb-3">
+                              <label for="" class="form-control-label">Code</label>
+                              <input type="text" name="externalPhoneCode" class=" form-control form-control-alternative"
+                                formControlName="externalPhoneCode" id="" >
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <div>
+                            <div class="form-floating mb-3 firstName BloodNO">
+                              <label for="floatingTextInput1" class="form-control-label">Hr Number</label>
+                              <input type="number" class="form-control form-control-alternative" id="floatingTextInput1"
+                                formControlName="externalPhoneNo" placeholder="Hr Number"  />
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+
+                    </div>
+
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div>
+                          <div class="form-group">
+                            <label for="" class="form-control-label">Approved By Manager</label>
+                            <input type="text" name="managerApproval" class="form-control form-control-alternative"
+                              formControlName="managerApproval" >
+
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-floating mb-3" *ngIf="getPostFormControls['status'].value == 'Pending'">
+                          <div class="form-group">
+                            <label for="floatingTextInput1" class="form-control-label">
+                              Name Of Approving Manager
+                            </label>
+                            <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
+                              name="managerName" formControlName="managerName" placeholder="Name Of Approving Manager"
+                               />
+                          </div>
+                        </div>
+
+                      </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+
+                        <div>
+                          <div class="form-group">
+                            <label for="floatingTextInput1" class="form-control-label"> Remarks </label>
+                            <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
+                              formControlName="remark" name="remark" placeholder="Remarks"  />
+                          </div>
+                        </div>
+
+                      </div>
+
+
+                    </div>
+                  </div>
+                  <div *ngIf="step == 4">
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <h6 class="heading-small text-muted mb-4">Document Verification</h6>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <div class="form-check">
+                            <input class="form-check-input" formControlName="addressVerified" type="checkbox"
+                              [value]="'Yes'" id="flexCheckDefault"  />
+                            <label class="form-control-label" for="flexCheckDefault">
+                              Address
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="Yes"
+                              formControlName="previousEmploymentStatusVerified" id="flexCheckDefault"  />
+                            <label class="form-control-label" for="flexCheckDefault">
+                              Previous Employee Status
+                            </label>
+                          </div>
+                        </div>
+
+                      </div>
+
+                    </div>
+
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <div class="form-check">
+                            <input class="form-check-input"
+                              formControlName="previousDesignationAndResponsibilityVerified" type="checkbox"
+                              [value]="'Yes'" id="flexCheckDefault"  />
+                            <label class="form-control-label" for="flexCheckDefault">
+                              Previous designation Or Responsiblities
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="Yes"
+                              formControlName="idProofDocumentVerified" id="flexCheckDefault"  />
+                            <label class="form-check-label" for="flexCheckDefault">
+                              Id Proof Document Verified
+                            </label>
+                          </div>
+                        </div>
+
+                      </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <div class="form-check">
+                            <input class="form-check-input" formControlName="educationalQualificationVerified"
+                              type="checkbox" [value]="'Yes'" id="flexCheckDefault"  />
+                            <label class="form-check-label" for="flexCheckDefault">
+                              Education Qualifications
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="" class="form-control-label">Criminal</label>
+                          <input type="text" name="" id="" name="criminalRecords" formControlName="criminalRecords"
+                            class="form-control form-control-alternative" >
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <div class="form-floating mb-3">
+                            <label for="floatingTextInput1" class="form-control-lg"> Record Sheet </label>
+                            <input type="file" id="floatingTextInput1" class="form-control form-control-alternative"
+                              formControlName="RecordSheet" name="RecordSheet" (change)="uploadFile($event)"
+                              placeholder="Record Sheet"  />
+                          </div>
+                        </div>
+
+                      </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <div class="form-floating mb-3">
+                            <label for="" class="form-control-lg">Punishment For Imprisonment</label>
+                            <input type="text" (change)="onSelect($event)" name="punishmentForImprisonmentApproval"
+                              class="form-control form-control-alternative"
+                              formControlName="punishmentForImprisonmentApproval" >
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <div class="form-floating mb-3">
+                            <label for="" class="form-control-lg">Aprroved By Authority </label>
+                            <input type="text" name="approvalsheet" class="form-control form-control-alternative"
+                              formControlName="approvalsheet" >
+                          </div>
+                        </div>
+
+                      </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <div class="form-floating mb-3">
+                            <label for="floatingTextInput1"> Declaration</label>
+                            <input type="file" class="form-control form-control-alternative" id="floatingTextInput1"
+                              (change)="uploadFile($event)" name="Declaration" placeholder=""  />
+                          </div>
+                        </div>
+                      </div>
+
+
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <h6 class="heading-small text-muted mb-4">Training Details</h6>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-lg">Training Type</label>
+                          <input type="text" class="form-control form-control-alternative"
+                            formControlName="trainingType" id="floatingTextInput1"  />
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="" class="form-control-lg">Training Source</label>
+                          <input type="text" name="inHouseOutsource" formControlName="inHouseOutsource"
+                            class="form-control form-control-alternative" >
+                        </div>
+
+                      </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="" class="form-control-lg">Training Details</label>
+                          <input type="text" name="paidUnpaid" formControlName="paidUnpaid"
+                            class="form-control form-control-alternative" >
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label">
+                            Training Start Date
+                          </label>
+                          <input type="text" class="form-control form-control-alternative"
+                            formControlName="trainingStartDate" id="floatingTextInput1"  />
+                        </div>
+
+                      </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1"> Training End Date </label>
+                          <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
+                            formControlName="trainingEndDate"  />
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-lg"> Trainer Name </label>
+                          <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
+                            formControlName="trainerName"  />
+                        </div>
+
+                      </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1"> Post </label>
+                          <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
+                            formControlName="trainerPost"  />
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1"> Departnment </label>
+                          <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
+                            formControlName="trainerDepartment" placeholder="Departnment"  />
+                        </div>
+
+                      </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="" class="form-control-lg">Code</label>
+                          <input type="text" name="trainerPhoneCode" class="form-control form-control-alternative"
+                            formControlName="trainerPhoneCode">
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1">Phone Number</label>
+                          <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
+                            formControlName="trainerPhoneNo"  />
+                        </div>
+
+                      </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label">
+                            Job Post & Designation
+                          </label>
+                          <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
+                            formControlName="jobPostDesignation" placeholder="Designation"  />
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="jobdepartment" class="form-control-label">Departnment</label>
+                          <input type="text" name="jobdepartment" class="form-control form-control-alternative"
+                            formControlName="jobdepartment" >
+
+                        </div>
+
+                      </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="" class="form-control-label">Provided Email Id</label>
+                          <input type="text" name="companyEmailIdProvided" formControlName="companyEmailIdProvided"
+                            class="form-control form-control-alternative" (change)="onSelect($event)" >
+
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label"> Company Email Id </label>
+                          <input type="email" class="form-control form-control-alternative" id="floatingTextInput1"
+                            formControlName="companyEmailId" placeholder="Company Email Id "  />
+                        </div>
+
+                      </div>
+
+                    </div>
+                    <div class="row">
+                      <!-- <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="" class="form-control-label">Jobs Levels</label>
+                          <input type="text" name="jobLevel" formControlName="jobLevel"
+                            class="form-control form-control-alternative" >
+                        </div>
+                      </div> -->
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label"> Posted Location </label>
+                          <input type="text" class="form-control form-control-alternative"
+                            formControlName="postedLocation" id="floatingTextInput1" placeholder="Posted Location"
+                             />
+                        </div>
+
+                      </div>
+
+                    </div>
+                  </div>
+                  <div *ngIf="step == 5">
+
+
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label"> Basic </label>
+                          <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
+                            formControlName="basicAllowance" placeholder="Basic"  />
+                        </div>
+                      </div>
+
+
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <div class="form-check" style="padding-top: 36px;">
+                            <input class="form-check-input" type="checkbox" formControlName="houseRentAllowance"
+                              value="Yes" id="flexCheckDefault"  />
+                            <label class="form-check-label" for="flexCheckDefault">
+                              House Rent
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label"> House Rent Amount </label>
+                          <input type="number" class="form-control form-control-alternative" id="floatingTextInput1"
+                            formControlName="houseRentAmount" placeholder="House Rent Amount "  />
+                        </div>
+                      </div>
+
+
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <div class="form-check" style="padding-top: 36px;">
+                            <input class="form-check-input" type="checkbox" formControlName="foodAllowance" value="Yes"
+                              id="flexCheckDefault"  />
+                            <label class="form-check-label" for="flexCheckDefault">
+                              Food Allowance
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label"> Food Allowance Amount </label>
+                          <input type="number" class="form-control form-control-alternative" id="floatingTextInput1"
+                            formControlName="foodAllowanceAmount" placeholder="House Rent Amount "  />
+                        </div>
+                      </div>
+
+
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <div class="form-check" style="padding-top: 36px;">
+                            <input class="form-check-input" type="checkbox" formControlName="vehicleAllowance"
+                              value="Yes" id="flexCheckDefault"  />
+                            <label class="form-check-label" for="flexCheckDefault">
+                              Vehicle Allowance
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label"> Vehicle Allowance Amount </label>
+                          <input type="number" class="form-control form-control-alternative" id="floatingTextInput1"
+                            formControlName="vehicleAllowanceAmount" placeholder="House Rent Amount "  />
+                        </div>
+                      </div>
+
+
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <div class="form-check" style="padding-top: 36px;">
+                            <input class="form-check-input" type="checkbox" formControlName="uniformAllowance"
+                              value="Yes" id="flexCheckDefault"  />
+                            <label class="form-check-label" for="flexCheckDefault">
+                              Uniform Allowance
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label"> Uniform Allowance Amount </label>
+                          <input type="number" class="form-control form-control-alternative" id="floatingTextInput1"
+                            formControlName="uniformAllowanceAmount" placeholder="Uniform Allowance  Amount "
+                             />
+                        </div>
+                      </div>
+
+
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <div class="form-check" style="padding-top: 36px;">
+                            <input class="form-check-input" type="checkbox" formControlName="travellingAllowances"
+                              value="Yes" id="flexCheckDefault"  />
+                            <label class="form-check-label" for="flexCheckDefault">
+                              Travelling Allowance
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label"> Travelling Allowance Amount
+                          </label>
+                          <input type="number" class="form-control form-control-alternative" id="floatingTextInput1"
+                            formControlName="travellingAllowancesAmount" placeholder="Travelling Allowance  Amount "
+                             />
+                        </div>
+                      </div>
+
+
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <div class="form-check" style="padding-top: 36px;">
+                            <input class="form-check-input" type="checkbox" formControlName="educationalAllowance"
+                              value="Yes" id="flexCheckDefault"  />
+                            <label class="form-check-label" for="flexCheckDefault">
+                              Education Allowance
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label"> Education Allowance Amount
+                          </label>
+                          <input type="number" class="form-control form-control-alternative" id="floatingTextInput1"
+                            formControlName="educationalAllowanceAmount" placeholder="Education Allowance  Amount "
+                             />
+                        </div>
+                      </div>
+
+
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <div class="form-check" style="padding-top: 36px;">
+                            <input class="form-check-input" type="checkbox" formControlName="otherAllowance" value="Yes"
+                              id="flexCheckDefault"  />
+                            <label class="form-check-label" for="flexCheckDefault">
+                              Other Allowance
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label"> Other Allowance Amount </label>
+                          <input type="number" class="form-control form-control-alternative" id="floatingTextInput1"
+                            formControlName="otherAllowanceAmount" placeholder="Other Allowance  Amount "  />
+                        </div>
+                      </div>
+
+
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="" class="form-control-label">Vehicle Issued</label>
+                          <input type="text" name="vehicle" class="form-control form-control-alternative"
+                            formControlName="vehicle" >
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label">Vehicle Number </label>
+                          <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
+                            formControlName="vehicleNumber" placeholder="Vehicle Number"  />
+                        </div>
+                      </div>
+
+
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label"> Model Name</label>
+                          <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
+                            formControlName="vehicleModelName" placeholder="Model Name"  />
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label"> Model Year</label>
+                          <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
+                            formControlName="vehicleModelYear" placeholder="Model Year"  />
+                        </div>
+                      </div>
+
+
+                    </div>
+                  </div>
+                  <div *ngIf="step == 6">
+
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="" class="form-control-label">Vehicle type</label>
+                          <input type="text" name="isVehicleNewOrPreowned" class="form-control form-control-alternative"
+                            formControlName="isVehicleNewOrPreowned" >
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="" class="form-control-label">Vehicle Fuel</label>
+                          <input type="text" name="vehicleFuelCashFacility"
+                            class="form-control form-control-alternative" formControlName="vehicleFuelCashFacility"
+                            >
+
+                        </div>
+                      </div>
+
+
+                    </div>
+                    <div class="row">
+
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label"> Chips Details</label>
+                          <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
+                            formControlName="vehicleFuelChipFacility" placeholder="Chips Details"  />
+                        </div>
+                      </div>
+
+
+                    </div>
+                    <div class="row">
+
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="" class="form-control-label">Accommodation Issued</label>
+                          <input type="text" name="accommodationYesOrNo" class="form-control form-control-alternative"
+                            formControlName="accommodationYesOrNo" >
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="" class="form-control-label">Type Of Accomandation</label>
+                          <input type="text" name="isShredOrSeparate" class="form-control form-control-alternative"
+                            formControlName="isShredOrSeparate" >
+
+                        </div>
+                      </div>
+
+
+                    </div>
+                    <div class="row">
+
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="" class="form-control-label">Type Of Shared</label>
+                          <input type="text" name="isExeutiveOrLabourFacility"
+                            class="form-control form-control-alternative" formControlName="isExeutiveOrLabourFacility"
+                            >
+
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="" class="form-control-label">Electricity Allocation</label>
+                          <input type="text" name="electricityAllocationYesOrNo"
+                            class="form-control form-control-alternative" formControlName="electricityAllocationYesOrNo"
+                            >
+                        </div>
+                      </div>
+
+
+                    </div>
+                    <div class="row">
+
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label">
+                            Electricity Allocation Amount</label>
+                          <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
+                            formControlName="electricityAllocationAmount" placeholder="Electricity Allocation Amount"
+                             />
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for=" " class="form-control-label">Rent Allocation</label>
+                          <input type="text" name="rentAllocationYesOrNo" class="form-control form-control-alternative"
+                            formControlName="rentAllocationYesOrNo" >
+                        </div>
+                      </div>
+
+
+                    </div>
+                    <div class="row">
+
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="" class="form-control-label">Mobile Issued</label>
+                          <input type="text" name="mobileIssuedOrNot" class="form-control form-control-alternative"
+                            formControlName="mobileIssuedOrNot" >
+
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="" class="form-control-label">Sim Issued</label>
+                          <input type="text" name="simIssuedOrNot" class="form-control form-control-alternative"
+                            formControlName="simIssuedOrNot" >
+                        </div>
+                      </div>
+
+
+                    </div>
+                    <div class="row">
+
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="" class="form-control-label">Flight Facilities</label>
+                          <input type="text" name="flightFacilities" class="form-control form-control-alternative"
+                            formControlName="flightFacilities" >
+
+
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="" class="form-control-label">Flight Facilities Period</label>
+
+                          <input type="text" name="howMuchTime" class="form-control form-control-alternative"
+                            formControlName="howMuchTime" >
+                        </div>
+                      </div>
+
+
+                    </div>
+                    <div class="row">
+
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="" class="form-control-label"> Health Insurance Coverage</label>
+
+                          <input type="text" name="healthInsuranceCoverage"
+                            class="form-control form-control-alternative" (change)="onSelect($event)"
+                            formControlName="healthInsuranceCoverage" >
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <div>
+                            <label for="floatingTextInput1">
+                              Health Insurance Amount</label>
+                            <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
+                              formControlName="maximumAmountGiven" placeholder="Health Insurance Amount"  />
+                          </div>
+                        </div>
+                      </div>
+
+
+                    </div>
+                    <div class="row">
+
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <div class="form-floating mb-3">
+                            <label for="">Family Health Insurance</label>
+                            <input type="text" name="familyHealthInsuranceGivenOrNot"
+                              class="form-control form-control-alternative" (change)="onSelect($event)"
+                              formControlName="familyHealthInsuranceGivenOrNot" >
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <div class="form-floating mb-3" *ngIf="
+                        getPostFormControls['healthInsuranceCoverage'].value ==
+                        'Yes'
+                      ">
+                            <label for="">Type Family Health Insurance</label>
+                            <input type="text" name="familyHealthInsuranceType" class="form-control form-control-alternative"
+                              formControlName="familyHealthInsuranceType" >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label"> Joining Date </label>
+                          <input type="date" class="form-control form-control-alternative" id="floatingTextInput1"
+                            formControlName="joiningDate" placeholder="Joining Date "  />
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="" class="form-control-label">Punching Machine</label>
+                          <input type="text" name="punchingMachineYesOrNo" class="form-control form-control-alternative"
+                            formControlName="punchingMachineYesOrNo" >
+                        </div>
+                      </div>
+
+
+                    </div>
+                    <div class="row">
+
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="" class="form-control-label">Refered By </label>
+                          <input type="text" name="ReferedBy" class="form-control form-control-alternative"
+                            formControlName="ReferedBy" (change)="onSelect($event)" >
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label"> Reference Name</label>
+                          <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
+                            formControlName="ReferenceName" placeholder="Reference Name"  />
+                        </div>
+                      </div>
+
+
+                    </div>
+
+
+                  </div>
+                  <div *ngIf="step == 7">
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label">Father's First Name</label>
+                          <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
+                            formControlName="fathersFirstName" placeholder="Father's First Name" />
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label">Father's Middle Name</label>
+                          <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
+                            formControlName="fathersMiddleName" placeholder="Father's Middle Name" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput2" class="form-control-label">Father's Last Name</label>
+                          <input type="text" class="form-control form-control-alternative" id="floatingTextInput2"
+                            formControlName="fatherLastName" placeholder="Father's Last Name" />
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label">Hobbies</label>
+                          <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
+                            formControlName="hobbies" placeholder="Father's Middle Name" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label">Permanent Residence Address
+                          </label>
+                          <textarea type="text" class="form-control form-control-alternative"
+                            name="permanentResidentialAddress" formControlName="permanentResidentialAddress"
+                            (change)="uploadFile($event)" id="floatingTextInput1"
+                            placeholder="Permanent Residence Address"></textarea>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label">Country Of Permanent
+                            Residence</label>
+                          <textarea class="form-control form-control-alternative" type="file"
+                            name="permanentResidenceCountry" formControlName="permanentResidenceCountry"
+                            (change)="uploadFile($event)" id="floatingTextInput1"
+                            placeholder="Country Of Permanent Residence"></textarea>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="bloodGroup" class="form-control-label">Blood Group</label>
+                          <select name="bloodGroup" id="bloodGroup" class="form-control form-control-alternative"
+                            id="floatingTextInput1" formControlName="bloodGroup" style="padding-top: 12px">
+                            <option value="Select the Blood Group">
+                              Blood Group
+                            </option>
+                            <option value="A+">A+</option>
+                            <option value="B+">B+</option>
+                            <option value="AB+">AB+</option>
+                            <option value="O+">O+</option>
+                            <option value="A-">A-</option>
+                            <option value="B-">B-</option>
+                            <option value="O-">O-</option>
+                            <option value="AB-">AB-</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label">ID proof by country residence
+                          </label>
+                          <input type="file" class="form-control form-control-alternative" id="floatingTextInput1"
+                            (change)="uploadFile($event)" name="otherScannedIdProof" placeholder="John" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <h6 class="heading-small text-muted mb-4">Blood Relative Details</h6>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="namePrefix" class="form-control-label">Prefix</label>
+                          <input type="text" name="namePrefix" id="namePrefix"
+                            class="form-control form-control-alternative" formControlName="relativenamePrefix">
+
+
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label class="form-control-label" for="input-last-name">First Name</label>
+                          <input type="text" id="input-last-name" class="form-control form-control-alternative"
+                            placeholder=" " formControlName="RFirstname">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label class="form-control-label" for="input-father-name">Middle Name</label>
+                          <input type="text" id="input-father-name" class="form-control form-control-alternative"
+                            placeholder="" value="" formControlName="Rmiddlename">
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label class="form-control-label" for="input-age">Last Name</label>
+                          <input type="text" id="input-age" class="form-control form-control-alternative"
+                            placeholder="23" formControlName="Rlastname">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput2" class="form-control-label">Relationship</label>
+                          <input type="text" class="form-control form-control-alternative" id="floatingTextInput2"
+                            formControlName="relationship" placeholder="Relationship" />
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="" class="form-control-label">Code</label>
+                          <select name="RphoneCode" id="cars" class=" form-control form-control-alternative"
+                            formControlName="RphoneCode">
+                            <option selected disabled [value]="'Code'">Code.</option>
+                            <option *ngFor="let Country of Countries" [value]="Country.phonecode">
+                              <!-- {{Country.phonecode}} {{Country.name}} -->
+                              {{ Country.phonecode }}
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label">Phone Number</label>
+                          <input type="tel" class="form-control form-control-alternative" id="floatingTextInput1"
+                            formControlName="Rcontactno" placeholder="Phone Number" />
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label">
+                            Scanned Copy Address</label>
+                          <input type="file" class="form-control form-control-alternative" id="floatingTextInput1"
+                            name="ScannedCopyOfRealtiveAddress" placeholder="" (change)="uploadFile($event)" />
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div *ngIf="step == 8">
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label">Permanent Residence Address</label>
+                          <textarea type="text" class="form-control form-control-alternative" id="floatingTextInput1"
+                            formControlName="Raddress" placeholder="Permanent Residence Address"></textarea>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label"> Scanned Copy Of ID </label>
+                          <input type="file" class="form-control form-control-alternative" id="floatingTextInput1"
+                            name="ScannedCopyOfRealtiveId" placeholder="" (change)="uploadFile($event)" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <h6 class="heading-small text-muted mb-4">Previous Employee Details</h6>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label">Previous Company Address </label>
+                          <textarea type="text" class="form-control form-control-alternative" id="floatingTextInput1"
+                            formControlName="companyAddress" placeholder="Address"></textarea>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label">
+                            Previous Manager Name
+                          </label>
+                          <input type="text" class="form-control form-control-alternative"
+                            formControlName="previousManagerName" id="floatingTextInput1"
+                            placeholder="Previous Manager Name " />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="" class="form-control-label"> Code</label>
+                          <select name="previousManagerPhoneCode" id="cars"
+                            class="form-control form-control-alternative" formControlName="previousManagerPhoneCode"
+                            id="floatingTextInput1" style="padding-top: 12px; padding-left: 8px">
+                            <option selected disabled [value]="'Code'">Code</option>
+                            <option *ngFor="let Country of Countries" [value]="Country.phonecode">
+                              {{ Country.phonecode }}
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label">Manager Number</label>
+                          <input type="tel" class="form-control form-control-alternative" id="floatingTextInput1"
+                            formControlName="previousManagerContact" placeholder="Manager Number" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label"> Previous HR Name </label>
+                          <input type="text" class="form-control form-control-alternative" id="floatingTextInput1"
+                            formControlName="previousHRName" placeholder="Previous HR Name" />
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="" class="form-control-label">Code</label>
+                          <select name="previousHRPhoneCode" id="cars" class=" form-control form-control-alternative"
+                            formControlName="previousHRPhoneCode" id="floatingTextInput1"
+                            style="padding-top: 12px; padding-left: 8px">
+                            <option selected disabled [value]="'Code'">Code</option>
+                            <option *ngFor="let Country of Countries" [value]="Country.phonecode">
+                              {{ Country.phonecode }} {{ Country.name }}
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label">Hr Number</label>
+                          <input type="tel" class="form-control form-control-alternative" id="floatingTextInput1"
+                            formControlName="previousHRContact" placeholder="Hr Number" />
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="" class="form-control-label">Code</label>
+                          <select name="previousHRPhoneCode" id="cars" class=" form-control form-control-alternative"
+                            formControlName="previousHRPhoneCode" id="floatingTextInput1"
+                            style="padding-top: 12px; padding-left: 8px">
+                            <option selected disabled [value]="'Code'">Code</option>
+                            <option *ngFor="let Country of Countries" [value]="Country.phonecode">
+                              {{ Country.phonecode }} {{ Country.name }}
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label">Last Withdrawn Salary
+                          </label>
+                          <input type="text" formControlName="lastWithdrawnSalary"
+                            class="form-control form-control-alternative" id="floatingTextInput1"
+                            placeholder="Last Withdrawn Salary" />
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label">Scan Copy Of Pay Slip
+                          </label>
+                          <input type="file" name="SalaryScannedCopy" (change)="uploadFile($event)"
+                            class="form-control form-control-alternative" id="floatingTextInput1" placeholder="" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label">Description</label>
+                    <input
+                      type="text"
+                      formControlName="description"
+                      class="form-control form-control-alternative"
+                      id="floatingTextInput1"
+                      placeholder="Description"
+                    />
+                        </div>
+                      </div>
+                      
+                    </div>
+                  </div>
+                  <div *ngIf="step == 9">
+                    <div formArrayName="empAchievements">
+                      <div *ngFor="
+                      let fieldGroupForempAchievements of empAchievements.controls;
+                      let i = index
+                    "
+                    [formGroupName]="i">
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                        <label for="floatingTextInput1" class="form-control-label"
+                          >Achievement And Rewards
+                        </label>
+                        <input
+                          type="text"
+                          formControlName="achievementRewardsName"
+                          class="form-control form-control-alternative"
+                          id="floatingTextInput1"
+                          placeholder="Achievement And Rewards"
+                        />
+                      </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <label for="floatingTextInput1" class="form-control-label"
+                          >Scan Copy Of Achivements
+                        </label>
+                        <input
+                          type="file"
+                          name="ScanCopyOfAchivements"
+                          (change)="onFileSelected($event, i)"
+                          class="form-control form-control-alternative"
+                          id="floatingTextInput1"
+                          placeholder=""
+                        />
+                      </div>
+                    </div>
+                    <div class="row mt-3">
+                      <div class="col-lg-6">
+                        <input
+                        type="button"
+                        value="Remove Field"
+                        (click)="removeempAchievementsField(i)"
+                        class="form-control form-control-alternative"
+                      />
+                      </div>
+                    </div>
+
+                      </div>
+
+                    </div>
+                    <div class="row mt-3">
+                      <div class="col-lg-6">
+                        <label for="" class="form-control-alternative">Add Field</label>
+                  <input
+                    type="button"
+                    value="Add Field"
+                    (click)="addempAchievementsField()"
+                    class="form-control form-control-alternative"
+                  />
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <h6 class="heading-small text-muted mb-4">Training Details </h6>
+              
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label">
+                            Certificate Uploaded For Outsource</label
+                          >
+                          <input
+                            type="file"
+                            formControlName="CertificateUploadedForOutsource"
+                            class="form-control form-control-alternative"
+                            name="CertificateUploadedForOutsource"
+                            (change)="uploadFile($event)"
+                            id="floatingTextInput1"
+                            placeholder=""
+                          />
+                        </div>
+
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label">
+                            Certificate Uploaded For Paid</label
+                          >
+                          <input
+                            type="file"
+                            class="form-control form-control-alternative"
+                            formControlName="PaidTrainingDocumentProof"
+                            name="PaidTrainingDocumentProof"
+                            (change)="uploadFile($event)"
+                            id="floatingTextInput1"
+                            placeholder=" Certificate Uploaded For Paid"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-alternative"> Trainer Feedback </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-alternative"
+                      id="floatingTextInput1"
+                      formControlName="trainerFeedback"
+                      placeholder="Trainer Feedback"
+                    />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <h6 class="heading-small text-muted mb-4">Diploma Education </h6>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label"
+                      >Diploma Issuing Authority
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-alternative"
+                      id="floatingTextInput1"
+                      formControlName="diplomaIssuingAuthority"
+                      placeholder="Diploma Issuing Authority "
+                    />
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label"> Diploma Percentage </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-label"
+                      id="floatingTextInput1"
+                      placeholder="Diploma Percentage"
+                      formControlName="diplomaMarksOrGrade"
+                    />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label">
+                            Scanned Copy Of Diploma</label
+                          >
+                          <input
+                            type="file"
+                            class="form-control form-control-alternative"
+                            id="floatingTextInput1"
+                            placeholder=""
+                            name="ScannedCopyOfDiploma"
+                            (change)="uploadFile($event)"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1 " class="form-control-label"> Year</label>
+                    <input
+                      type="text"
+                      class="form-control form-control-alternative"
+                      id="floatingTextInput1"
+                      placeholder="Year"
+                      formControlName="diplomaYear"
+                    />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <h6 class="heading-small text-muted mb-4">Professional Qualification </h6>
+                      </div>
+                    </div>
+                    
+                    <!-- <div *ngFor="let data of obj.professionalQualifications">
+                      <div class="row">
+                        <div class="col-lg-6">
+                          <div class="form-group">
+                            <label
+                              class="form-control-label"
+                              for="input-contact-number"
+                              >Professional Qualification</label
+                            >
+                            <input
+                              type="text"
+                              id="input-contact-number"
+                              class="form-control form-control-alternative"
+                              [value]="data.qualification"
+                              []="is"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-lg-6">
+                          <div class="form-group">
+                            <label
+                              class="form-control-label"
+                              for="input-contact-number"
+                            >
+                              Professional Issuing Authority
+                            </label>
+                            <input
+                              type="text"
+                              id="input-contact-number"
+                              class="form-control form-control-alternative"
+                              [value]="data.issuingAuthority"
+                              []="is"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-lg-6">
+                          <div class="form-group">
+                            <label
+                              class="form-control-label"
+                              for="input-contact-number"
+                              >Professsional Qualification Marks Or Grade</label
+                            >
+                            <input
+                              type="text"
+                              id="input-contact-number"
+                              class="form-control form-control-alternative"
+                              [value]="data.grade"
+                              []="is"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-lg-6">
+                          <div class="form-group">
+                            <label
+                              class="form-control-label"
+                              for="input-contact-number"
+                              >Year</label
+                            >
+                            <input
+                              type="text"
+                              id="input-contact-number"
+                              class="form-control form-control-alternative"
+                              [value]="data.yearOfQualification"
+                              []="is"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-lg-6">
+                          <div class="form-group">
+                            <label
+                              class="form-control-label"
+                              for="input-contact-number"
+                              >Scan Copy Of Professional Document</label
+                            >
+  
+                            <a
+                              [href]="getImage(data.degreeScanData)"
+                              download="Senior_Secondary"
+                              class="form-control form-control-alternative btn doc-btn"
+                              >download</a
+                            >
+                          </div>
+                        </div>
+                        <div class="col-lg-6">
+                          <div class="form-group">
+                            <label
+                              class="form-control-label"
+                              for="input-contact-number"
+                              >Grading System</label
+                            >
+                            <input
+                              type="text"
+                              id="input-contact-number"
+                              class="form-control form-control-alternative"
+                              [value]="data.gradingSystem"
+                              []="is"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div> -->
+                
+                    <div formArrayName="professionalQualifications">
+                      <div *ngFor="
+                      let fieldGroupForPro of professionalQualifications.controls;
+                      let i = index
+                    "
+                    [formGroupName]="i">
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label"> Qualification </label>
+                        <input
+                          type="text"
+                          class="form-control form-control-alternative"
+                          id="floatingTextInput1"
+                          formControlName="qualification"
+                          placeholder="Qualification"
+                        />
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label">
+                            Issuing Authority
+                          </label>
+                          <input
+                            type="text"
+                            class="form-control form-control-alternative"
+                            id="floatingTextInput1"
+                            formControlName="issuingAuthority"
+                            placeholder="Issuing Authority"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="" class="form-control-label">Grading System</label>
+                        <select
+                          name="gradingSystem"
+                          id="cars"
+                          class="form-control form-control-alternative"
+                          id="floatingTextInput1"
+                          formControlName="gradingSystem"
+                          style="padding-top: 12px"
+                        >
+                          <!-- <option selected disabled [value]="'Grading System'">Grading System.</option> -->
+                          <option value="Percentage">Percentage.</option>
+                          <option value="CGPA">CGPA.</option>
+                          <option value="Grading">Grading.</option>
+                        </select>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label">
+                            Percentage Or Grade
+                          </label>
+                          <input
+                            type="text"
+                            class="form-control form-control-alternative"
+                            id="floatingTextInput1"
+                            formControlName="grade"
+                            placeholder=""
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label"> Year</label>
+                        <input
+                          type="text"
+                          class="form-control form-control-alternative"
+                          id="floatingTextInput1"
+                          placeholder="Year"
+                          formControlName="yearOfQualification"
+                        />
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label"> Scanned Copy </label>
+                        <input
+                          type="file"
+                          class="form-control form-control-alternative"
+                          name="ScannedCopyOfCourseCompleted"
+                          (change)="onFileSelected($event, i)"
+                          id="floatingTextInput1"
+                          placeholder=""
+                        />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <input
+                        type="button"
+                        value="Remove Field"
+                        (click)="removeprofessionalQualificationsField(i)"
+                        class="form-control class-form-alternative"
+                      />
+                        </div>
+                      </div>
+                    </div>
+
+                      </div>
+
+                    </div>
+                    <div class="row mt-3">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="" class="form-control-label">Add Professional Qualification</label>
+                          <input
+                          type="button"
+                          value="Add Field"
+                          (click)="addprofessionalQualificationsField()"
+                          class="form-control form-control-alternative"
+                        />
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div  *ngIf="step == 10">
+                    <div formArrayName="othersQualifications">
+                      <div *ngFor="
+                      let fieldGroup of othersQualifications.controls;
+                      let i = index
+                    "
+                    [formGroupName]="i">
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label">Qualification </label>
+                        <input
+                          type="text"
+                          class="form-control form-control-alternative"
+                          id="floatingTextInput1"
+                          formControlName="others"
+                          placeholder="Qualification"
+                        />
+                        </div>
+
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label">
+                            Issuing Authority
+                          </label>
+                          <input
+                            type="text"
+                            class="form-control form-control-alternative"
+                            id="floatingTextInput1"
+                            formControlName="othersIssuingAuthority"
+                            placeholder=" Issuing Authority"
+                          />
+                        </div>
+
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label">
+                            Other Percentage Or Grade
+                          </label>
+                          <input
+                            type="text"
+                            class="form-control form-control-alternative"
+                            id="floatingTextInput1"
+                            placeholder="Other Percentage"
+                            formControlName="othersMarksOrGrade"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label"> Year</label>
+                          <input
+                            type="text"
+                            class="form-control form-control-alternative"
+                            id="floatingTextInput1"
+                            placeholder="Year"
+                            formControlName="othersYear"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label for="floatingTextInput1" class="form-control-label"> Scanned Copy </label>
+                        <input
+                          type="file"
+                          class="form-control form-control-alternative"
+                          id="floatingTextInput1"
+                          placeholder=""
+                          name="ScannedCopyOfOther"
+                          (change)="onFileSelected($event, i)"
+                        />
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <input
+                        type="button"
+                        value="Remove Field"
+                        (click)="removeField(i)"
+                        class="form-control"
+                      />
+                        </div>
+                      </div>
+                    </div>
+
+                      </div>
+
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-lg-6 " style="margin-top: 30px;">
+                        <div class="form-group">
+                          <label for="" class="form-control-label">Other Qualification </label>
+                          <input
+                    type="button"
+                    value="Add Field"
+                    (click)="addField()"
+                    class="form-control form-control-alternative"
+                  />
+                        </div>
+                      </div>
+                    </div>
+                    
+                    
+                    
+                  </div>
+
+
+
+                  <div class="row">
+                    <div class="col-lg-4" *ngIf="step != 1">
+                      <button type="button" class="btn btn-lg w-75 h-100 text-light " (click)="previous()">
+                        <h3>Previous</h3>
+                      </button>
+                    </div>
+
+                    <div class="col-lg-4" *ngIf=" step != 10">
+                      <button type="button" class="btn w-75 btn-primary" (click)="next()">
+
+                        <h3 class="text-light">Next</h3>
+                      </button>
+                    </div>
+
+
+
+
+
+
+                    <div class="col-lg-4" *ngIf="step == 10">
+                      <button type="submit" class="btn btn-lg  text-light ">
+                        <h3>Submit</h3>
+                      </button>
+                    </div>
+                  </div>
+
+
+
+                </div>
+              </div>
+
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </form>
+  </div>
+</div>

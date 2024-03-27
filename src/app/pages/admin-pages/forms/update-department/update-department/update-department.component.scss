@@ -1,0 +1,11 @@
+@keyframes fadeInAnimation {
+    from {
+      opacity: 0;
+      transform: translatey(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translatey(0);
+    }
+  }
+  

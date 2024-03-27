@@ -1,0 +1,71 @@
+
+
+
+<div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <form [formGroup]="form" (ngSubmit)="onSubmit()" class="row g-3">
+              <div class="col-5">
+                <label for="">Year</label>
+                <select class="form-control" id="year" formControlName="year">
+                  <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+                </select>
+              </div>
+              <div class="col-5">
+                <label for="">Country</label>
+                <select class="form-control" id="country" formControlName="country">
+                  <option *ngFor="let country of countries" [value]="country.name">{{ country.name }}</option>
+                </select>
+              </div>
+              <div class="col-2" >
+                <label for=""></label>
+                <input type="submit"  class="form-control bg-primary text-white" >
+                <!-- <button type="submit"  style="margin-top: 8px;" class="btn btn-primary mb-2">Submit</button> -->
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container mt-3">
+
+    <div class="card">
+        <div class="card-body">
+            <table class="table table-responsive">
+                <thead class="bg-light">
+                  <tr>
+                    <th>Holiday ID</th>
+                    <th>Name</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Number of Holidays</th>
+                    <th>Country</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let holiday of holidays | slice:(page-1)*pageSize:(page*pageSize)">
+                    <td>{{ holiday?.holidayId }}</td>
+                    <td>{{ holiday?.name }}</td>
+                    <td>{{ holiday?.startHolidayDate | date }}</td>
+                    <td>{{ holiday?.endHolidayDate | date }}</td>
+                    <td>{{ holiday?.numberOfHoliday }}</td>
+                    <td>{{ holiday?.countryName }}</td>
+                  </tr>
+                </tbody>
+              </table>
+          
+              <ngb-pagination [collectionSize]="holidays?.length" [(page)]="page" [pageSize]="pageSize" aria-label="Default pagination"></ngb-pagination>
+            
+        </div>
+    </div>
+  
+</div>
+  
+  
+  
+  

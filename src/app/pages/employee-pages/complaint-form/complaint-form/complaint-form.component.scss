@@ -1,0 +1,114 @@
+.mainContainer {
+    overflow-x: hidden !important;
+  }
+  
+  .container-navbar {
+    height: 110px;
+    background: linear-gradient(25deg, #ffffff 0%, #bacf94 100%);
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+  }
+  
+  .logo-container {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap; /* Ensure the logo and company info wraps on small screens */
+  }
+  
+  .logo-text {
+    margin-right: 10px;
+    font-size: 2rem; /* Adjust logo size */
+  }
+  
+  .company-info {
+    font-size: 1.5rem; /* Adjust text size for responsiveness */
+  }
+  
+  .watermark-container {
+    position: relative;
+    height: 130vh;
+  }
+  
+  .watermark-text {
+    opacity: 0.05;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20vw; /* Use viewport width for scalability */
+    position: absolute;
+    top: 45px;
+    right: 0;
+    left: 33px;
+  }
+  
+  .company-address {
+    position: relative; /* Changed from absolute to relative for responsiveness */
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding: 0 20px; /* Add padding for smaller screens */
+    margin-top: 20px; /* Add some margin above the address */
+  }
+  
+  .lstLine {
+    height: 6px;
+    border: 2px solid #bacf94;
+    border-radius: 76%;
+    background-color: #bacf94;
+    position: relative; /* Changed from absolute to relative for responsiveness */
+    left: 0;
+    right: 0;
+    margin: 10px auto; /* Center the line and add margin */
+  }
+  
+  
+  
+  
+  // .bg-gradient-danger {
+  //   background: none !important;
+  // }
+  
+  .local-toast {
+    border-radius: 5px;
+    z-index: 5; 
+    left: 35%; 
+    top: 10%;
+  }
+  
+  /* Media Queries for different screen sizes */
+  @media (max-width: 992px) { /* Adjust for medium-sized devices (tablets, small laptops) */
+    .logo-text {
+      font-size: 1.75rem;
+    }
+  
+    .company-info {
+      font-size: 1.25rem;
+    }
+  }
+  
+  @media (max-width: 768px) { /* Adjust for small devices (landscape phones, tablets) */
+    .container-navbar {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .logo-text {
+      margin-bottom: 10px;
+      font-size: 1.5rem;
+    }
+  
+    .company-info {
+      font-size: 1rem;
+    }
+  
+    .company-address {
+      font-size: 0.8rem; /* Smaller font size for the address */
+    }
+  }
+  
+  @media (max-width: 576px) { /* Adjust for extra small devices (portrait phones) */
+    .watermark-text {
+      font-size: 50vw; /* Larger watermark text to be more readable on small screens */
+    }
+  }
+  

@@ -1,0 +1,231 @@
+<div class="container-fluid   mainContainer">
+    <section id="section">
+        <div class="row container-navbar">
+            <div class="col">
+                <!-- <h1 class="h1"> SI GLOBAL</h1>
+             -->
+                <ul class="d-flex    ">
+                    <li class="display-1 ">SI |</li>
+                    <li style="padding-top: 18px; font-size: 22px;">Food Stuff <br>Packing Industry LLc</li>
+                </ul>
+            </div>
+        </div>
+
+    </section>
+
+    <div class="relative">
+        <h1 class="text2">SI</h1>
+        <div class="absolute">
+            <div class="container-fluid mainContainer">
+                <form [formGroup]="LeaveForm" (submit)="postLeaveForm()">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="employeeId" class="form-control-label">Employee Id</label>
+                        <input type="text" name="employeeId" id="employeeId" class="form-control form-control-alternative" formControlName="employeeId" [value]="obj?.employeeId" readonly>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="nameOfEmployee" class="form-control-label">Full Name</label>
+                        <input type="text" name="nameOfEmployee" id="nameOfEmployee" class="form-control form-control-alternative" formControlName="nameOfEmployee" [value]="obj?.nameOfEmployee" readonly>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="email" class="form-control-label">Email</label>
+                        <input type="text" name="email" id="email" class="form-control form-control-alternative" formControlName="email" [value]="obj?.email" readonly>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class ="form-group">
+                        <label for="contactNumber" class="form-control-label">Contact Number</label>
+                        <input type="text" name="contactNumber" id="contactNumber" class="form-control form-control-alternative" formControlName="contactNumber" [value]="obj?.contactNumber" readonly>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="designation" class="form-control-label">Designation</label>
+                        <input type="text" name="designation" id="designation" class="form-control form-control-alternative" formControlName="designation" [value]="obj?.designation" readonly>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="department" class="form-control-label">Department</label>
+                        <input type="text" name="department" id="department" class="form-control form-control-alternative" formControlName="department" [value]="obj?.department" readonly>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="emergencyContactNumber" class="form-control-label">Emergency Contact Number</label>
+                        <input type="text" name="emergencyContactNumber" id="emergencyContactNumber" class="form-control form-control-alternative" formControlName="emergencyContactNumber" [value]="obj?.emergencyContactNumber" readonly>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="requestDate" class="form-control-label">Date Of Request Leave</label>
+                        <input type="date" name="requestDate" id="requestDate" class="form-control form-control-alternative" formControlName="requestDate" [value]="obj?.requestDate" readonly>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="startDate" class="form-control-label">Employee Start Date</label>
+                        <!-- <input type="date" name="startDate" id="startDate" class="form-control form-control-alternative" formControlName="startDate" [value]="obj.startDate"> -->
+                        <input type="text" name="startDate" id="startDate" class="form-control form-control-alternative" formControlName="startDate" [value]="obj?.startDate"  readonly>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="endDate" class="form-control-label">Employee End Date</label>
+                        <input type="text" name="endDate" id="endDate"  class="form-control form-control-alternative" formControlName="endDate" [value]="obj?.endDate" readonly>
+                        <!-- <input type="date" name="endDate" id="endDate" class="form-control form-control-alternative" formControlName="endDate" [value]="obj?.endDate"> -->
+                      </div>
+                    </div>
+                  </div>
+                
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="leaveType" class="form-control-label">Type Of Leave</label>
+                        <input list="browsers" name="leaveType" id="leaveType" class="form-control form-control-alternative" formControlName="leaveType" [value]="obj?.leaveType.leaveName" readonly>
+                        <datalist id="browsers">
+                          <option value="Emergency Leave">
+                          <option value="Sick Leave">
+                          <option value="Annual Leave">
+                          <option value="Vacation Leave">
+                          <option value="Leave Of Absence">
+                          <option value="Other">
+                        </datalist>
+                      </div>
+                    </div>
+                  
+
+                    
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="leaveReason" class="form-control-label">Requested Days </label>
+                        <input type="text" name="numberOfDaysRequested" id="numberOfDaysRequested" class="form-control form-control-alternative" formControlName="numberOfDaysRequested" readonly >
+                      </div>
+                    </div>
+
+
+                  </div>
+                  
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="leaveReason" class="form-control-label">Reason For Leave</label>
+                        <input type="text" name="leaveReason" id="leaveReason" class="form-control form-control-alternative" formControlName="leaveReason" [value]="obj?.leaveReason" readonly>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                          <label for="numberOfDaysRequested" class="form-control-label">Days To Leave</label>
+                        <input type="text" name="" id="" class="form-control form-control-alternative" [(ngModel)]="difference" formControlName="noOfLeavesApproved" [value]="obj?.noOfLeavesApproved" readonly >
+                        
+                      </div>
+                    </div>
+                    <!-- <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="leaveReason" class="form-control-label">Manager Name</label>
+                        <input type="text" name="leaveReason" id="leaveReason" class="form-control form-control-alternative" formControlName="approvingManagerName"  readonly>
+                      </div>
+                    </div> -->
+                  
+<!-- 
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="leaveReason" class="form-control-label">Requested Days </label>
+                        <input type="text" name="numberOfDaysRequested" id="numberOfDaysRequested" class="form-control form-control-alternative" formControlName="numberOfDaysRequested" readonly >
+                      </div>
+                    </div> -->
+                    
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="startDate" class="form-control-label">Start Date</label>
+                        <!-- <input type="date" name="startDate" id="startDate" class="form-control form-control-alternative" formControlName="startDate" [value]="obj.startDate"> -->
+                        <input type="date" name="startDate" id="startDate" [(ngModel)]="startDate" (input)="calculateDifference()" class="form-control form-control-alternative" formControlName="startDate" [value]="obj?.startDate">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="endDate" class="form-control-label">End Date</label>
+                        <input type="date" name="endDate" id="endDate" [(ngModel)]="endDate" (ngModelChange)="calculateDifference()" class="form-control form-control-alternative" formControlName="endDate" [value]="obj?.endDate">
+                        <!-- <input type="date" name="endDate" id="endDate" class="form-control form-control-alternative" formControlName="endDate" [value]="obj?.endDate"> -->
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="leaveReason" class="form-control-label">Status</label>
+                        <!-- <input type="text" name="leaveReason" id="leaveReason" class="form-control form-control-alternative" formControlName="approvalStatus" [value]="obj?.approvalStatus"> -->
+                        <select name="hrApprovalStatus" id="approvalStatus" class="form-control form-control-alternative" formControlName="hrApprovalStatus">
+                          <!-- <option value="">Days To Leave</option> -->
+                          <option selected disabled [value]="'status'">{{status}}</option>
+                          <option value="Rejected">Rejected</option>
+                          <option value="Accepted">Accepted</option>
+                        </select>
+                      </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="hrApprovalRemarks" class="form-control-label">Remarks</label>
+                          <input type="text" name="hrApprovalRemarks" id="hrApprovalRemarks" class="form-control form-control-alternative" formControlName="hrApprovalRemarks" >
+                        </div>
+                      </div>
+                    <!-- <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="leaveReason" class="form-control-label">Requested Days </label>
+                          <input type="text" name="numberOfDaysRequested" id="numberOfDaysRequested" class="form-control form-control-alternative" formControlName="numberOfDaysRequested" readonly >
+                        </div>
+                      </div> -->
+                
+                  </div>
+                  <div class="row">
+                    
+                    <!-- <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-email"
+                          >Medical Certificate <Address></Address>
+                        </label>
+
+                        <a
+                        [href]="getImage(obj.medicalDocumentData)"
+                          download="medicalScan.pdf"
+                          class="form-control form-control-alternative btn doc-btn"
+                          >download</a
+                        >
+                      
+                      </div>
+                    </div> -->
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="form-control-label"></label>
+                        
+                        <button type="submit" class="form-control form-control-alternative"  >Submit</button>
+                    </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            
+        </div>
+    </div>
+    <div class="lstLine container"></div>
+
+    <div style="margin-left:140px !important">
+        <h6 class="text-center">E4 AI Seeb International Umm Thaob 7 UAQ P.O .Box 450883</h6>
+    </div>
+</div>

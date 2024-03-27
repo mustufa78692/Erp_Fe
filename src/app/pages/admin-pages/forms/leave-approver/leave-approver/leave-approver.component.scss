@@ -1,0 +1,34 @@
+/* Background Blur */
+.blur-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(10px);
+    z-index: -1;
+  }
+  
+  /* Animation for Form */
+  @keyframes slideIn {
+    from {
+      transform: translateY(-20%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  .animated-form {
+    animation: slideIn 0.5s ease-out;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .card {
+      margin: 10px;
+    }
+  }
+  

@@ -1,0 +1,55 @@
+<div class="card">
+    <div class="card-body">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="designationId" class="form-control-label">Designation ID:</label>
+          <input type="text" id="designationId" class="form-control form-control-alternative" formControlName="designationId">
+        </div>
+      
+        <div class="form-group">
+          <label for="designationName" class="form-control-label">Designation Name:</label>
+          <input type="text" id="designationName" class="form-control form-control-alternative" formControlName="designationName">
+        </div>
+      
+        <div class="form-group">
+          <label for="jobLevelID" class="form-control-label">Job Level:</label>
+          <select id="jobLevelID" class="form-control form-control-alternative" formControlName="jobLevelID">
+            <option value="">Select Job Level</option>
+            <option *ngFor="let data of jobLevels" [ngValue]="data.levelId">{{data.levelName}}</option>
+          </select>
+        </div>
+      
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+  
+
+
+<!-- <div class="card">
+    <div class="card-body">
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="designationId" class="form-control-label">Designation ID:</label>
+      <input type="text" id="designationId" class="form-control form-control-alternative" formControlName="designationId"  [value]="obj?.designationId">
+    </div>
+  
+    <div class="form-group">
+      <label for="designationName" class="form-control-label">Designation Name:</label>
+      <input type="text" id="designationName" class="form-control form-control-alternative" formControlName="designationName" [value]="obj?.designationName">
+    </div>
+  
+    <div class="form-group">
+      <label for="jobLevelID" class="form-control-label">Job Level:</label>
+      <select id="jobLevelID" class="form-control form-control-alternative" formControlName="jobLevelID"   [value]="obj?.jobLevelID">
+        
+        <option  *ngFor="let data of jobLevels"  [value]="data?.levelId">{{data?.levelName}}</option>
+       
+      </select>
+    </div>
+  
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+</div>
+   -->

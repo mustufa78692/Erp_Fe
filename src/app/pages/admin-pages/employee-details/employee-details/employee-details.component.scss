@@ -1,0 +1,55 @@
+.profile-pic {
+    text-align: end;
+}
+
+.bg-gradient-danger {
+    background: none !important;
+}
+
+.local-toast {
+    border-radius: 5px;
+    z-index: 5;
+    left: 35%;
+    top: 10%;
+}
+
+.empNav {
+    background-color: var(--head-bg) !important;
+    color: var(--text-bg) !important;
+    border-bottom: 1px solid #e9ecef;
+    border-top: 1px solid #e9ecef;
+}
+
+.tab {
+    // transition: 0.5s;
+    padding: 7px 10px;
+}
+
+// .active-tab {
+//     transition: 0.5s;
+//     color: white;
+//     padding: 7px 10px;
+//     background-color: #5e72e4;
+//     border-radius: 30em;
+//     font-size: 15px;
+//     font-family: inherit;
+//     border: none;
+//     position: relative;
+//     overflow: hidden;
+//     z-index: 1;
+//     box-shadow:
+//         3px 3px 7px #c5c5c5,
+//         -3px -3px 7px #ffffff;
+// }
+
+.doc-btn {
+    transition: 0.3s ease;
+}
+
+.doc-btn:hover {
+    background-color: #5e72e4;
+    color: white;
+    letter-spacing: 2px;
+    border: 1px white solid;
+    transition: 0.3s ease;
+}

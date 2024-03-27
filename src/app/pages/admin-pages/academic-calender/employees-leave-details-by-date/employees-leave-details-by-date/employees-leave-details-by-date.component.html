@@ -1,0 +1,68 @@
+<div class="container">
+    <div class="card">
+      <div class="card-body">
+        <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+          <div class="row align-items-center">
+            <div class="col-md-10 col-9">
+              <input type="date" class="form-control" formControlName="dateField">
+            </div>
+            <div class="col-md-2 col-3">
+              <button type="submit" class="btn btn-primary btn-block">Search</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+
+  <div class="card animated-form  mt-5">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table">
+          <thead  class="bg-light">
+            <tr>
+              <th scope="col">S.No</th>
+              <th scope="col">Employee Id</th>
+              <th scope="col">Name of Employee</th>
+              <th scope="col">Designation</th>
+              <th scope="col">Department</th>
+              <th scope="col">Number Of Days Requested</th>
+              <th scope="col">Leave Reason</th>
+              <th scope="col">Requested Date</th>
+              <th scope="col">Leave Start Date</th>
+              <th scope="col">Leave End Date</th>
+              <th scope="col">First Approver Name</th>
+              <!-- <th scope="col">Second Approver Name</th> -->
+              <th scope="col">Number Of The Leave aprroved Days  </th>
+              <th scope="col">Number Of The Employee on Leave this --- <span class="text-danger"> {{current_Date}}</span>  </th>
+              <!-- <th scope="col">Level</th> -->
+              <!-- <th scope="col">Leave Days </th> -->
+           
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of tableData?.leaveApprovals;let i=index">
+              <td>{{i+1}}</td>
+              <td>{{data?.employeeId}}</td>
+              <td>{{data?.nameOfEmployee}}</td>
+              <td>{{data?.designation}}</td>
+              <td>{{data?.department}}</td>
+              <td>{{data?.numberOfDaysRequested}}</td>
+              <td>{{data?.leaveReason}}</td>
+              <td>{{data?.requestDate}}</td>
+              <td>{{data?.startDate}}</td>
+              <td>{{data?.endDate}}</td>
+              <td>{{data?.approvingManagerName}}</td>
+              <td>{{data?.noOfLeavesApproved}}</td>
+              <td>{{tableData?.employeeIdCount}}</td>
+
+  
+            </tr>
+ </tbody>
+        </table>
+      </div>
+      
+    </div>
+  </div>
+  

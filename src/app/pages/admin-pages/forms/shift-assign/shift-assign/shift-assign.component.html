@@ -1,0 +1,77 @@
+<div class="card">
+  
+    <div class="card-body">
+      <form [formGroup]="shiftForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label for="assignedOn" class="form-label">Assigned On</label>
+          <input type="text" class="form-control" id="assignedOn" formControlName="assignedOn" readonly>
+        </div>
+        <div class="mb-3">
+          <label for="startDate" class="form-label">Start Date</label>
+          <input type="date" class="form-control" id="startDate" formControlName="startDate" [min]="minDate">
+        </div>
+        <div class="mb-3">
+          <label for="endDate" class="form-label">End Date</label>
+          <input type="date" class="form-control" id="endDate" formControlName="endDate">
+        </div>
+        <div class="mb-3">
+          <label for="employeeId" class="form-label">Employee ID</label>
+          <select class="form-control" id="employeeId" formControlName="employeeId">
+            <option *ngFor="let employee of employees" [value]="employee.employeeId">{{employee.employeeId}}</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="shift" class="form-label">Shift</label>
+          <select class="form-control" id="shift" formControlName="shift">
+            <option *ngFor="let shift of shiftDatas" [value]="shift.shiftId">{{shift.shiftName
+            }}</option>
+          </select>
+        </div>
+      
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+  
+
+
+
+  <div class="card">
+    <div class="card-body">
+        <div class="container mt-4">
+            <div class="table-responsive">
+              <table class="table table-bordered table-hover">
+                <thead class="thead-light  ">
+                  <tr>
+                    <th scope="col">Assigned On</th>
+                    <th scope="col">Assignment ID</th>
+                    <!-- <th scope="col">Deleted</th> -->
+                    <th scope="col">Employee ID</th>
+                    <th scope="col">End Date</th>
+                    <th scope="col">Shift Name</th>
+                    <th scope="col">Shift Start Time</th>
+                    <th scope="col">Shift End Time</th>
+                    <th scope="col">Start Date</th>
+                    <th scope="col">Operation</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let assignment of assignmentData ">
+                    <td>{{ assignment.assignedOn }}</td>
+                    <td>{{ assignment.assignmentId }}</td>
+                    <!-- <td>{{ assignment.deleted ? 'Yes' : 'No' }}</td> -->
+                    <td>{{ assignment.employeeId }}</td>
+                    <td>{{ assignment.endDate }}</td>
+                    <td>{{ assignment.shift.shiftName }}</td>
+                    <td>{{ assignment.shift.shiftStartTime }}</td>
+                    <td>{{ assignment.shift.shiftEndTime }}</td>
+                    <td>{{ assignment.startDate }}</td>
+                    <td><button class="btn btn-primary" (click)="navigate(assignment.assignmentId)">Edit</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          
+    </div>
+  </div>

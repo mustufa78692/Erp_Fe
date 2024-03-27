@@ -1,0 +1,445 @@
+<div class="send-backward header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+      <div class="header-body">
+        <!-- Card stats -->
+        <div class="row">
+          <div class="col-xl-3 col-lg-6">
+            <div class="card card-stats mb-4 mb-xl-0">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-0">Today</h5>
+                    <span class="h2 font-weight-bold mb-0">4.45 / 9</span>
+                    <div>Hours</div>
+                  </div>
+                  <div class="col-auto">
+                    <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                      <i class="fas fa-chart-bar"></i>
+                    </div>
+                  </div>
+                </div>
+                <p class="mt-3 mb-0 text-muted text-sm">
+                  <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 1.5hrs</span>
+                  <span class="text-nowrap">Yesterday</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-6">
+            <div class="card card-stats mb-4 mb-xl-0">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-0">This Week</h5>
+                    <span class="h2 font-weight-bold mb-0">34.20 / 45</span>
+                    <div>Hours</div>
+                  </div>
+                  <div class="col-auto">
+                    <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+                      <i class="fas fa-chart-pie"></i>
+                    </div>
+                  </div>
+                </div>
+                <p class="mt-3 mb-0 text-muted text-sm">
+                  <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 5hrs</span>
+                  <span class="text-nowrap">last week</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-6">
+            <div class="card card-stats mb-4 mb-xl-0">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-0">This Month</h5>
+                    <span class="h2 font-weight-bold mb-0">120 / 180</span>
+                    <div>Hours</div>
+                  </div>
+                  <div class="col-auto">
+                    <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+                      <i class="fas fa-users"></i>
+                    </div>
+                  </div>
+                </div>
+                <p class="mt-3 mb-0 text-muted text-sm">
+                  <span class="text-warning mr-2"><i class="fas fa-arrow-down"></i> 12hrs</span>
+                  <span class="text-nowrap">last month</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-6">
+            <div class="card card-stats mb-4 mb-xl-0">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-0">Overtime</h5>
+                    <span class="h2 font-weight-bold mb-0">14</span>
+                    <div>Hours</div>
+                  </div>
+                  <div class="col-auto">
+                    <div class="icon icon-shape bg-info text-white rounded-circle shadow">
+                      <i class="fas fa-percent"></i>
+                    </div>
+                  </div>
+                </div>
+                <p class="mt-3 mb-0 text-muted text-sm">
+                  <span class="text-success mr-2"><i class="fas fa-arrow-up"></i>2hrs</span>
+                  <span class="text-nowrap">last month</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page content -->
+  <div class="container-fluid mt--7">
+
+    <!-- PunchIn and PunchOut     -->
+    <div class="row todayAttendance">
+      <div class="col-lg-6 col-12 punchTodayTime">
+          <div class="punchTime punch-box">
+                <div class="punchTime__img">
+                  
+                  <!-- <div class="circleTime"><span>{{diffHours }} : {{diffMinutes}} : {{diffSeconds}}</span></div> -->
+                  <div class="circleTime"><span>{{ formatDuration(Total_Working_Hours) }}</span>
+                  </div>
+                </div>
+                <div class="punchTime__name" ><button (click)="puchIn()">Punch <span>{{punchType}}</span></button> </div>
+
+                <!-- <button (click)="calculateDifference()">Refresh</button> -->
+
+                <!-- <div class="punchTime__name" (click)="punchIt()">Punch {{punchType}}</div> -->
+          </div>
+          <div class="todayPunch punch-box">
+                <div class="todayPunch__date">Today <span>{{findDate('today')}}</span></div>
+                <div class="todayPunch__extra">
+                    <div class="todayPunch__extra__break" (click)="breakStart()">
+                      <span class="breakOvertime">Break Start</span>
+                      <span>1 hrs</span>
+                    </div>
+                    <div class="todayPunch__extra__overtime" (click)="breakEnd()">
+                      <span class="breakOvertime">Break End</span>
+                      <span>1 hrs</span>
+                    </div>
+                </div>
+          </div>
+      </div>
+      <div class="col-lg-6 col-12 todayActivity">
+          <div class="todayActivity__head">Today Activity</div>
+          <ul class="todayActivity__list">
+            <li>
+              <span>Punch In at</span>
+              <span><i class="fa-duotone fa-clock-two"></i> {{ getPunchInTime | shortTime }}</span>
+            </li>
+            <li>
+              <span>Punch Out at</span>
+              <span><i class="fa-duotone fa-clock-two"></i> {{ getPunchOutTime | shortTime }}</span>
+            </li>
+            <li>
+              <span>Break Start at</span>
+              <span><i class="fa-duotone fa-clock-two"></i> 14:00</span>
+            </li>
+            <li>
+              <span>Break End at</span>
+              <span><i class="fa-duotone fa-clock-two"></i> 14:00</span>
+            </li>
+          </ul>
+      </div>
+    </div>
+
+    <!-- Filter Table -->
+    <!-- <div class="filterOption row">
+        <input class="options" type="date" name="yesterdayDate" id="" value="2020-07-22" min="2019-01-01" [max]="findDate('yesterday')" >
+        <select class="options" name="" id="">
+            <option *ngFor="let month of months" value="{{month}}">{{month}}</option>
+        </select>
+        <select class="options" name="" id="">
+            <option *ngFor="let year of years" value="{{year}}">{{year}}</option>
+        </select>
+        <input class="options btn btn-primary" type="submit" name="searchBtn" id="" value="Search">
+    </div> -->
+
+    <div class="row  mbg">
+      <div class="d-flex justify-content-around flex-nowrap scroll-display-none overflow-x-scroll py-4 w-100">
+        <div class="col-lg-6 d-flex justify-content-center p-0">
+          <div
+            class="mtext-14 mtext-weight-700 font-nunito text-nowrap"
+            [class.active]="activeTab == 'rg'"
+            (click)="activeTab = 'rg'"
+          >
+            <button class="btn custom-btn w-100"> Get Attendance By Month </button>
+          </div>
+        </div>
+        
+        <div class="col-lg-6 d-flex justify-content-center p-0">
+          <div
+            class="mtext-14 mtext-weight-700 font-nunito text-nowrap"
+            [class.active]="activeTab == 'h_id'"
+            (click)="activeTab = 'h_id'"
+          >
+            <button class="btn custom-btn w-100"> Get Attendance By Date </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    <div [ngSwitch]="activeTab">
+      <div *ngSwitchCase="'rg'">
+        <!-- // Start search By Month -->
+<div class="row mt-5">
+  <h6 class="heading-small text-muted mb-4">
+    Get Attendance By Month
+  </h6>
+</div>
+
+<div class="filterOption row">
+  <!-- Year Dropdown -->
+  <label for="year-select">Year</label>
+  <select [(ngModel)]="selectedYear" name="year" id="year-select">
+    <option value="" disabled> Year</option>
+    <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+  </select>
+
+  <!-- Month Dropdown -->
+  <label for="month-select">Month</label>
+  <select [(ngModel)]="selectedMonth" name="month" id="month-select">
+    <!-- Month options here (as in your original code) -->
+    <option value="" disabled selected>Select Month</option>
+    <option value="1">January</option>
+    <option value="2">February</option>
+    <option value="3">March</option>
+    <option value="4">April</option>
+    <option value="5">May</option>
+    <option value="6">June</option>
+    <option value="7">July</option>
+    <option value="8">August</option>
+    <option value="9">September</option>
+    <option value="10">October</option>
+    <option value="11">November</option>
+    <option value="12">December</option>
+
+  </select>
+
+  <!-- Search Button -->
+  <input class="options btn btn-primary" type="submit" (click)="onSearch()" value="Search">
+</div>
+
+
+
+<!-- Table -->
+<div class="row">
+  <div class="col">
+    <div class="card shadow">
+      <div class="table-responsive">
+        <table class="table align-items-center table-flush">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Date</th>
+              <th scope="col">Day</th>
+              <th scope="col">Punch-In</th>
+              <th scope="col">Punch-Out</th>
+              <th scope="col">Half-Day leave</th>
+              <th scope="col">Overtime Hours</th>
+              <th scope="col">Working Hours</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of serachByMonthObj?.attendence; index as i " >
+              <th scope="row">{{i+1}}</th>
+              <td>{{data?.date}}</td>
+              <td>{{data?.day}}</td>
+              <td>{{data?.punchInTime}}</td>
+              <td>{{data?.punchOutTime}}</td>
+              <td>{{data?.halfDay}}</td>
+              <td>{{data?.overTime}}</td>
+              <td>{{data?.workingHours}}</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+       </div>
+       <div *ngSwitchCase="'h_id'">
+        <div class="row">
+          <h6 class="heading-small text-muted mb-4">
+            Get Attendance By Date
+          </h6>
+        </div>
+        <form [formGroup]="SearchByDate" (ngSubmit)="onSubmit()">
+          <div class="filterOption row">
+            
+              <!-- Start Date -->
+              <label for="startDate">From</label>
+              <input class="options" type="date" formControlName="startDate" id="startDate">
+      
+              <!-- End Date -->
+              <label for="endDate">To</label>
+              <input class="options" type="date" formControlName="endDate" id="endDate">
+      
+              <!-- Search Button -->
+              <input class="options btn btn-primary" type="submit" value="Search">
+          </div>
+      </form>
+      
+        
+        <!-- Table -->
+        <div class="row">
+          <div class="col">
+            <div class="card shadow">
+              <div class="table-responsive">
+                <table class="table align-items-center table-flush">
+                  <thead class="thead-light">
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Date</th>
+                      <th scope="col">Day</th>
+                      <th scope="col">Punch-In</th>
+                      <th scope="col">Punch-Out</th>
+                      <th scope="col">Half-Day leave</th>
+                      <th scope="col">Overtime Hours</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let data of SearchByDateObj; index as i " >
+                      <th scope="row">{{i+1}}</th>
+                      <td>{{data?.date}}</td>
+                      <td>{{data?.day}}</td>
+                      <td>{{data?.punchInTime}}</td>
+                      <td>{{data?.punchOutTime}}</td>
+                      <td>{{data?.halfDay}}</td>
+                      <td>{{data?.overTime}}</td>
+                    </tr>
+                    <!-- <tr>
+                      <th scope="row">1</th>
+                      <td>10 June 2023</td>
+                      <td>Saturday</td>
+                      <td>10 : 00</td>
+                      <td>19 : 00</td>
+                      <td>1 hrs</td>
+                      <td>0</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>10 June 2023</td>
+                      <td>Saturday</td>
+                      <td>10 : 00</td>
+                      <td>19 : 00</td>
+                      <td>1 hrs</td>
+                      <td>0</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>10 June 2023</td>
+                      <td>Saturday</td>
+                      <td>10 : 00</td>
+                      <td>19 : 00</td>
+                      <td>1 hrs</td>
+                      <td>0</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>10 June 2023</td>
+                      <td>Saturday</td>
+                      <td>10 : 00</td>
+                      <td>19 : 00</td>
+                      <td>1 hrs</td>
+                      <td>0</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>10 June 2023</td>
+                      <td>Saturday</td>
+                      <td>10 : 00</td>
+                      <td>19 : 00</td>
+                      <td>1 hrs</td>
+                      <td>0</td>
+                    </tr> -->
+                  </tbody>
+                </table>
+              </div>
+    
+    
+              <!-- <div class="card-footer py-4">
+                <nav aria-label="...">
+                  <ul class="pagination justify-content-end mb-0">
+                    <li class="page-item disabled">
+                      <a class="page-link" href="javascript:void(0)" tabindex="-1">
+                        <i class="fas fa-angle-left"></i>
+                        <span class="sr-only">Previous</span>
+                      </a>
+                    </li>
+                    <li class="page-item active">
+                      <a class="page-link" href="javascript:void(0)">1</a>
+                    </li>
+                    <li class="page-item">
+                      <a class="page-link" href="javascript:void(0)">2 <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
+                    <li class="page-item">
+                      <a class="page-link" href="javascript:void(0)">
+                        <i class="fas fa-angle-right"></i>
+                        <span class="sr-only">Next</span>
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+              </div> -->
+            </div>
+          </div>
+        </div>     
+
+       </div>
+
+    </div>
+    
+
+
+
+
+    <div class="row local-row">
+      <div class="col">
+        <div class="card shadow">
+          <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+              <tbody>
+                <tr>
+                  <th>Total no of working days</th>
+                  <td> {{serachByMonthObj.totalWorkigDaysInMonth}}</td>
+                </tr>
+                <tr>
+                  <th>Total no days in Present in a Month</th>
+                  <td>{{serachByMonthObj.totalDaysPresentInMonth}}</td>
+                </tr>
+                <tr>
+                  <th>Total no of Half Days Month</th>
+                  <td>{{serachByMonthObj.totalHalfDaysInMonth}}</td>
+                </tr>
+                <tr>
+                  <th>Total no of Over Time Hours</th>
+                  <td>{{serachByMonthObj.totalOvertimeHoursInMonth}}</td>
+                </tr>
+                <tr>
+                  <th>Shift</th>
+                  <td>{{serachByMonthObj.shift}}</td>
+                </tr>
+                
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

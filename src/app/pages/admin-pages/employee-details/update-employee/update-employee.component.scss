@@ -1,0 +1,106 @@
+#section {
+    background: linear-gradient(var(--secondaryColor), var(--bgColor));
+    // height: 65vh;
+    // overflow-y: hidden;
+}
+// .form-floating > .form-control, .form-floating > .form-control-plaintext {
+//     padding: 1rem 5px;
+// }
+// }
+.prefix {
+    padding: 0px !important;
+    width: 4rem !important;
+}
+.docVerification {
+    width: 365px;
+}
+.Criminal {
+    width: 360px;
+}
+.pbtn {
+    background: linear-gradient(var(--secondaryColor), var(--bgColor));
+    border: none;
+}
+.form-check {
+    padding-left: 36px;
+    padding-top: 18px;
+}
+.form-check-label {
+    margin-left: 20px;
+}
+
+.container {
+    max-width: 1525px;
+    margin: 0;
+}
+// .prefix{
+//     font-size: 16px !important;
+// }
+
+@media only screen and (max-width: 1076px) {
+    .form-control-lg {
+        font-size: 15px;
+        padding: 5px;
+    }
+    input::file-selector-button {
+        font-size: 10px;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .container {
+        margin: 0;
+        max-width: 1200px;
+        padding: 50px 0 !important;
+    }
+    .next {
+        margin-top: 22px !important;
+    }
+    .submit {
+        margin-top: 22px !important;
+    }
+}
+
+@media only screen and (min-width: 1077px) {
+    .prefix {
+        font-size: 16px !important;
+        height: 45px;
+    }
+}
+
+@media only screen and (max-width: 667px) {
+    label {
+        font-size: 13px;
+    }
+
+    .form-control-lg {
+        font-size: 10px;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+    .prefix {
+        width: 100% !important;
+    }
+}
+
+// @media only screen  and (max-width:767px){
+
+// }
+
+// .addprofessionalQualificationsField{
+//     width: 62vh;
+// }
+
+// input::placeholder {
+//     font-size: 10px !important;
+// }
+
+// @media only screen  and (max-width:580px) and (min-width:763px) {
+//     .firstName{
+//         // width: 100% !important;
+//         margin-left: 32
+
+//     }
+
+// }

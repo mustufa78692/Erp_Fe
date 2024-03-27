@@ -1,0 +1,61 @@
+<div class="container mt-3">
+    <div class="card">
+      <div class="card-header">
+        Shift Details
+      </div>
+      <div class="card-body">
+        <form [formGroup]="shiftForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="shiftName">Shift Name</label>
+            <input type="text" id="shiftName" class="form-control  form-control-alternative" formControlName="shiftName">
+          </div>
+          <div class="form-group">
+            <label for="shiftStartTime">Shift Start Time</label>
+            <input type="time" id="shiftStartTime" class="form-control  form-control-alternative" formControlName="shiftStartTime">
+          </div>
+          <div class="form-group">
+            <label for="shiftEndTime">Shift End Time</label>
+            <input type="time" id="shiftEndTime" class=" form-control  form-control-alternative-alternative" formControlName="shiftEndTime">
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="container-fluid mt-3">
+    <div class="card">
+      <div class="card-header">
+        Shift Details
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class="bg-light">
+              <tr>
+                <th scope="col">Shift ID</th>
+                <th scope="col">Shift Name</th>
+                <th scope="col">Start Time</th>
+                <th scope="col">End Time</th>
+                <th scope="col">Operation</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Assuming `shiftData` is available in your component and contains the shift details -->
+              <tr *ngFor="let shiftData of shiftDatas ">
+                <td>{{shiftData?.shiftId}}</td>
+                <td>{{shiftData?.shiftName}}</td>
+                <td>{{shiftData?.shiftStartTime | slice:0:5}}</td> <!-- Slicing to display HH:MM format -->
+                <td>{{shiftData?.shiftEndTime | slice:0:5}}</td> <!-- Slicing to display HH:MM format -->
+                <td> <button class="btn btn-primary" (click)="editData(data?.shiftId,data?.shiftId,data?.shiftId,data?.shiftId)">Edit</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  

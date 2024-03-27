@@ -1,0 +1,39 @@
+
+<div class="container mt-5">
+    <div class="card">
+      <div class="card-header">
+        Employee Details
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class="bg-light">
+              <tr>
+                <th>Employee ID</th>
+                <th>Name</th>
+                <th>Designation</th>
+                <th>Current DS & TS ID</th>
+                <th>Start Date</th>
+                <th>Operation</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of tableData;let i=index">
+                    <td>{{data.empId}}</td>
+                    <td>{{data?.empName}}</td>
+                    <td>{{data?.designationName}}</td>
+                    <td>{{data?.currentDsAndTskId}}</td>
+                    <td>{{data?.startDate}}</td>
+                    
+                    <td> <button class="btn btn-primary" (click)="editData(data?.currentDsAndTskId)">End Task</button></td>
+        
+                    <!-- <td>{{data?.jobLevel}}</td> -->
+        
+                  </tr>
+              <!-- Add more rows here as needed -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>

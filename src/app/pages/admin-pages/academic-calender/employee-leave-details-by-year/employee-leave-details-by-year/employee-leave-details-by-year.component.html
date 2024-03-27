@@ -1,0 +1,86 @@
+<div class="container">
+    <div class="card">
+      <div class="card-body">
+        <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label class="form-control-label" for="employeeId">Employee ID</label>
+            <select class="form-control form-control-sm" formControlName="employeeId">
+              <!-- <option >{{ "id" }}</option> -->
+              <option *ngFor="let data of employessId" [value]='data.employeeId'>{{data.employeeId}}</option>
+              <!-- <option value="2">2</option>
+              <option value="3">3</option> -->
+            </select>
+          </div>
+  
+        
+          
+  
+          <div class="form-group">
+            <label class="form-control-label" for="year">Year</label>
+            <select class="form-control form-control-sm" formControlName="year">
+              <option *ngFor="let year of years" [ngValue]="year">{{ year }}</option>
+            </select>
+          </div>
+  
+          <div class="form-group">
+            <label class="form-control-label" for="country">Country</label>
+            <select class="form-control  form-control-sm" formControlName="country">
+                <option *ngFor="let data of getCountry " [value]="data.countryName">{{data.countryName}}</option>
+              <!-- <option value="23" >{{ "country" }}</option> -->
+              <!-- <option >{{ "country" }}</option>
+              <option >{{ "country" }}</option> -->
+            </select>
+          </div>
+  
+          <!-- Optional: Submit Button -->
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="card animated-form  mt-5">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table">
+          <thead  class="bg-light">
+            <tr>
+              <th scope="col">S.No</th>
+              <th scope="col">Leave Name</th>
+              <th scope="col">Total Leave Days In A Month </th>
+              <!-- <th scope="col">Level</th> -->
+              <!-- <th scope="col">Leave Days </th> -->
+           
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of tableData;let i=index">
+              <td>{{i+1}}</td>
+              <td>{{data?.leaveName}}</td>
+              <td>{{data?.totalLeaveDays}}</td>
+              <!-- <td>{{data?.jobLevel}}</td> -->
+  
+            </tr>
+  
+  
+            <!-- <ng-container *ngFor="let data of getData; let i = index">
+              <tr *ngFor="let location_data of data.locations; let first = first">
+                <td *ngIf="first">{{ i + 1 }}</td>
+                <td *ngIf="first">{{ data.firstApproverEmpId }}</td>
+                <td *ngIf="first">{{ data.secondApproverEmpId }}</td>
+                <td *ngIf="first">{{ data.startDate | date }}</td>
+                <td *ngIf="first">{{ data.endDate | date }}</td>
+                <td>{{ location_data.name }}</td>
+                <td>{{ location_data.address }}</td>
+              </tr>
+            </ng-container> -->
+           
+           
+          </tbody>
+        </table>
+      </div>
+      
+    </div>
+  </div>
+  

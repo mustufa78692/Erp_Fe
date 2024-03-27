@@ -1,0 +1,152 @@
+.send-backward {
+    z-index: -1;
+}
+
+.filterOption {
+    justify-content: space-between;
+    padding: 10px 15px;
+    flex-wrap: wrap;
+}
+
+.filterOption .options {
+    width: 23%;
+    height: 45px;
+    text-align: center;
+    padding: 5px;
+    font-weight: bold;
+}
+
+// TODAY ATTENDANCE BOX ------------------------->
+.todayAttendance {
+    display: flex;
+    justify-content: space-between;
+    height: 200px;
+    width: 100%;
+    margin: 15px 0 50px 0;
+}
+
+.todayAttendance > div {
+    max-width: 47%;
+}
+
+// PUNCH TODAY TIME BOX ----->
+.punchTodayTime {
+    display: flex;
+    text-align: center;
+    justify-content: space-around;
+    box-shadow: 3px 3px 10px -1px black;
+}
+
+.punch-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.circleTime {
+    background-color: var(--bgColor);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 125px;
+    border-radius: 100%;
+    border: 2px solid var(--secondaryColor);
+    box-shadow: 1px 1px 5px 1px black;
+}
+
+.circleTime > span {
+    font-size: 30px;
+    font-weight: bold;
+    // background: url(https://media.tenor.com/W96KEAlHdGoAAAAd/dj.gif);
+    background-color: var(--primaryColor);
+    // background: linear-gradient(90deg, var(--primaryColor),var(--bgColor));
+    background-size: cover;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.punchTime__name {
+    background-color: var(--primaryColor);
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    width: 150px;
+    padding: 10px 0;
+    border-radius: 35px;
+    cursor: pointer;
+}
+
+.todayPunch {
+    color: black;
+}
+
+.todayPunch__date {
+    background-color: var(--bgColor);
+    padding: 5px 20px;
+    border: 2px solid gray;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.todayPunch__extra {
+    display: flex;
+    justify-content: space-between;
+}
+
+.todayPunch__extra > div {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bgColor);
+    width: 45%;
+    font-size: 15px;
+    border-radius: 10px;
+    border: 2px solid gray;
+}
+
+.breakOvertime {
+    font-weight: bold;
+}
+
+// TODAY ACTIVITY -------------
+.todayActivity {
+    padding: 15px 50px;
+    box-shadow: 3px 3px 10px -1px black;
+}
+
+.todayActivity__head {
+    color: white;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.todayActivity__list {
+    background-color: #f8f9fe;
+    font-size: 12px;
+    line-height: 20px;
+}
+
+.todayActivity__list > li {
+    position: relative;
+    list-style: none;
+}
+
+.todayActivity__list > li::before {
+    content: '';
+    position: absolute;
+    left: -20px;
+    background-image: url(../../../../assets/img/employee/circle.png);
+    background-repeat: no-repeat;
+    height: 15px;
+    width: 15px;
+    background-size: 15px;
+}
+
+option {
+    background-color: var(--bgColor);
+    font-size: 20px;
+}
+
+.local-row {
+    margin-top: 50px;
+}

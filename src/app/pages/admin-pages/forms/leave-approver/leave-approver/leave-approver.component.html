@@ -1,0 +1,164 @@
+<!-- Background Blur -->
+<div class="blur-background"></div>
+
+<!-- Card for Form -->
+<div class="card animated-form">
+  <div class="card-body">
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+
+      <!-- First Approver Emp ID -->
+      <div class="mb-3">
+        <label for="firstApproverEmpId" class="form-control-label">First Approver Employee ID</label>
+        <select class="form-control form-control-alternative" id="firstApproverEmpId" formControlName="firstApproverEmpId"  (change)="getfirstAprroverEmplId($event)">
+          <!-- Option values for First Approver Emp ID go here -->
+          <option [value]="data.employeeId"  *ngFor="let data of aprroverData">{{data.employeeId}}</option>
+          <!-- <option value="empId2">Employee 2</option> -->
+          <!-- Add more options as needed -->
+        </select>
+      </div>
+    
+      <!-- Second Approver Emp ID -->
+      <div class="mb-3">
+        <label for="secondApproverEmpId" class="form-control-label">Second Approver Employee ID</label>
+        <select class="form-control form-control-alternative" id="secondApproverEmpId" formControlName="secondApproverEmpId" (change)="getSecondAprroverEmplId($event)">
+          <!-- Option values for Second Approver Emp ID go here -->
+          <option [value]="data.employeeId"  *ngFor="let data of aprroverData">{{data.employeeId}}</option>
+          <!-- <option value="empId3">Employee 3</option> -->
+          <!-- <option value="empId4">Employee 4</option> -->
+          <!-- Add more options as needed -->
+        </select>
+      </div>
+    
+      <!-- Start Date -->
+      <div class="mb-3">
+        <label for="startDate" class="form-control-label">Start Date</label>
+        <input type="date" class="form-control form-control-alternative" id="startDate" formControlName="startDate">
+      </div>
+    
+      <div class="mb-3">
+        <label for="location" class="form-control-label">Location</label>
+        <select class="form-control form-control-alternative" id="location" formControlName="location">
+          <!-- Option values for Location go here -->
+          <option   *ngFor="let data of getLocation"  [value]="data.locationId"> {{data.name}}</option>
+          <!-- <option value="location2">Location 2</option> -->
+          <!-- Add more options as needed -->
+        </select>
+      </div>
+
+      <!-- <div class="mb-3">
+
+
+        <div formArrayName="dynamicFields">
+          <div *ngFor="let field of dynamicFields.controls; let i = index" class="dynamic-field">
+            <label for="">Add Level {{i + 1}}</label>
+            <input [formControlName]="i" type="text" class="form-control">
+            <button type="button" class="btn btn-danger mt-3" (click)="removeDynamicField(i)">Remove</button>
+          </div>
+        </div>
+        <button type="button" class="btn btn-primary mt-2" (click)="addDynamicField()">Add Field</button>
+        
+      
+
+      </div>
+     -->
+     <!-- <div class="mb-3">
+      <label for="" class="form-control-label">Select Level</label>
+      <select   multiple  formControlName="option" name="option"  class="form-control-alternative" id="">
+        <option *ngFor="let data of getLevel" [value]="data?.levelName" >{{data?.levelName}}</option>
+      </select>
+     </div> -->
+
+
+
+     <!-- <HR></HR> -->
+
+     <hr>
+     <div class="mb-3">
+      <label for="selectLevel" class="form-control-label">Select Level</label>
+      <select multiple formControlName="option" id="selectLevel" class="form-control form-control-alternative">
+        <option class="mt-3" *ngFor="let level of getLevel" [value]="level?.levelName">  * {{level?.levelName}}</option>
+      </select>
+    </div>
+         
+    
+
+      <div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+    </form>
+    
+  </div>
+</div>
+
+<!-- Card With Table -->
+<div class="card animated-form  mt-5">
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">S.No</th>
+            <th scope="col">First Approver Emp Id</th>
+            <th scope="col">First Approver Email Id</th>
+            <th scope="col">Second Approver Emp Id</th>
+            <th scope="col">Second Approver Email Id</th>
+            <th scope="col">Start Date</th>
+            <th scope="col">End Date</th>
+            <!-- <th scope="col">Location Name</th> -->
+            <th scope="col" colspan="2">Location Address</th> 
+            <th scope="col">Operation</th>
+          </tr>
+        </thead>
+        <tbody>
+
+
+          <!-- <ng-container >
+            <tr *ngFor="let data of getData; let i = index">
+              <td >{{ i + 1 }}</td>
+              <td >{{ data.firstApproverEmpId }}</td>
+              <td >{{ data.firstApproverEmail }}</td>
+              <td >{{ data.secondApproverEmpId }}</td>
+              <td >{{ data.secondApproverEmail }}</td>
+              <td >{{ data.startDate | date }}</td>
+              <td >{{ data.endDate | date }}</td>
+              <td>{{ location_data.name }}</td>
+              <td>{{ location_data.address }}</td>
+              <td> <button class="btn btn-primary" (click)="editData(data?.firstApproverEmpId,data?.secondApproverEmpId)">Edit</button></td>
+             
+            </tr>
+          </ng-container> -->
+
+          <ng-container>
+            <tr *ngFor="let data of getData; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ data.firstApproverEmpId }}</td>
+              <td>{{ data.firstApproverEmail }}</td>
+              <td>{{ data.secondApproverEmpId }}</td>
+              <td>{{ data.secondApproverEmail }}</td>
+              <td>{{ data.startDate | date }}</td>
+              <td>{{ data.endDate | date }}</td>
+              <!-- Dynamically display all locations -->
+              <!-- Placeholder cell for locations -->
+              <td colspan="2">
+                <ng-container *ngFor="let location of data.locations">
+                  <div>{{ location.name }} - {{ location.address }}</div>
+                </ng-container>
+              </td>
+              <td>
+                <button class="btn btn-primary" (click)="editData(data.firstApproverEmpId, data.secondApproverEmpId, location.locationId,data.startDate,data.laid)" *ngFor="let location of data.locations">Edit</button>
+              </td>
+              
+              <!-- <td>
+                <button class="btn btn-primary" (click)="editData(data.firstApproverEmpId, data.secondApproverEmpId, location.locationId)">Edit</button>
+              </td> -->
+            </tr>
+          </ng-container>
+          
+         
+         
+        </tbody>
+      </table>
+    </div>
+    
+  </div>
+</div>

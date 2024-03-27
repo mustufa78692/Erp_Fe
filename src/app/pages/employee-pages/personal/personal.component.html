@@ -1,0 +1,107 @@
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 600px; background-image: url(assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+  <!-- Mask -->
+  <span class="mask bg-gradient-danger opacity-8"></span>
+  <!-- Header container -->
+  <div class="container-fluid d-flex align-items-center">
+    <div class="row">
+      <div class="col-lg-6">
+        <h1 class="display-2 text-white">Hello {{object?.firstName}} {{object?.middleName}} {{object?.lastName}}</h1>
+        <p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with your work and manage your projects or assigned tasks</p>
+        <!-- <a href="#!" class="btn btn-info">Edit profile</a>  -->
+      </div>
+      <div class="col-lg-6 profile-pic">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5SQntNi68ASSiKFpRVzQOMfJCx5aYevH69w&usqp=CAU" class="rounded-circle">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt--7">
+  <div class="row">
+    <div class="col-xl-12 order-xl-1">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h3 class="mb-0">My account</h3>
+            </div>
+            <div class="col-4 text-right">
+              <a  class="btn btn-sm btn-primary"><button
+                class="btn btn-sm btn-primary"
+                (click)="navigate(object?.employeeId)"
+              >
+                See All
+              </button></a>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form>
+            <h6 class="heading-small text-muted mb-4">User information</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-first-name">First name</label>
+                    <input type="text" id="input-first-name" class="form-control form-control-alternative" placeholder="First name" [value]='object.firstName +object.middleName '>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-last-name">Last name</label>
+                    <input type="text" id="input-last-name" class="form-control form-control-alternative" placeholder="Last name" [value]="object.lastName">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-father-name">Father name</label>
+                    <input type="text" id="input-father-name" class="form-control form-control-alternative"  [value]="object?.fathersFirstName  + object?.fathersMiddleName + object?.fathersLastName">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-age">Age</label>
+                    <input type="text" id="input-age" class="form-control form-control-alternative" [value]="object?.age">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-contact-number">Contact number</label>
+                    <input type="text" id="input-contact-number" class="form-control form-control-alternative" placeholder="Contact number" [value]="object?.phoneCode + ' ' + object?.personalContactNo">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-email">Email address</label>
+                    <input type="email" id="input-email" class="form-control form-control-alternative" [value]="object?.email">
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- <div *ngIf="isAlertBox" class="position-fixed bg-white p-3 local-toast">
+  <div class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
+    <div class="toast-header">
+      <small class="text-danger">Due : <span>2023-04-12</span></small>
+      <button (click)="alertClose()" type="button" class="ml-2 mb-1 close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="toast-body">
+      Hi, <span class="h3">Mohd Rahil Khan </span> 
+      <span class="text-danger">your background verification is pending!</span>
+    </div>
+  </div>
+</div> -->

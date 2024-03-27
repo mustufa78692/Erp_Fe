@@ -1,0 +1,113 @@
+<!-- holiday-form.component.html -->
+<div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Holiday Form</h5>
+      <form [formGroup]="holidayForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="name" class="form-control-label">Name:</label>
+          <input type="text" class="form-control form-control-alternative" id="name" formControlName="name">
+        </div>
+  
+        <!-- <div class="form-group">
+          <label for="startHolidayDate" class="form-control-label">Start Date:</label>
+          <input type="date" class="form-control form-control-alternative" id="startHolidayDate" formControlName="startHolidayDate">
+        </div>
+  
+        <div class="form-group">
+          <label for="endHolidayDate" class="form-control-label">End Date:</label>
+          <input type="date" class="form-control form-control-alternative" id="endHolidayDate" formControlName="endHolidayDate">
+        </div> -->
+
+
+        <div class="form-group">
+          <label for="startHolidayDate" class="form-control-label">Start Date:</label>
+          <input type="date" class="form-control form-control-alternative" id="startHolidayDate" formControlName="startHolidayDate">
+        </div>
+      
+        <div class="form-group">
+          <label for="endHolidayDate" class="form-control-label">End Date:</label>
+          <input type="date" class="form-control form-control-alternative" id="endHolidayDate" formControlName="endHolidayDate">
+        </div>
+
+     
+  
+        <div class="form-group">
+          <label for="countryName" class="form-control-label">Country:</label>
+          <!-- Replace the options with your actual countries -->
+          <select class="form-control form-control-alternative" id="countryName" formControlName="countryName">
+            <option *ngFor="let data of Countries" [value]=data.name>{{data.name}}</option>
+            <!-- Add more country options as needed -->
+          </select>
+        </div>
+  
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card mt-4 mx-auto" style="max-width: 90%;">
+          <div class="card-body">
+            <table class="table table-responsive">
+              <thead class="bg-light">
+                <tr>
+                  <th>Holiday ID</th>
+                  <th>Name</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
+                  <th>Number of Holidays</th>
+                  <th>Country</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let holiday of paginatedData">
+                  <td>{{ holiday?.holidayId }}</td>
+                  <td>{{ holiday?.name }}</td>
+                  <td>{{ holiday?.startHolidayDate }}</td>
+                  <td>{{ holiday?.endHolidayDate }}</td>
+                  <td>{{ holiday?.numberOfHoliday }}</td>
+                  <td>{{ holiday?.countryName }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  <!-- <div class="card mt-4 mx-auto" style="max-width: 90%;">
+    
+    <div class="card-body">
+      
+        <table class="table table-responsive">
+          <thead class="bg-light">
+            <tr>
+              <th>Holiday ID</th>
+              <th>Name</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Number of Holidays</th>
+              <th>Country</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let holiday of paginatedData">
+              <td>{{ holiday?.holidayId }}</td>
+              <td>{{ holiday?.name }}</td>
+              <td>{{ holiday?.startHolidayDate }}</td>
+              <td>{{ holiday?.endHolidayDate }}</td>
+              <td>{{ holiday?.numberOfHoliday }}</td>
+              <td>{{ holiday?.countryName }}</td>
+            </tr>
+          </tbody>
+        </table>
+        
+      
+      
+    </div>
+  </div> -->
+  

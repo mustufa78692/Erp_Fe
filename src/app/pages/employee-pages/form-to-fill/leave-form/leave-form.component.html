@@ -1,0 +1,148 @@
+<!-- <div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+    </div>
+  </div>
+</div> -->
+<!-- Page content -->
+<div class="container-fluid ">
+  <div class="row">
+    <div class="col-xl-12 order-xl-1">
+      <div class="card bg-secondary shadow">
+      
+        <div class="card-body">
+         
+  <div class="container-fluid mainContainer mt-5">
+    <header class="container-navbar">
+        <div class="logo-container">
+            <h1 class="display-1 logo-text">SI |</h1>
+            <div class="company-info">
+                <span>Food Stuff</span><br>
+                <span>Packing Industry LLc</span>
+            </div>
+        </div>
+    </header>
+  
+    <div class="watermark-container">
+        <h1 class="watermark-text">SI</h1>
+        <div class="container mt-5">
+          
+          <form [formGroup]="LeaveForm"  (ngSubmit)="postLeaveForm()">
+        
+            <!-- Employee Information Section -->
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="employeeId">Employee Id</label>
+                <input type="text" class="form-control"  formControlName="employeeId" id="employeeId" placeholder="Enter Employee Id" readonly>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="nameOfEmployee">Name of Employee</label>
+                <input type="text" class="form-control" formControlName="nameOfEmployee" id="nameOfEmployee" placeholder="Enter Name of Employee" readonly>
+              </div>
+            </div>
+        
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" formControlName="email" id="email" placeholder="Enter Email" readonly>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="contactNo">Contact No</label>
+                <input type="tel" class="form-control" formControlName="contactNumber" id="contactNo" placeholder="Enter Contact No" readonly>
+              </div>
+            </div>
+        
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="emergencyContact">Emergency Contact No</label>
+                <input type="tel" class="form-control" formControlName="emergencyContactNumber" id="emergencyContact" placeholder="Enter Emergency Contact No">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="designation">Designation</label>
+                <input type="text" class="form-control" id="designation" formControlName="designation" placeholder="Enter Designation" readonly>
+              </div>
+            </div>
+        
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="department">Department</label>
+                <input type="text" class="form-control" id="department" formControlName="department" placeholder="Enter Department" readonly>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="jobLevel">Job Level</label>
+                <input type="text" class="form-control" id="jobLevel" formControlName="jobLevel" placeholder="Enter Job Level" readonly>
+              </div>
+            </div>
+        
+            <!-- Leave Request Details -->
+            <div class="form-row">
+              <!-- <div class="form-group col-md-4">
+                <label for="dateOfLeaveRequest">Date of Leave Request</label>
+                <input type="date" class="form-control"   formControlName="requestDate" id="dateOfLeaveRequest">
+              </div> -->
+              <div class="form-group col-md-6">
+                <label for="typeOfLeave">Type of Leave</label>
+                <select id="typeOfLeave"  (input)="hidetheleaveTypeValidationMsg()" class="form-control" formControlName="leaveType" (change)="getValue($event)">
+                  
+                  <option *ngFor="let leaveType of LeaveTyped" [value]="leaveType?.leaveTypeId">{{ leaveType?.leaveName }}</option>
+                  
+                  
+                </select>
+                <div *ngIf="leaveTypeValidationMessage"><span class="text-danger">{{leaveTypeValidationMessage}}</span></div>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="reasonForLeave">Reason for Leave</label>
+                <textarea class="form-control" formControlName="leaveReason" id="reasonForLeave" rows="2" placeholder="Enter Reason for Leave"></textarea>
+              </div>
+            </div>
+            <div *ngIf="getLeaveFormControls['leaveType']?.value == '2'">
+            <div class="form-row"  >
+              <div class="form-group col-md-6">
+                <label for="">Medical Document </label>
+                <input type="file" name="medicalDocumentsName" id="" (input)="hidethemedicalDocsValidationMsg()" class="form-control" (change)="uploadFile($event)">
+<div *ngIf="medicalDocumentsNameValidationMessage"><span class="text-danger">{{medicalDocumentsNameValidationMessage}}</span></div>
+              </div>
+
+            </div>
+          </div>
+        
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="leaveStartDate">Leave Start Date</label>
+                <input type="date" class="form-control" formControlName="startDate" (input)="hidetheleaveStartDateValidationMsg()" id="leaveStartDate" [min]="minDate"  (change)="onDateChange()">
+                <div *ngIf="LeaveStartDateValidationMessage"><span class="text-danger">{{LeaveStartDateValidationMessage}}</span></div>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="leaveEndDate">Leave End Date</label>
+                <input type="date" class="form-control" formControlName="endDate" id="leaveEndDate" [min]="minDate"  (input)="hidetheleaveEndDateValidationMsg()"  (change)="onDateChange()">
+                <div *ngIf="LeaveEndDateValidationMessage"><span class="text-danger">{{LeaveEndDateValidationMessage}}</span></div>
+              </div>
+            </div>
+        
+            <div class="form-group">
+                <label for="numberOfDays">Number of Days Requested</label>
+                <input type="number" class="form-control" formControlName="numberOfDaysRequested" id="numberOfDays" placeholder="Enter Number of Days">
+            </div>
+        
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary">Submit Request</button>
+          </form>
+        </div>
+        
+        
+    </div>
+  
+    <footer class="company-address">
+        <h6>E4 AI Seeb International Umm Thaob 7 UAQ P.O .Box 450883</h6>
+    </footer>
+  </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+
+

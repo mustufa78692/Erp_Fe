@@ -1,0 +1,178 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+      <div class="header-body">
+      </div>
+    </div>
+  </div>
+  <!-- Page content -->
+  <div class="container-fluid mt-2">
+    <!-- search functionality -->
+    <div class="container-fluid  min-height-630">
+        <div class="row">
+          <div class="col">
+            <div class="card shadow border-0">
+              <div class="col-xl-12 m-0 p-0">
+                <div class="card shadow">
+                  <div class="card-header border-0">
+                    <div class="row align-items-center">
+                      <div class="col">
+                        <h3 class="mb-0"> <a (click)="redirectToPage()">  Add Products </a> </h3>
+                      </div>
+                      <div class="col text-right">
+                        <div class="input-group">
+                          <input
+                            type="text"
+                            class="form-control"
+                            placeholder="Search By"
+                            aria-label="Search By"
+                            #searchInput
+                          />
+                          <div class="input-group-append">
+                            <select class="btn btn-sm btn-outline-primary">
+                              <option value="Product Name" selected>Product Name</option>
+                              <option value="Category">Category</option>
+                              <option value="Sku">Sku</option>
+                            </select>
+                            <button
+                              class="btn btn-sm btn-primary"
+                              type="button"
+                              (click)="searchEmpByEmail(searchInput.value)"
+                            >
+                              Search
+                            </button>
+                          </div>
+                        </div>
+                        
+                      </div>
+                    </div>
+                  </div>
+      
+                  <!-- <div class="table-responsive min-height-630" id="table-scroll">
+                    
+                    <table class="table align-items-center table-flush">
+                      <thead class="thead-light">
+                        <tr>
+                          <th scope="col">ID</th>
+                          <th scope="col">Name</th>
+                          <th scope="col">Email</th>
+                          <th scope="col">Designation</th>
+                          <th scope="col">Status</th>
+                          <th scope="col">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr
+                          *ngFor="let employee of response | async"
+                          (click)="navigate(employee.employeeId)"
+                        >
+                          <th scope="row">{{ employee.employeeId }}</th>
+                          <td>
+                            {{ employee.firstName + " " + employee.lastName }}
+                          </td>
+                          <td>
+                            {{ employee.email }}
+                          </td>
+                          <td>{{ employee.jobDetails.jobPostDesignation }}</td>
+                          <td *ngIf="employee.status == 'Active'">
+                            <i class="fas fa-circle text-info mr-3"></i>
+                          </td>
+                          <td *ngIf="employee.status != 'Active'">
+                            <i class="fas fa-circle text-danger mr-3"></i>
+                          </td>
+      
+                          <td *ngIf="employee.status == 'Active'">
+                            <button
+                              class="btn btn-sm btn-danger w-75"
+                              (click)="delEmployee(employee.email)"
+                            >
+                              Deactivate
+                            </button>
+                          </td>
+                          
+                        </tr>
+                      </tbody>
+                    </table>
+      
+                    
+                    <div
+                      class="d-flex justify-content-center mt-5 pt-5"
+                      *ngIf="isLoading | async"
+                    >
+                      <div class="spinner-border text-info" role="status">
+                        <span class="sr-only">Loading...</span>
+                      </div>
+                    </div>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- card start here  -->
+
+      <div class="row mt-5">
+        <div class="col-xl-3 col-lg-6">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" height="220px" src=".../../../../../../../assets/img/manger/choco-bars-kulfi-biscuit-500x500.webp" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a  class="btn btn-primary"   (click)="navigate()">Edit</a>
+                </div>
+              </div>
+        </div>
+        <div class="col-xl-3 col-lg-6">
+          
+            <!-- <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Pending Orders</h5>
+                  <span class="h2 font-weight-bold mb-0">2,356</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+                    <i class="fas fa-chart-pie"></i>
+                  </div>
+                </div>
+              </div>
+              <p class="mt-3 mb-0 text-muted text-sm">
+                <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
+                <span class="text-nowrap">Since last week</span>
+              </p>
+            </div> -->
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" height="220px" src="../../../../../assets/img/manger/download (2).jpg" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Edit</a>
+                </div>
+              </div>
+          
+        </div>
+        <div class="col-xl-3 col-lg-6">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" height="220px" src="../../../../../assets/img/manger/download1.jpg" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Edit</a>
+                </div>
+              </div>
+        </div>
+        <div class="col-xl-3 col-lg-6">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" height="220px" src="../../../../../assets/img/manger/download.jpg" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Edit</a>
+                </div>
+              </div>
+        </div>
+      </div>
+    
+  </div>
+  

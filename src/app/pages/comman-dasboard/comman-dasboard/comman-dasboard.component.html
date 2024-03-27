@@ -1,0 +1,284 @@
+<!-- <div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+      <div class="header-body">
+      </div>
+    </div>
+  </div>
+  
+  <div class="container-fluid mt-7">
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-lg-12 mb-4 d-flex align-items-stretch">
+                <div class="card w-100 shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="my-0 font-weight-normal"><i class="bi bi-person-badge-fill mr-2"></i>Employee
+                            Information</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row mb-2">
+                            <div class="col-md-4 font-weight-bold">Name:</div>
+                            <div class="col-md-8">{{ "obj?.payroll.name"}}</div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-md-4 font-weight-bold">Employee ID:</div>
+                            <div class="col-md-8">{{ obj?.payroll.employeeId }}</div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-md-4 font-weight-bold">Job Designation:</div>
+                            <div class="col-md-8"> {{ obj?.payroll.jobDesignation }}</div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-md-4 font-weight-bold"> Job Level:</div>
+                            <div class="col-md-8"> {{ obj?.payroll.jobLevel }}</div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-md-4 font-weight-bold"> Job Location:</div>
+                            <div class="col-md-8">{{ obj?.payroll.jobLocation }}</div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-md-4 font-weight-bold"> Department:</div>
+                            <div class="col-md-8">{{ obj?.payroll.department }}</div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-md-4 font-weight-bold">Contact:</div>
+                            <div class="col-md-8">{{ obj?.payroll.contact }}</div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-md-4 font-weight-bold"> Address:</div>
+                            <div class="col-md-8">{{ obj?.payroll.address }}</div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+           
+        </div>
+
+    </div> -->
+
+
+
+    <div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+      <div class="container-fluid">
+        <div class="header-body">
+        </div>
+      </div>
+    </div>
+    <!-- Page content -->
+    <div class="container-fluid mt-7">
+      <div class="container">
+        <div class="row">
+          <!-- Personal Card -->
+          <div class="col-md-6">
+            <div class="card">
+              <img src="https://placekitten.com/300/200" class="card-img" alt="Profile Image">
+              <div class="card-body">
+                <h5 class="card-title">Your Name</h5>
+                <p class="card-text">Your Position</p>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><strong>Email:</strong> your.email@example.com</li>
+                  <li class="list-group-item"><strong>Phone:</strong> +123 456 7890</li>
+                  <li class="list-group-item"><strong>Location:</strong> Your City, Country</li>
+                </ul>
+                <a href="#" class="btn btn-success contact-btn">Contact Me</a>
+              </div>
+            </div>
+          </div>
+          <!-- Business Carousel -->
+          <div class="col-md-6">
+            <div id="businessCarousel" class="carousel slide business-carousel" data-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">Business Name 1</h5>
+                      <p class="card-text">Business Description or Tagline</p>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>Industry:</strong> Your Industry</li>
+                        <li class="list-group-item"><strong>Location:</strong> Business City, Country</li>
+                        <li class="list-group-item"><strong>Website:</strong> www.business1.com</li>
+                      </ul>
+                      <a href="#" class="btn btn-light contact-btn">Learn More</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">Business Name 2</h5>
+                      <p class="card-text">Business Description or Tagline</p>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>Industry:</strong> Your Industry</li>
+                        <li class="list-group-item"><strong>Location:</strong> Business City, Country</li>
+                        <li class="list-group-item"><strong>Website:</strong> www.business2.com</li>
+                      </ul>
+                      <a href="#" class="btn btn-light contact-btn">Learn More</a>
+                    </div>
+                  </div>
+                </div>
+                <!-- Add more carousel items as needed -->
+              </div>
+              <a class="carousel-control-prev" href="#businessCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#businessCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="container">
+        <div class="row d-flex align-items-stretch">
+       
+          <div class="col-md-6">
+            <div class="card">
+              <img src="https://placekitten.com/300/200" class="card-img" alt="Profile Image">
+              <div class="card-body">
+                <h5 class="card-title">Your Name</h5>
+                <p class="card-text">Your Position</p>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><strong>Email:</strong> your.email@example.com</li>
+                  <li class="list-group-item"><strong>Phone:</strong> +123 456 7890</li>
+                  <li class="list-group-item"><strong>Location:</strong> Your City, Country</li>
+                </ul>
+                <a href="#" class="btn btn-success contact-btn">Contact Me</a>
+              </div>
+            </div>
+          </div>
+       
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Business Name</h5>
+                <p class="card-text">Business Description or Tagline</p>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><strong>Industry:</strong> Your Industry</li>
+                  <li class="list-group-item"><strong>Location:</strong> Business City, Country</li>
+                  <li class="list-group-item"><strong>Website:</strong> www.yourbusiness.com</li>
+                </ul>
+                <a href="#" class="btn btn-primary">Learn More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+      <!-- <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <div class="card">
+              <div class="row no-gutters">
+                <div class="col-md-4">
+                  <img src="https://placekitten.com/300/200" class="card-img" alt="Profile Image">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">Your Name</h5>
+                    <p class="card-text">Your Position</p>
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item"><strong>Email:</strong> your.email@example.com</li>
+                      <li class="list-group-item"><strong>Phone:</strong> +123 456 7890</li>
+                      <li class="list-group-item"><strong>Location:</strong> Your City, Country</li>
+                    </ul>
+                    <a href="#" class="btn btn-success contact-btn">Contact Me</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+      
+      <!-- <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <div class="card">
+              <img src="https://placekitten.com/300/200" class="card-img-top" alt="Profile Image">
+              <div class="card-body">
+                <h5 class="card-title">Your Name</h5>
+                <p class="card-text">Your Position</p>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><strong>Email:</strong> your.email@example.com</li>
+                  <li class="list-group-item"><strong>Phone:</strong> +123 456 7890</li>
+                  <li class="list-group-item"><strong>Location:</strong> Your City, Country</li>
+                </ul>
+                <a href="#" class="btn btn-primary">Contact Me</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+          
+  
+  
+    </div>
+    
+
+
+    
+
+<!-- 
+    <div class="card-body">
+        <form>
+          <h6 class="heading-small text-muted mb-4">User information</h6>
+          <div class="pl-lg-4">
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label" for="input-first-name">First name</label>
+                  <input type="text" id="input-first-name" class="form-control form-control-alternative" placeholder="First name" value='object.firstName +object.middleName '>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label" for="input-last-name">Last name</label>
+                  <input type="text" id="input-last-name" class="form-control form-control-alternative" placeholder="Last name" value="object.lastName">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label" for="input-father-name">Father name</label>
+                  <input type="text" id="input-father-name" class="form-control form-control-alternative"  value="object?.fathersFirstName  + object?.fathersMiddleName + object?.fathersLastName">
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label" for="input-age">Age</label>
+                  <input type="text" id="input-age" class="form-control form-control-alternative" value="object?.age">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label" for="input-contact-number">Contact number</label>
+                  <input type="text" id="input-contact-number" class="form-control form-control-alternative" placeholder="Contact number" value="object?.phoneCode + ' ' + object?.personalContactNo">
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label" for="input-email">Email address</label>
+                  <input type="email" id="input-email" class="form-control form-control-alternative" value="object?.email">
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </form>
+      </div> -->
+
+
+  <!-- </div> -->
+  
+
+
+

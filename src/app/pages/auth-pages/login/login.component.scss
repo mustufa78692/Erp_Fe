@@ -1,0 +1,82 @@
+.mt--8,
+.my--8 {
+    margin-top: -12rem !important;
+}
+
+.local-error {
+    color: red;
+}
+
+.arrangement {
+    margin-top: 5px;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.message {
+    margin-top: 0;
+}
+
+.local-spacer {
+    position: relative;
+    top: 50px;
+}
+
+
+
+// ADMIN AND EMPLOYEE BUTTONS
+.admin-employee-btn {
+    background-color: var(--accent);
+    text-align: center;
+    border-radius: 100px;
+    width: 100%;
+    margin: 5px auto;
+    // border: 2px solid var(--primaryColor);
+    padding: 5px 0;
+    // box-shadow: 1px 1px 4px 0px black;
+    box-shadow:
+        0 1px 3px rgba(50, 50, 93, 0.15),
+        0 1px 0 rgba(0, 0, 0, 0.02);
+}
+
+.admin-employee-btn > button {
+    font-weight: bold;
+    border-radius: 25px;
+    background-color: var(--accent);
+    padding: 5px 15px;
+    margin: 5px 5px;
+    border: none;
+    color: white;
+}
+
+.admin-employee-btn > button:hover {
+    background-color: var(--primaryColor);
+    box-shadow:
+        0 1px 3px rgba(50, 50, 93, 0.15),
+        0 1px 0 rgba(0, 0, 0, 0.02);
+    color: var(--accent);
+}
+
+.btn-active {
+    background-color: var(--bgColor) !important;
+    color: var(--accent) !important;
+    box-shadow: none !important;
+}
+
+
+.role-dropdown {
+    background-color: #f5365c; /* Replace with your button's background color */
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+  }
+  
+  .role-dropdown option {
+    color: black; /* Text color for options */
+    background-color: white; /* Background color for options */
+    padding: 5px;
+  }
+  

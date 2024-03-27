@@ -1,0 +1,3181 @@
+<div
+  class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
+  style="
+    min-height: 600px;
+    background-image: url(assets/img/theme/profile-cover.jpg);
+    background-size: cover;
+    background-position: center top;
+  "
+>
+  <!-- Mask -->
+  <span class="mask bg-gradient-danger opacity-8"></span>
+  <!-- Header container -->
+  <div class="container-fluid d-flex align-items-center">
+    <div class="row">
+      <div class="col-lg-6">
+        <h1 class="display-2 text-white">
+          {{ obj.firstName }} {{ obj.middleName }} {{ obj.lastName }}
+        </h1>
+        <p class="text-white mt-0 mb-5">
+          This is your profile page. You can see the progress you've made with
+          your work and manage your projects or assigned tasks
+        </p>
+        <!-- <a href="#!" class="btn btn-info">Edit profile</a> -->
+      </div>
+      <div class="col-lg-6 profile-pic">
+        <img
+          [src]="getImage(obj.passportSizePhotoData)"
+          class="rounded-circle"
+          style="height: 250px; width: 250px"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt--7">
+  <div class="row">
+    <div class="col-xl-12 order-xl-1">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0 myAcc">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h3 class="mb-0">My account</h3>
+            </div>
+            <div class="col-4 text-right h-50" >
+              <button
+                class="btn btn-lg btn-primary"
+                (click)="navigate(obj.email)"
+              >
+              {{  obj?.onboardHrApprovalStatus == "pending" ? 'Approved' : 'Edit' }}
+              </button>
+            </div>
+          </div>
+        </div>
+        
+<!-- 
+        <div
+          class="tabs d-flex justify-content-between align-items-center px-4 py-3 empNav"
+        >
+          <div
+            class="tab"
+            [class.active-tab]="activeBtn == 'pf'"
+            (click)="activeBtn = 'pf'"
+          >
+            Personal Info
+          </div>
+          <div
+            class="tab"
+            [class.active-tab]="activeBtn == 'brela'"
+            (click)="activeBtn = 'brela'"
+          >
+            Blood Relatives
+          </div>
+          <div
+            class="tab"
+            [class.active-tab]="activeBtn == 'edu'"
+            (click)="activeBtn = 'edu'"
+          >
+            Education
+          </div>
+          <div
+            class="tab"
+            [class.active-tab]="activeBtn == 'peDetails'"
+            (click)="activeBtn = 'peDetails'"
+          >
+            Previous Employee Details
+          </div>
+          <div
+            class="tab"
+            [class.active-tab]="activeBtn == 'bgCheck'"
+            (click)="activeBtn = 'bgCheck'"
+          >
+            Background Check
+          </div>
+          <div
+            class="tab"
+            [class.active-tab]="activeBtn == 'tdetails'"
+            (click)="activeBtn = 'tdetails'"
+          >
+            Training Details
+          </div>
+          <div
+            class="tab"
+            [class.active-tab]="activeBtn == 'jobD'"
+            (click)="activeBtn = 'jobD'"
+          >
+            Job Details
+          </div>
+        </div> -->
+        <div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-12">
+            <div class="tab py-2 active-tab" (click)="activeBtn = 'pf'">Personal Info</div>
+        </div>
+        <div class="col-md-4 col-sm-6 col-12">
+            <div class="tab py-2" (click)="activeBtn = 'brela'">Blood Relatives</div>
+        </div>
+        <div class="col-md-4 col-sm-6 col-12">
+            <div class="tab py-2" (click)="activeBtn = 'edu'">Education</div>
+        </div>
+        <div class="col-md-4 col-sm-6 col-12">
+            <div class="tab py-2" (click)="activeBtn = 'peDetails'">Previous Employee Details</div>
+        </div>
+        <div class="col-md-4 col-sm-6 col-12">
+            <div class="tab py-2" (click)="activeBtn = 'bgCheck'">Background Check</div>
+        </div>
+        <div class="col-md-4 col-sm-6 col-12">
+            <div class="tab py-2" (click)="activeBtn = 'tdetails'">Training Details</div>
+        </div>
+        <div class="col-md-4 col-sm-6 col-12">
+            <div class="tab py-2" (click)="activeBtn = 'jobD'">Job Details</div>
+        </div>
+    </div>
+</div>
+
+
+        <div [ngSwitch]="activeBtn">
+          <div class="card-body">
+            <form>
+              <div *ngSwitchCase="'pf'">
+                <h6 class="heading-small text-muted mb-4">
+                  User Personal Information
+                </h6>
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label
+                          class="form-control-label"
+                          for="input-first-name"
+                        >
+                          Prefix</label
+                        >
+                        <input
+                          type="text"
+                          id="input-first-name"
+                          class="form-control form-control-alternative"
+                          placeholder="First name"
+                          [value]="obj.namePrefix"
+                          [readonly]="isReadOnly"
+                        />
+                        <!-- placeholder="First name" [value]="obj.firstName + ' ' + obj.middleName" [readonly] = isReadOnly> -->
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-last-name"
+                          >First Name</label
+                        >
+                        <input
+                          type="text"
+                          id="input-last-name"
+                          class="form-control form-control-alternative"
+                          placeholder="Last name"
+                          [value]="obj.firstName"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label
+                          class="form-control-label"
+                          for="input-first-name"
+                        >
+                          Middle Name</label
+                        >
+                        <input
+                          type="text"
+                          id="input-first-name"
+                          class="form-control form-control-alternative"
+                          placeholder="First name"
+                          [value]="obj.middleName"
+                          [readonly]="isReadOnly"
+                        />
+                        <!-- placeholder="First name" [value]="obj.firstName + ' ' + obj.middleName" [readonly] = isReadOnly> -->
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-last-name"
+                          >Last name</label
+                        >
+                        <input
+                          type="text"
+                          id="input-last-name"
+                          class="form-control form-control-alternative"
+                          placeholder="Last name"
+                          [value]="obj.lastName"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label
+                          class="form-control-label"
+                          for="input-father-name"
+                          >Father First Name</label
+                        >
+                        <input
+                          type="text"
+                          id="input-father-name"
+                          class="form-control form-control-alternative"
+                          placeholder="Father name"
+                          [value]="obj.fathersFirstName"
+                          [readonly]="isReadOnly"
+                        />
+                        <!-- [value]="obj.fathersFirstName + ' ' + obj.fathersMiddleName + ' ' + obj.fathersLastName"
+                          [readonly] = isReadOnly> -->
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-age"
+                          >Father's Middle Name</label
+                        >
+                        <input
+                          type="text"
+                          id="input-age"
+                          class="form-control form-control-alternative"
+                          placeholder=" "
+                          [value]="obj.fathersMiddleName"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label
+                          class="form-control-label"
+                          for="input-father-name"
+                          >Father's Last Name
+                        </label>
+                        <input
+                          type="text"
+                          id="input-father-name"
+                          class="form-control form-control-alternative"
+                          placeholder="Father name"
+                          [value]="obj.fathersLastName"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-age"
+                          >Age</label
+                        >
+                        <input
+                          type="text"
+                          id="input-age"
+                          class="form-control form-control-alternative"
+                          placeholder=" "
+                          [value]="obj.age"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label
+                          class="form-control-label"
+                          for="input-contact-number"
+                          >Employee Id</label
+                        >
+                        <input
+                          type="text"
+                          id="input-contact-number"
+                          class="form-control form-control-alternative"
+                          [value]="obj.employeeId"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-email"
+                          >Email address</label
+                        >
+                        <input
+                          type="email"
+                          id="input-email"
+                          class="form-control form-control-alternative"
+                          [value]="obj.email"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label
+                          class="form-control-label"
+                          for="input-contact-number"
+                          >Phone Code</label
+                        >
+                        <input
+                          type="text"
+                          id="input-contact-number"
+                          class="form-control form-control-alternative"
+                          [value]="obj.phoneCode"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-email"
+                          >Contact Number</label
+                        >
+                        <input
+                          type="email"
+                          id="input-email"
+                          class="form-control form-control-alternative"
+                          [value]="obj.personalContactNo"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label
+                          class="form-control-label"
+                          for="input-contact-number"
+                          >Date Of Birth</label
+                        >
+                        <input
+                          type="text"
+                          id="input-contact-number"
+                          class="form-control form-control-alternative"
+                          [value]="obj.dateOfBirth"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-email"
+                          >Martial Status</label
+                        >
+                        <input
+                          type="email"
+                          id="input-email"
+                          class="form-control form-control-alternative"
+                          [value]="obj.maritalStatus"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label
+                          class="form-control-label"
+                          for="input-contact-number"
+                          >Citizenship</label
+                        >
+                        <input
+                          type="text"
+                          id="input-contact-number"
+                          class="form-control form-control-alternative"
+                          style="margin-top: 15px"
+                          [value]="obj.citizenship"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-email"
+                          >Permanent Residence <Address></Address>
+                        </label>
+                        <input
+                          type="email"
+                          id="input-email"
+                          class="form-control form-control-alternative"
+                          [value]="obj.permanentResidenceCountry"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label
+                          class="form-control-label"
+                          for="input-contact-number"
+                          >Permanent Residential Address</label
+                        >
+                        <input
+                          type="text"
+                          id="input-contact-number"
+                          class="form-control form-control-alternative"
+                          style="margin-top: 15px"
+                          [value]="obj.permanentResidentialAddress"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-email"
+                          >Blood Group <Address></Address
+                        ></label>
+                        <input
+                          type="email"
+                          id="input-email"
+                          class="form-control form-control-alternative"
+                          [value]="obj.bloodGroup"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label
+                          class="form-control-label"
+                          for="input-contact-number"
+                          >Worked In UAE</label
+                        >
+                        <input
+                          type="text"
+                          id="input-contact-number"
+                          style="margin-top: 15px"
+                          class="form-control form-control-alternative"
+                          [value]="obj.workedInUAE"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-email"
+                          >Hobbies<Address></Address
+                        ></label>
+                        <input
+                          type="email"
+                          id="input-email"
+                          class="form-control form-control-alternative"
+                          [value]="obj.hobbies"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label
+                          class="form-control-label"
+                          for="input-contact-number"
+                          >Passport Issuing Country</label
+                        >
+                        <input
+                          type="text"
+                          id="input-contact-number"
+                          style="margin-top: 15px"
+                          class="form-control form-control-alternative"
+                          [value]="obj.psDetail.passportIssuingCountry"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-email"
+                          >Passport Number<Address></Address
+                        ></label>
+                        <input
+                          type="email"
+                          id="input-email"
+                          class="form-control form-control-alternative"
+                          [value]="obj.psDetail.passportNumber"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label
+                          class="form-control-label"
+                          for="input-contact-number"
+                          >Passport Expiry Date
+                        </label>
+                        <input
+                          type="text"
+                          id="input-contact-number"
+                          style="margin-top: 15px"
+                          class="form-control form-control-alternative"
+                          [value]="obj.psDetail.passportExpiryDate"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <!-- ! PASSPORT SCANNED COPY!! -->
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-email"
+                          >Passport Scan Copy <Address></Address>
+                        </label>
+
+                        <a
+                          [href]="getPDF(obj.psDetail.passportScanData)"
+                          download="PassportScan.pdf"
+                          class="form-control form-control-alternative btn doc-btn"
+                          >download</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label
+                          class="form-control-label"
+                          for="input-contact-number"
+                          >Driving Lincense
+                        </label>
+                        <input
+                          type="text"
+                          id="input-contact-number"
+                          style="margin-top: 15px"
+                          class="form-control form-control-alternative"
+                          [value]="obj.license.drivinglicense"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-email"
+                          >License Type <Address></Address
+                        ></label>
+                        <input
+                          type="email"
+                          id="input-email"
+                          class="form-control form-control-alternative"
+                          [value]="obj.license.licenseType"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label
+                          class="form-control-label"
+                          for="input-contact-number"
+                          >Having Own Vehicle
+                        </label>
+                        <input
+                          type="text"
+                          id="input-contact-number"
+                          style="margin-top: 15px"
+                          class="form-control form-control-alternative"
+                          [value]="obj.license.ownvehicle"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-email"
+                          >Scan Copy License <Address></Address>
+                        </label>
+
+                        <a
+                          [href]="getImage(obj.license?.licenseCopyData)"
+                          class="form-control form-control-alternative btn doc-btn"
+                          download="LicenseScan"
+                          >download</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label
+                          class="form-control-label"
+                          for="input-contact-number"
+                          >Visa Type
+                        </label>
+                        <input
+                          type="text"
+                          id="input-contact-number"
+                          style="margin-top: 15px"
+                          class="form-control form-control-alternative"
+                          [value]="obj.visainfo.visaType"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-email"
+                          >Category Of Visa <Address></Address
+                        ></label>
+                        <input
+                          type="email"
+                          id="input-email"
+                          class="form-control form-control-alternative"
+                          [value]="obj.visainfo.categoryOfVisa"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label
+                          class="form-control-label"
+                          for="input-contact-number"
+                          >Type Of SI Global Visa
+                        </label>
+                        <input
+                          type="text"
+                          id="input-contact-number"
+                          style="margin-top: 15px"
+                          class="form-control form-control-alternative"
+                          [value]="obj.visainfo.siGlobalWorkVisaCompany"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-email"
+                          >Worked Emirates ID <Address></Address>
+                        </label>
+                        <input
+                          type="email"
+                          id="input-email"
+                          class="form-control form-control-alternative"
+                          [value]="obj.visainfo.workVisaEmirateId"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label
+                          class="form-control-label"
+                          for="input-contact-number"
+                          >Visa Issuing Date
+                        </label>
+                        <input
+                          type="text"
+                          id="input-contact-number"
+                          style="margin-top: 15px"
+                          class="form-control form-control-alternative"
+                          [value]="obj.visainfo.visaIssueyDate"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-email"
+                          >Visa Expiry Date <Address></Address
+                        ></label>
+                        <input
+                          type="email"
+                          id="input-email"
+                          class="form-control form-control-alternative"
+                          [value]="obj.visainfo.visaExpiryDate"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label
+                          class="form-control-label"
+                          for="input-contact-number"
+                          >Scan Copy Of Visa
+                        </label>
+
+                        <a
+                          [href]="getImage(obj.visainfo.visaDocsData)"
+                          download="VisaInfo.pdf"
+                          class="form-control form-control-alternative btn doc-btn"
+                          >download</a
+                        >
+                      </div>
+                    </div>
+                    <!-- <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-email">Visa Expiry Date <Address></Address></label>
+                    <input type="email" id="input-email" class="form-control form-control-alternative"  [value]="obj.visainfo.visaExpiryDate" [readonly] = isReadOnly>
+                  </div>
+                </div> -->
+                  </div>
+                </div>
+                <hr class="my-4" />
+              </div>
+              <div *ngSwitchCase="'brela'">
+                <h6 class="heading-small text-muted mb-4">
+                  Blood Realative information
+                </h6>
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label
+                          class="form-control-label"
+                          for="input-employee-id"
+                          >Prefix</label
+                        >
+                        <input
+                          id="input-employee-id"
+                          class="form-control form-control-alternative"
+                          [value]="obj.relative.relativenamePrefix"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label
+                          class="form-control-label"
+                          for="input-company-email"
+                          >First Name</label
+                        >
+                        <input
+                          id="input-company-email"
+                          class="form-control form-control-alternative"
+                          [value]="obj.relative.rfirstname"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label
+                          class="form-control-label"
+                          for="input-employee-id"
+                          >Middle Name</label
+                        >
+                        <input
+                          id="input-employee-id"
+                          class="form-control form-control-alternative"
+                          [value]="obj.relative.rmiddlename"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label
+                          class="form-control-label"
+                          for="input-company-email"
+                          >Last Name</label
+                        >
+                        <input
+                          id="input-company-email"
+                          class="form-control form-control-alternative"
+                          [value]="obj.relative.rlastname"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label
+                          class="form-control-label"
+                          for="input-job-position"
+                          >Phone Code
+                        </label>
+                        <input
+                          id="input-job-position"
+                          class="form-control form-control-alternative"
+                          placeholder="Job position"
+                          [value]="obj.relative.rphoneCode"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-department"
+                          >Contact Number</label
+                        >
+                        <input
+                          id="input-department"
+                          class="form-control form-control-alternative"
+                          
+                          [value]="obj.relative.rcontactno"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level"
+                          >Relationship</label
+                        >
+                        <input
+                          id="input-job-level"
+                          class="form-control form-control-alternative img img-fluid"
+                         
+                          [value]="obj.relative.relationship"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                        <!-- [src]="thumbnail" type="image" [readonly] = isReadOnly> -->
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label>Address</label>
+                        <textarea
+                          rows="4"
+                          class="form-control form-control-alternative"
+                          placeholder="A few words about you ..."
+                          [value]="obj.relative.raddress"
+                          [readonly]="isReadOnly"
+                        ></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level"
+                          >Relative Id
+                        </label>
+
+                        <a
+                          [href]="getImage(obj.relative.relativeIdData)"
+                          download="RealativeId"
+                          class="form-control form-control-alternative btn doc-btn"
+                          >download</a
+                        >
+                        <!-- [src]="thumbnail" type="image" [readonly] = isReadOnly> -->
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level"
+                          >Scanned Copy Of Address
+                        </label>
+
+                        <a
+                          [href]="getImage(obj.relative.raddressProofData)"
+                          download="relative_address_proof"
+                          class="form-control form-control-alternative btn doc-btn"
+                          >download</a
+                        >
+                        <!-- [src]="thumbnail" type="image" [readonly] = isReadOnly> -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- end -->
+                <!-- Address -->
+                <hr class="my-4" />
+              </div>
+              <div *ngSwitchCase="'edu'">
+                <h6 class="heading-small text-muted mb-4">
+                  Education information
+                </h6>
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label
+                          class="form-control-label"
+                          for="input-employee-id"
+                          >Secondary Issuing Authority</label
+                        >
+                        <input
+                          id="input-employee-id"
+                          class="form-control form-control-alternative"
+                          [value]="obj.educations[0].secondaryIssuingAuthority"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label
+                          class="form-control-label"
+                          for="input-company-email"
+                          >Secondary Marks Or Grade</label
+                        >
+                        <input
+                          id="input-company-email"
+                          class="form-control form-control-alternative"
+                          [value]="obj.educations[0].secondarymarksOrGrade"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label
+                          class="form-control-label"
+                          for="input-job-position"
+                          >Year
+                        </label>
+                        <input
+                          id="input-job-position"
+                          class="form-control form-control-alternative"
+                          placeholder="Job position"
+                          [value]="obj.educations[0].secondaryyear"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label
+                          class="form-control-label"
+                          for="input-job-designation"
+                          >Scan Of Secondary
+                        </label>
+
+                        <div class="d-flex">
+                          <a
+                            *ngFor="let edu of obj.educations; let id = index"
+                            [href]="getImage(edu.secondaryDocumentScanData)"
+                            download="education_Secondary"
+                            class="form-control form-control-alternative btn doc-btn"
+                            >download</a
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label
+                          class="form-control-label"
+                          for="input-employee-id"
+                          >Senior Secondary Issuing Authority</label
+                        >
+                        <input
+                          id="input-employee-id"
+                          class="form-control form-control-alternative"
+                          [value]="obj.educations[0].seniorSecondaryIssuingAuthority"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-department"
+                          >Senior Secondary Marks Or Grade
+                        </label>
+                        <input
+                          id="input-department"
+                          class="form-control form-control-alternative"
+                          
+                          [value]="
+                            obj.educations[0].seniorSecondaryMarksOrGrade
+                          "
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level"
+                          >Year</label
+                        >
+                        <input
+                          id="input-job-level"
+                          class="form-control form-control-alternative"
+                         
+                          [value]="obj.educations[0].seniorSecondaryYear"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-department"
+                          >Scan Copy Of Senior Secondary
+                        </label>
+
+                        <div class="d-flex">
+                          <a
+                            *ngFor="let edu of obj.educations; let id = index"
+                            [href]="getImage(edu.seniorSecondaryDocumentScanData)"
+                            download="Senior_Secondary"
+                            class="form-control form-control-alternative btn doc-btn"
+                            >download</a
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level"
+                          >Graduation Issuing Authority</label
+                        >
+                        <input
+                          id="input-job-level"
+                          class="form-control form-control-alternative"
+                         
+                          [value]="obj.educations[0].graduationIssuingAuthority"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-department"
+                          >Graduation Grade Or Marks
+                        </label>
+                        <input
+                          id="input-department"
+                          class="form-control form-control-alternative"
+                          [value]="obj.educations[0].graduationMarksOrGrade"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level"
+                          >Year</label
+                        >
+                        <input
+                          id="input-job-level"
+                          class="form-control form-control-alternative"
+                         
+                          [value]="obj.educations[0].graduationYear"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-department"
+                          >Scan Copy Of Graduation
+                        </label>
+
+                        <div class="d-flex">
+                          <a
+                            *ngFor="let edu of obj.educations; let id = index"
+                            [href]="getImage(edu.graduationDocumentScanData)"
+                            download="Graduation_document"
+                            class="form-control form-control-alternative btn doc-btn"
+                            >download</a
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level"
+                          >Post Graduation Issuing Authority</label
+                        >
+                        <input
+                          id="input-job-level"
+                          class="form-control form-control-alternative"
+                         
+                          [value]="
+                            obj.educations[0].postGraduationIssuingAuthority
+                          "
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-department"
+                          >Post Graduation Grade Or Marks
+                        </label>
+                        <input
+                          id="input-department"
+                          class="form-control form-control-alternative"
+                          [value]="obj.educations[0].postGraduationMarksOrGrade"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level"
+                          >Year</label
+                        >
+                        <input
+                          id="input-job-level"
+                          class="form-control form-control-alternative"
+                         
+                          [value]="obj.educations[0].postGraduationYear"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-department"
+                          >Scan Copy Of Post Graduation
+                        </label>
+
+                        <div class="d-flex">
+                          <a
+                            *ngFor="let edu of obj.educations; let id = index"
+                            [href]="getImage(edu.postGraduationDocumentScanData)"
+                            download="Post_Graduation"
+                            class="form-control form-control-alternative btn doc-btn"
+                            >download</a
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level"
+                          >Diploma Issuing Authority</label
+                        >
+                        <input
+                          id="input-job-level"
+                          class="form-control form-control-alternative"
+                         
+                          [value]="obj.educations[0].diplomaIssuingAuthority"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-department"
+                          >Diploma Marks Or Grades
+                        </label>
+                        <input
+                          id="input-department"
+                          class="form-control form-control-alternative"
+                          [value]="obj.educations[0].diplomaMarksOrGrade"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level"
+                          >Year</label
+                        >
+                        <input
+                          id="input-job-level"
+                          class="form-control form-control-alternative"
+                         
+                          [value]="obj.educations[0].diplomaYear"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-department"
+                          >Scan Copy Of Diploma
+                        </label>
+
+                        <div class="d-flex">
+                          <a
+                            *ngFor="let edu of obj.educations; let id = index"
+                            [href]="getImage(edu.diplomaDocumentScanData)"
+                            download="Senior_Secondary"
+                            class="form-control form-control-alternative btn doc-btn"
+                            >download</a
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- dynamic start other qualification -->
+
+                  <div *ngFor="let data of obj.othersQualifications">
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label
+                            class="form-control-label"
+                            for="input-contact-number"
+                            >Other Qualification</label
+                          >
+                          <input
+                            type="text"
+                            id="input-contact-number"
+                            class="form-control form-control-alternative"
+                            [value]="data.others"
+                            [readonly]="isReadOnly"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label
+                            class="form-control-label"
+                            for="input-contact-number"
+                            >Issuing Authority Of Other Qualification</label
+                          >
+                          <input
+                            type="text"
+                            id="input-contact-number"
+                            class="form-control form-control-alternative"
+                            [value]="data.othersIssuingAuthority"
+                            [readonly]="isReadOnly"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label
+                            class="form-control-label"
+                            for="input-contact-number"
+                            >Other Marks Or Grade</label
+                          >
+                          <input
+                            type="text"
+                            id="input-contact-number"
+                            class="form-control form-control-alternative"
+                            [value]="data.othersMarksOrGrade"
+                            [readonly]="isReadOnly"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label
+                            class="form-control-label"
+                            for="input-contact-number"
+                            >Year</label
+                          >
+                          <input
+                            type="text"
+                            id="input-contact-number"
+                            class="form-control form-control-alternative"
+                            [value]="data.othersYear"
+                            [readonly]="isReadOnly"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label
+                            class="form-control-label"
+                            for="input-contact-number"
+                            >Scan Copy Of Other Document</label
+                          >
+
+                          <a
+                            [href]="getImage(data.othersDocumentScanData)"
+                            download="Senior_Secondary"
+                            class="form-control form-control-alternative btn doc-btn"
+                            >download</a
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- dynamic end -->
+
+                  <!-- dynamic start professional Qualification -->
+
+                  <div *ngFor="let data of obj.professionalQualifications">
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label
+                            class="form-control-label"
+                            for="input-contact-number"
+                            >Professional Qualification</label
+                          >
+                          <input
+                            type="text"
+                            id="input-contact-number"
+                            class="form-control form-control-alternative"
+                            [value]="data.qualification"
+                            [readonly]="isReadOnly"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label
+                            class="form-control-label"
+                            for="input-contact-number"
+                          >
+                            Professional Issuing Authority
+                          </label>
+                          <input
+                            type="text"
+                            id="input-contact-number"
+                            class="form-control form-control-alternative"
+                            [value]="data.issuingAuthority"
+                            [readonly]="isReadOnly"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label
+                            class="form-control-label"
+                            for="input-contact-number"
+                            >Professsional Qualification Marks Or Grade</label
+                          >
+                          <input
+                            type="text"
+                            id="input-contact-number"
+                            class="form-control form-control-alternative"
+                            [value]="data.grade"
+                            [readonly]="isReadOnly"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label
+                            class="form-control-label"
+                            for="input-contact-number"
+                            >Year</label
+                          >
+                          <input
+                            type="text"
+                            id="input-contact-number"
+                            class="form-control form-control-alternative"
+                            [value]="data.yearOfQualification"
+                            [readonly]="isReadOnly"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label
+                            class="form-control-label"
+                            for="input-contact-number"
+                            >Scan Copy Of Professional Document</label
+                          >
+
+                          <a
+                            [href]="getImage(data.degreeScanData)"
+                            download="Senior_Secondary"
+                            class="form-control form-control-alternative btn doc-btn"
+                            >download</a
+                          >
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label
+                            class="form-control-label"
+                            for="input-contact-number"
+                            >Grading System</label
+                          >
+                          <input
+                            type="text"
+                            id="input-contact-number"
+                            class="form-control form-control-alternative"
+                            [value]="data.gradingSystem"
+                            [readonly]="isReadOnly"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- dynamic end  -->
+                </div>
+
+                <!-- previous job details start here -->
+
+                <hr class="my-4" />
+              </div>
+              <div *ngSwitchCase="'peDetails'">
+                <h6 class="heading-small text-muted mb-4">
+                  Previous Employee Details
+                </h6>
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label
+                          class="form-control-label"
+                          for="input-employee-id"
+                          >Company Name</label
+                        >
+                        <input
+                          id="input-employee-id"
+                          class="form-control form-control-alternative"
+                          [value]="obj.oldEmployee[0].companyName"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label
+                          class="form-control-label"
+                          for="input-company-email"
+                          >Designation</label
+                        >
+                        <input
+                          id="input-company-email"
+                          class="form-control form-control-alternative"
+                          [value]="obj.oldEmployee[0].designation"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label
+                          class="form-control-label"
+                          for="input-job-position"
+                          >Date From</label
+                        >
+                        <input
+                          id="input-job-position"
+                          class="form-control form-control-alternative"
+                         
+                          [value]="obj.oldEmployee[0].dateFrom"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label
+                          class="form-control-label"
+                          for="input-job-designation"
+                          >Date To</label
+                        >
+                        <input
+                          id="input-job-designation"
+                          class="form-control form-control-alternative"
+                        
+                          [value]="obj.oldEmployee[0].dateTo"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level"
+                          >Description</label
+                        >
+                        <input
+                          id="input-job-level"
+                          class="form-control form-control-alternative"
+                         
+                          [value]="obj.oldEmployee[0].description"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-department"
+                          >Company Address</label
+                        >
+                        <input
+                          id="input-department"
+                          class="form-control form-control-alternative"
+                          
+                          [value]="obj.oldEmployee[0].companyAddress"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level"
+                          >Previous Manager Name</label
+                        >
+                        <input
+                          id="input-job-level"
+                          class="form-control form-control-alternative"
+                         
+                          [value]="obj.oldEmployee[0].previousManagerName"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-department"
+                          >Previous Manager Phone Code</label
+                        >
+                        <input
+                          id="input-department"
+                          class="form-control form-control-alternative"
+                          
+                          [value]="obj.oldEmployee[0].previousManagerPhoneCode"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level"
+                          >Previous Manager Contact</label
+                        >
+                        <input
+                          id="input-job-level"
+                          class="form-control form-control-alternative"
+                         
+                          [value]="obj.oldEmployee[0].previousManagerContact"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-department"
+                          >Previous HR Name</label
+                        >
+                        <input
+                          id="input-department"
+                          class="form-control form-control-alternative"
+                          
+                          [value]="obj.oldEmployee[0].previousHRName"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level"
+                          >Previous HR Phone Contact</label
+                        >
+                        <input
+                          id="input-job-level"
+                          class="form-control form-control-alternative"
+                         
+                          [value]="obj.oldEmployee[0].previousHRPhoneCode"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-department"
+                          >Previous HR Contact</label
+                        >
+                        <input
+                          id="input-department"
+                          class="form-control form-control-alternative"
+                          
+                          [value]="obj.oldEmployee[0].previousHRContact"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level"
+                          >Last withdrawn Salary</label
+                        >
+                        <input
+                          id="input-job-level"
+                          class="form-control form-control-alternative"
+                         
+                          [value]="obj.oldEmployee[0].lastWithdrawnSalary"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-department"
+                          >Pay Slip</label
+                        >
+
+                        <a
+                          [href]="getImage(obj.oldEmployee[0].payslipScanData)"
+                          download="Pay_Slip"
+                          class="form-control form-control-alternative btn doc-btn"
+                          >download</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngFor="let data of obj.empAchievements">
+                  <!-- <div *ngFor="let data of obj.oldEmployee[0].empAchievements"> -->
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label
+                            class="form-control-label"
+                            for="input-job-level"
+                            >Achivement & Rewards</label
+                          >
+                          <input
+                            id="input-job-level"
+                            class="form-control form-control-alternative"
+                           
+                            [value]="data.achievementRewardsName"
+                            type="text"
+                            [readonly]="isReadOnly"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label
+                            class="form-control-label"
+                            for="input-department"
+                            >Scan Copy Of Achivement</label
+                          >
+
+                          <a
+                            [href]="getImage(data.achievementsRewardsDocsData)"
+                            download="Scan_Achievement"
+                            class="form-control form-control-alternative btn doc-btn"
+                            >download</a
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- previous job details end here -->
+
+                <!-- background Check Start Here  -->
+                <hr class="my-4" />
+              </div>
+              <div *ngSwitchCase="'bgCheck'">
+                <h6 class="heading-small text-muted mb-4">
+                  Background Check Information
+                </h6>
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label
+                          class="form-control-label"
+                          for="input-employee-id"
+                          >Background Check</label
+                        >
+                        <input
+                          id="input-employee-id"
+                          class="form-control form-control-alternative"
+                          [value]="obj.bgcheck.status"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label
+                          class="form-control-label"
+                          for="input-company-email"
+                          >Done By</label
+                        >
+                        <input
+                          id="input-company-email"
+                          class="form-control form-control-alternative"
+                          [value]="obj.bgcheck.doneBy"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label
+                          class="form-control-label"
+                          for="input-job-position"
+                          >Name Of Internal Concerned Manager</label
+                        >
+                        <input
+                          id="input-job-position"
+                          class="form-control form-control-alternative"
+                          placeholder="Job position"
+                          [value]="obj.bgcheck.internalConcernedManager"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label
+                          class="form-control-label"
+                          for="input-job-designation"
+                          >Name Of External Concerned Manager
+                        </label>
+                        <input
+                          id="input-job-designation"
+                          class="form-control form-control-alternative"
+
+                          [value]="obj.bgcheck.externalName"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level">
+                          Company Name Of External Manager</label
+                        >
+                        <input
+                          id="input-job-level"
+                          class="form-control form-control-alternative"
+                         
+                          [value]="obj.bgcheck.externalCompanyName"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-department"
+                          >External Manager Phone Code</label
+                        >
+                        <input
+                          id="input-department"
+                          class="form-control form-control-alternative"
+                          
+                          [value]="obj.bgcheck.externalPhoneCode"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level">
+                          External Manager Contact</label
+                        >
+                        <input
+                          id="input-job-level"
+                          class="form-control form-control-alternative"
+                         
+                          [value]="obj.bgcheck.externalPhoneNo"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-department"
+                          >Manager Approval</label
+                        >
+                        <input
+                          id="input-department"
+                          class="form-control form-control-alternative"
+                          
+                          [value]="obj.bgcheck.managerApproval"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level">
+                          Manager Name</label
+                        >
+                        <input
+                          id="input-job-level"
+                          class="form-control form-control-alternative"
+                         
+                          [value]="obj.bgcheck.managerName"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-department"
+                          >Remark</label
+                        >
+                        <input
+                          id="input-department"
+                          class="form-control form-control-alternative"
+                          
+                          [value]="obj.bgcheck.remark"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level">
+                          Address Verified</label
+                        >
+                        <input
+                          id="input-job-level"
+                          class="form-control form-control-alternative"
+                         
+                          [value]="obj.bgcheck.addressVerified"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-department"
+                          >Previous Employee Status Verified</label
+                        >
+                        <input
+                          id="input-department"
+                          class="form-control form-control-alternative"
+                          
+                          [value]="obj.bgcheck.previousEmploymentStatusVerified"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level">
+                          Designation And Responsibility Verified</label
+                        >
+                        <input
+                          id="input-job-level"
+                          class="form-control form-control-alternative"
+                         
+                          [value]="
+                            obj.bgcheck
+                              .previousDesignationAndResponsibilityVerified
+                          "
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-department"
+                          >Id Proof Verified</label
+                        >
+                        <input
+                          id="input-department"
+                          class="form-control form-control-alternative"
+                          
+                          [value]="obj.bgcheck.idProofDocumentVerified"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level">
+                          Education And Qualification Verified</label
+                        >
+                        <input
+                          id="input-job-level"
+                          class="form-control form-control-alternative"
+                         
+                          [value]="obj.bgcheck.educationalQualificationVerified"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-department"
+                          >Criminal Records</label
+                        >
+                        <input
+                          id="input-department"
+                          class="form-control form-control-alternative"
+                          
+                          [value]="obj.bgcheck.criminalRecords"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level">
+                          Punishment For Imprisonment Approval</label
+                        >
+                        <input
+                          id="input-job-level"
+                          class="form-control form-control-alternative"
+                         
+                          [value]="
+                            obj.bgcheck.punishmentForImprisonmentApproval
+                          "
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label
+                          class="form-control-label"
+                          for="input-department"
+                        >
+                          Record Sheet</label
+                        >
+
+                        <a
+                          [href]="getImage(obj.bgcheck.recordSheetData)"
+                          download="RecordSheet_BgCheck"
+                          class="form-control form-control-alternative btn doc-btn"
+                          >download</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level">
+                          Declaration Required</label
+                        >
+
+                        <a
+                          [href]="getImage(obj.bgCheck.declarationRequiredData)"
+                          download="Declaration_BgCheck"
+                          class="form-control form-control-alternative btn doc-btn"
+                          >download</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- background Check End Here  -->
+
+                <!-- training Details start here -->
+
+                <hr class="my-4" />
+              </div>
+              <div *ngSwitchCase="'tdetails'">
+                <h6 class="heading-small text-muted mb-4">Training Detail's</h6>
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label
+                          class="form-control-label"
+                          for="input-employee-id"
+                          >Training Type</label
+                        >
+                        <input
+                          id="input-employee-id"
+                          class="form-control form-control-alternative"
+                          [value]="obj.training[0].trainingType"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label
+                          class="form-control-label"
+                          for="input-company-email"
+                          >In House Or Outsource</label
+                        >
+                        <input
+                          id="input-company-email"
+                          class="form-control form-control-alternative"
+                          [value]="obj.training[0].inHouseOutsource"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label
+                          class="form-control-label"
+                          for="input-job-position"
+                          >Paid Or Unpaid</label
+                        >
+                        <input
+                          id="input-job-position"
+                          class="form-control form-control-alternative"
+                          placeholder="Job position"
+                          [value]="obj.training[0].paidUnpaid"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label
+                          class="form-control-label"
+                          for="input-job-designation"
+                          >Training Start Date</label
+                        >
+                        <input
+                          id="input-job-designation"
+                          class="form-control form-control-alternative"
+                          placeholder="Job designation"
+                          [value]="obj.training[0].trainingStartDate"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level"
+                          >Training End Date
+                        </label>
+                        <input
+                          id="input-job-level"
+                          class="form-control form-control-alternative"
+                         
+                          [value]="obj.training[0].trainingEndDate"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-department"
+                          >Trainer's Feedback</label
+                        >
+                        <input
+                          id="input-department"
+                          class="form-control form-control-alternative"
+                          
+                          [value]="obj.training[0].trainerFeedback"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level"
+                          >Trainer's Name
+                        </label>
+                        <input
+                          id="input-job-level"
+                          class="form-control form-control-alternative"
+                         
+                          [value]="obj.training[0].trainerName"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-department"
+                          >Trainer's Post</label
+                        >
+                        <input
+                          id="input-department"
+                          class="form-control form-control-alternative"
+                          
+                          [value]="obj.training[0].trainerPost"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level"
+                          >Trainer's Department
+                        </label>
+                        <input
+                          id="input-job-level"
+                          class="form-control form-control-alternative"
+                         
+                          [value]="obj.training[0].trainerDepartment"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-department"
+                          >Trainer's Phone Code
+                        </label>
+                        <input
+                          id="input-department"
+                          class="form-control form-control-alternative"
+                          
+                          [value]="obj.training[0].trainerPhoneCode"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level"
+                          >Trainer's Phone Contact
+                        </label>
+                        <input
+                          id="input-job-level"
+                          class="form-control form-control-alternative"
+                         
+                          [value]="obj.training[0].trainerPhoneNo"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-department"
+                          >Certificate Uploaded For Outsource
+                        </label>
+
+                        <a
+                          [href]="
+                            getImage(
+                              obj.training[0].certificateUploadedForOutsourceData
+                            )
+                          "
+                          download="Paid_Training_Proof"
+                          class="form-control form-control-alternative btn doc-btn"
+                          >download</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-department"
+                          >Certificate Uploaded For Paid Training
+                        </label>
+
+                        <a
+                          [href]="
+                            getImage(obj.training[0].paidTrainingDocumentProofData)
+                          "
+                          download="Paid_Training_Proof"
+                          class="form-control form-control-alternative btn doc-btn"
+                          >download</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- training Details end here -->
+                <hr class="my-4" />
+              </div>
+              <div *ngSwitchCase="'jobD'">
+                <h6 class="heading-small text-muted mb-4">Job Details</h6>
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label
+                          class="form-control-label"
+                          for="input-employee-id"
+                          >Employee Id</label
+                        >
+                        <input
+                          id="input-employee-id"
+                          class="form-control form-control-alternative"
+                          [value]="obj.jobDetails[0].jobPostDesignation"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label
+                          class="form-control-label"
+                          for="input-company-email"
+                          >Company email Provided</label
+                        >
+                        <input
+                          id="input-company-email"
+                          class="form-control form-control-alternative"
+                          [value]="obj.jobDetails[0].companyEmailIdProvided"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label
+                          class="form-control-label"
+                          for="input-job-position"
+                          >Company Email</label
+                        >
+                        <input
+                          id="input-job-position"
+                          class="form-control form-control-alternative"
+                          [value]="obj.jobDetails[0].companyEmailId"
+                          placeholder="Job position"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label
+                          class="form-control-label"
+                          for="input-job-designation"
+                          >Job Level</label
+                        >
+                        <input
+                          id="input-job-designation"
+                          class="form-control form-control-alternative"
+                          placeholder="Job designation"
+                          [value]="obj.jobDetails[0].jobLevel"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level"
+                          >Posted Location</label
+                        >
+                        <input
+                          id="input-job-level"
+                          class="form-control form-control-alternative"
+                         
+                          [value]="obj.jobDetails[0].postedLocation"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-department"
+                          >Basic Allowance</label
+                        >
+                        <input
+                          id="input-department"
+                          class="form-control form-control-alternative"
+                          
+                          [value]="obj.jobDetails[0].basicAllowance"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level"
+                          >House Rent Allowance</label
+                        >
+                        <input
+                          id="input-job-level"
+                          class="form-control form-control-alternative"
+                         
+                          [value]="obj.jobDetails[0].houseRentAllowance"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-department"
+                          >House Rent Amount
+                        </label>
+                        <input
+                          id="input-department"
+                          class="form-control form-control-alternative"
+                          
+                          [value]="obj.jobDetails[0].houseRentAmount"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level"
+                          >Food Allowance</label
+                        >
+                        <input
+                          id="input-job-level"
+                          class="form-control form-control-alternative"
+                         
+                          [value]="obj.jobDetails[0].foodAllowance"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-department"
+                          >Food Allowance Amount
+                        </label>
+                        <input
+                          id="input-department"
+                          class="form-control form-control-alternative"
+                          
+                          [value]="obj.jobDetails[0].foodAllowanceAmount"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level"
+                          >Vehicle Allowance</label
+                        >
+                        <input
+                          id="input-job-level"
+                          class="form-control form-control-alternative"
+                         
+                          [value]="obj.jobDetails[0].vehicleAllowance"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-department"
+                          >Vehicle Allowance Amount
+                        </label>
+                        <input
+                          id="input-department"
+                          class="form-control form-control-alternative"
+                          
+                          [value]="obj.jobDetails[0].vehicleAllowanceAmount"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level"
+                          >Uniform Allowance</label
+                        >
+                        <input
+                          id="input-job-level"
+                          class="form-control form-control-alternative"
+                         
+                          [value]="obj.jobDetails[0].uniformAllowance"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-department"
+                          >Uniform Allowance Amount
+                        </label>
+                        <input
+                          id="input-department"
+                          class="form-control form-control-alternative"
+                          
+                          [value]="obj.jobDetails[0].uniformAllowanceAmount"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level"
+                          >Travelling Allowance</label
+                        >
+                        <input
+                          id="input-job-level"
+                          class="form-control form-control-alternative"
+                         
+                          [value]="obj.jobDetails[0].travellingAllowances"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-department"
+                          >Travelling Allowance Amount
+                        </label>
+                        <input
+                          id="input-department"
+                          class="form-control form-control-alternative"
+                          
+                          [value]="obj.jobDetails[0].travellingAllowancesAmount"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level"
+                          >Education Allowance</label
+                        >
+                        <input
+                          id="input-job-level"
+                          class="form-control form-control-alternative"
+                          
+                          [value]="obj.jobDetails[0].educationalAllowance"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-department"
+                          >Education Allowance Amount
+                        </label>
+                        <input
+                          id="input-department"
+                          class="form-control form-control-alternative"
+                      
+                          [value]="obj.jobDetails[0].educationalAllowanceAmount"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level"
+                          >Other Allowance</label
+                        >
+                        <input
+                          id="input-job-level"
+                          class="form-control form-control-alternative"
+                          
+                          [value]="obj.jobDetails[0].otherAllowance"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-department"
+                          >Other Allowance Amount
+                        </label>
+                        <input
+                          id="input-department"
+                          class="form-control form-control-alternative"
+                      
+                          [value]="obj.jobDetails[0].otherAllowanceAmount"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level"
+                          >Vehicle</label
+                        >
+                        <input
+                          id="input-job-level"
+                          class="form-control form-control-alternative"
+                      
+                          [value]="obj.jobDetails[0].vehicle"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-department"
+                          >Vehicle Number
+                        </label>
+                        <input
+                          id="input-department"
+                          class="form-control form-control-alternative"
+                         
+                          [value]="obj.jobDetails[0].vehicleNumber"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level"
+                          >Vehicle Model
+                        </label>
+                        <input
+                          id="input-job-level"
+                          class="form-control form-control-alternative"
+                         
+                          [value]="obj.jobDetails[0].vehicleModelName"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-department"
+                          >Vehicle Model Year
+                        </label>
+                        <input
+                          id="input-department"
+                          class="form-control form-control-alternative"
+                         
+                          [value]="obj.jobDetails[0].vehicleModelYear"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level"
+                          >Type Of Vehicle
+                        </label>
+                        <input
+                          id="input-job-level"
+                          class="form-control form-control-alternative"
+                       
+                          [value]="obj.jobDetails[0].isVehicleNewOrPreowned"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-department"
+                          >Fuel Facility
+                        </label>
+                        <input
+                          id="input-department"
+                          class="form-control form-control-alternative"
+                        
+                          [value]="obj.jobDetails[0].cashOrChipFacility"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level"
+                          >Chip Number
+                        </label>
+                        <input
+                          id="input-job-level"
+                          class="form-control form-control-alternative"
+                        
+                          [value]="obj.jobDetails[0].chipNumber"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-department"
+                          >Accommodation
+                        </label>
+                        <input
+                          id="input-department"
+                          class="form-control form-control-alternative"
+                          
+                          [value]="obj.jobDetails[0].accommodationYesOrNo"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level"
+                          >Shared Or Separate
+                        </label>
+                        <input
+                          id="input-job-level"
+                          class="form-control form-control-alternative"
+                        
+                          [value]="obj.jobDetails[0].isShredOrSeparate"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-department"
+                          >Labour Facility or Executive
+                        </label>
+                        <input
+                          id="input-department"
+                          class="form-control form-control-alternative"
+                      
+                          [value]="obj.jobDetails[0].isExeutiveOrLabourFacility"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level"
+                          >Electricity Allowance
+                        </label>
+                        <input
+                          id="input-job-level"
+                          class="form-control form-control-alternative"
+                        
+                          [value]="
+                            obj.jobDetails[0].electricityAllocationYesOrNo
+                          "
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-department"
+                          >Electricity Allowance Amount</label
+                        >
+                        <input
+                          id="input-department"
+                          class="form-control form-control-alternative"
+                         
+                          [value]="
+                            obj.jobDetails[0].electricityAllocationAmount
+                          "
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level"
+                          >Rent Allowance
+                        </label>
+                        <input
+                          id="input-job-level"
+                          class="form-control form-control-alternative"
+                        
+                          [value]="obj.jobDetails[0].rentAllocationYesOrNo"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-department"
+                          >Rent Allowance Amount</label
+                        >
+                        <input
+                          id="input-department"
+                          class="form-control form-control-alternative"
+                          
+                          [value]="obj.jobDetails[0].rentAllocationAmount"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level"
+                          >Mobile Issued
+                        </label>
+                        <input
+                          id="input-job-level"
+                          class="form-control form-control-alternative"
+                          
+                          [value]="obj.jobDetails[0].mobileIssuedOrNot"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-department"
+                          >Sim Issued</label
+                        >
+                        <input
+                          id="input-department"
+                          class="form-control form-control-alternative"
+                         
+                          [value]="obj.jobDetails[0].simIssuedOrNot"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level"
+                          >Flight facilites
+                        </label>
+                        <input
+                          id="input-job-level"
+                          class="form-control form-control-alternative"
+                          
+                          [value]="obj.jobDetails[0].flightFacilities"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-department"
+                          >Period
+                        </label>
+                        <input
+                          id="input-department"
+                          class="form-control form-control-alternative"
+                          
+                          [value]="obj.jobDetails[0].howMuchTime"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level"
+                          >Family Ticket
+                        </label>
+                        <input
+                          id="input-job-level"
+                          class="form-control form-control-alternative"
+                         
+                          [value]="
+                            obj.jobDetails[0].familyTicketsAlsoProvidedOrNot
+                          "
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-department"
+                          >Other
+                        </label>
+                        <input
+                          id="input-department"
+                          class="form-control form-control-alternative"
+                       
+                          [value]="obj.jobDetails[0].othersAccomandation"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level"
+                          >Health Insurance Coverage
+                        </label>
+                        <input
+                          id="input-job-level"
+                          class="form-control form-control-alternative"
+                          
+                          [value]="obj.jobDetails[0].healthInsuranceCoverage"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-department"
+                          >Amount Given
+                        </label>
+                        <input
+                          id="input-department"
+                          class="form-control form-control-alternative"
+                      
+                          [value]="obj.jobDetails[0].maximumAmountGiven"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level"
+                          >Family Health Insurance
+                        </label>
+                        <input
+                          id="input-job-level"
+                          class="form-control form-control-alternative"
+                         
+                          [value]="
+                            obj.jobDetails[0].familyHealthInsuranceGivenOrNot
+                          "
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-department"
+                          >family Health Insurance
+                        </label>
+                        <input
+                          id="input-department"
+                          class="form-control form-control-alternative"
+                         
+                          [value]="obj.jobDetails[0].familyHealthInsuranceType"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level"
+                          >Punching Machine
+                        </label>
+                        <input
+                          id="input-job-level"
+                          class="form-control form-control-alternative"
+                         
+                          [value]="obj.jobDetails[0].punchingMachineYesOrNo"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-department"
+                          >Joing Date
+                        </label>
+                        <input
+                          id="input-department"
+                          class="form-control form-control-alternative"
+                         
+                          [value]="obj.jobDetails[0].joiningDate"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level"
+                          >Job Departnment
+                        </label>
+                        <input
+                          id="input-job-level"
+                          class="form-control form-control-alternative"
+                     
+                          [value]="obj.department.departmentName"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-department"
+                          >Referred By
+                        </label>
+                        <input
+                          id="input-department"
+                          class="form-control form-control-alternative"
+                         
+                          [value]="obj.jobDetails[0].referredBy"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level"
+                          >By Whom
+                        </label>
+                        <input
+                          id="input-job-level"
+                          class="form-control form-control-alternative"
+                      
+                          [value]="obj.jobDetails[0].byWhom"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-department"
+                          >Other Id Proof
+                        </label>
+
+                        <a
+                          [href]="getImage(obj.otherIdProofDocData)"
+                          download="Other_Id_Proof"
+                          class="form-control form-control-alternative btn doc-btn"
+                          >download</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-job-level"
+                          >Degree Atestation
+                        </label>
+                        <input
+                          id="input-job-level"
+                          class="form-control form-control-alternative"
+                         
+                          [value]="obj.degreeAttestation"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-department"
+                          >Emirates Id
+                        </label>
+                        <input
+                          id="input-department"
+                          class="form-control form-control-alternative"
+                         
+                          [value]="obj.emiratesID"
+                          type="text"
+                          [readonly]="isReadOnly"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr class="my-4" />
+              </div>
+              <div *ngSwitchDefault></div>
+            </form>
+          </div>
+        </div>
+      </div>
+     
+     
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isAlertBox" class="position-fixed bg-white p-3 local-toast">
+  <div
+    class="toast hide"
+    role="alert"
+    aria-live="assertive"
+    aria-atomic="true"
+    data-delay="2000"
+  >
+    <div class="toast-header">
+      <small class="text-danger">Due : <span>2023-04-12</span></small>
+      <button (click)="alertClose()" type="button" class="ml-2 mb-1 close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="toast-body">
+      Hi, <span class="h3">Mohd Rahil Khan </span>
+      <span class="text-danger">your background verification is pending!</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+.mainContainer{
+    overflow-x: hidden !important;
+}
+.container-navbar{
+    // width: 100vw !important;
+    margin-left: 0;
+    height: 110px;
+    background: linear-gradient(25deg, #ffffff 0%, #bacf94 100%);
+
+}
+#section {
+
+    background: linear-gradient(var(--secondaryColor), var(--bgColor));
+    padding-top: 100px !important;
+    // height: 65vh;
+    // overflow-y: hidden;
+}
+ul {
+    list-style-type: none;
+  }
+  
+
+  .text2{
+    opacity: 0.02 !important;
+    transition: opacity 1s ease 0s;
+    font-family: 'Times New Roman', Times, serif ;
+    font-size: 500px;
+    padding-top: 4px;
+    // font-family: sans-serif,'Segoe UI', Tahoma, "Geneva", Verdana ;
+}
+// .logoTransparent{
+//     position: relative;
+// }
+// .main_Content{
+//     position: absolute;
+// }
+
+div.relative {
+    position: relative;
+    // width: 98vw;
+    height:110vh;
+    // border: 3px solid #73AD21;
+  } 
+  
+  div.absolute {
+    position: absolute;
+    top: 45px;
+    right: 0px;
+    // width: 94vw;
+    // height: 80vh;
+    left: 33px;
+    // border: 3px solid #73AD21;
+  }
+  .lstLine{
+    height: 6px !important;
+    border: 2px solid #bacf94;
+    border-radius: 76%;
+    margin-top: 280px;
+    background-color: #bacf94;
+  }
+  input{
+    background-color: #e9f0dd;
+  }
+  select{
+    background-color: #e9f0dd;
+
+  }

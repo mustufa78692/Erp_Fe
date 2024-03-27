@@ -1,0 +1,54 @@
+
+
+
+  <div class="container mt-3">
+    <div class="card" style="animation: fadeInAnimation ease 2s; animation-iteration-count: 1; animation-fill-mode: forwards;">
+      <div class="card-body">
+        <form [formGroup]="departmentForm" (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label for="departmentName" class="form-control-label">Department Name</label>
+            <input type="text" class="form-control form-control-alternative" id="departmentName" formControlName="departmentName">
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  
+
+  <div class="card animated-form  mt-5">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table">
+          <thead class="bg-light">
+            <tr>
+              <th scope="col">S.No</th>
+              <th scope="col">Department Id</th>
+              <th scope="col">Department Name</th>
+              <th scope="col">Operation</th>
+              
+           
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of tableData;let i=index">
+              <td>{{i+1}}</td>
+              <td>{{data?.departmentId}}</td>
+              <td>{{data?.departmentName}}</td>
+              <td> <button class="btn btn-primary" (click)="editData(data?.departmentId)">Edit</button></td>
+
+              <!-- <td>{{data?.departmentName}}</td> -->
+              
+  
+            </tr>
+  
+  
+           
+           
+          </tbody>
+        </table>
+      </div>
+      
+    </div>
+  </div>

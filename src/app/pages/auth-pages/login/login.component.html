@@ -1,0 +1,180 @@
+<div class="header bg-gradient-danger py-7 py-lg-8">
+  <div class="container">
+    <div class="local-spacer header-body text-center mb-7">
+      <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-6">
+          <h1 class="text-white">Welcome!</h1>
+          <!-- <p class="text-lead text-light">
+            Enterprise Resource Planning Software of Swift Biz 
+          </p> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="separator separator-bottom separator-skew zindex-100">
+    <svg
+      x="0"
+      y="0"
+      viewBox="0 0 2560 100"
+      preserveAspectRatio="none"
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
+    </svg>
+  </div>
+</div>
+<!-- Page content -->
+<div class="local-spacer container mt--8 pb-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-5 col-md-7">
+      <div class="card bg-secondary shadow border-0">
+        <!-- <div class="card-header bg-transparent pb-5">
+          <div class="text-muted text-center mt-2 mb-3"><small>Sign in with</small></div>
+          <div class="btn-wrapper text-center">
+            <a href="javascript:void(0)" class="btn btn-neutral btn-icon">
+              <span class="btn-inner--icon"><img src="../assets/img/icons/common/github.svg"></span>
+              <span class="btn-inner--text">Github</span>
+            </a>
+            <a href="javascript:void(0)" class="btn btn-neutral btn-icon">
+              <span class="btn-inner--icon"><img src="../assets/img/icons/common/google.svg"></span>
+              <span class="btn-inner--text">Google</span>
+            </a>
+          </div>
+        </div> -->
+        <div class="card-body px-lg-5 py-lg-5">
+          <!-- <div class="form-group">
+            <select class="form-control form-control-lg bg-primary text-light " [(ngModel)]="user.role" (change)="roleProvider(user.role)">
+              <option value="ROLE_EMPLOYEE">Employee</option>
+              <option value="ROLE_ADMIN">Admin</option>
+              <option value="ROLE_HR">HR</option>
+              <option value="ROLE_MANAGER">Manager</option>
+              <option value="ROLE_SUBMANAGER">Sub Manager</option>
+            </select>
+          </div> -->
+          
+          <!-- <div class="admin-employee-btn">
+            <button [class.btn-active]="buttonActive[0]" [disabled]="buttonActive[0]" (click)="roleProvider('ROLE_ADMIN')">Admin</button>
+            <button [class.btn-active]="buttonActive[1]" [disabled]="buttonActive[1]" (click)="roleProvider('ROLE_EMPLOYEE')">Employee</button>
+            <button [class.btn-active]="buttonActive[2]" [disabled]="buttonActive[2]" (click)="roleProvider('ROLE_MANAGER')">Manager</button>
+            <button [class.btn-active]="buttonActive[3]" [disabled]="buttonActive[3]" (click)="roleProvider('ROLE_SUBADMIN')">Sub Admin</button>
+            <button [class.btn-active]="buttonActive[4]" [disabled]="buttonActive[4]" (click)="roleProvider('ROLE_HR')">HR</button>
+          </div> -->
+          
+          <div class="text-center text-muted mb-4">
+            <small>Sign In With Credentials</small>
+          </div>
+
+          <!--  LOGIN FORM ==============================================           -->
+          <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+            <div class="form-group mb-3">
+              <div class="input-group input-group-alternative">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"
+                    ><i class="ni ni-email-83"></i
+                  ></span>
+                </div>
+                <input
+                  class="form-control"
+                  placeholder="Employee ID"
+                  type="text"
+                  name="username"
+                  [ngModel]=""
+                  #username="ngModel"
+                  required
+                  minlength="3"
+                />
+              </div>
+              <div
+                *ngIf="!username.valid && username.touched"
+                class="text-danger"
+              >
+                {{
+                  username.errors["required"]
+                    ? "Employee ID is required!"
+                    : "Employee ID must contain atleast 3 characters"
+                }}
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group input-group-alternative">
+                <div class="input-group-prepend">
+                  <span (click)="passHideShow()" class="input-group-text">
+                    <i *ngIf="isPassHide" class="fa-solid fa-lock"></i>
+                    <i *ngIf="!isPassHide" class="fa-solid fa-lock-open"></i>
+                  </span>
+                </div>
+                <input
+                  class="form-control"
+                  placeholder="Password"
+                  [type]="passType"
+                  name="password"
+                  [ngModel]=""
+                  #pass="ngModel"
+                  required
+                  minlength="5"
+                />
+              </div>
+              <div *ngIf="pass.invalid && pass.touched" class="text-danger">
+                {{
+                  pass.errors["required"]
+                    ? "Password is required!"
+                    : "Password must be atleast 5 characters"
+                }}
+              </div>
+            </div>
+            <div
+              class="custom-control custom-control-alternative custom-checkbox"
+            >
+              <input
+                class="custom-control-input"
+                id=" customCheckLogin"
+                type="checkbox"
+                name="remember"
+                [ngModel]=""
+              />
+              <label class="custom-control-label" for=" customCheckLogin">
+                <span class="text-muted">Remember me</span>
+              </label>
+            </div>
+            <div class="text-center">
+              <input
+                type="submit"
+                [disabled]="loginForm.invalid"
+                class="btn btn-primary my-4"
+                value="Sign in"
+              />
+              <div
+                *ngIf="message && status"
+                style="color: blue"
+                class="message arrangement"
+              >
+                {{ message }}
+              </div>
+              <div
+                *ngIf="message && !status"
+                style="color: red"
+                class="message arrangement"
+              >
+                {{ message }}
+              </div>
+            </div>
+          </form>
+          <!-- ==================================================================== -->
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-6">
+          <a routerLink="/forgot-password" class="text-light"
+            ><small>Forgot password?</small></a
+          >
+        </div>
+        <div class="col-6 text-right">
+          <a routerLink="/register" class="text-light"
+            ><small>Register</small></a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

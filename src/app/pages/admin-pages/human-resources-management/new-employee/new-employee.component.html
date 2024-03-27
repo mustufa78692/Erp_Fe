@@ -1,0 +1,2841 @@
+<div id="section">
+  <div style="padding: 75px 0px">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h5 class="pb-3 text-light mt-3">New Employee</h5>
+        </div>
+      </div>
+    </div>
+    <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+    <div class="container">
+      <!-- <h1>New Employee</h1> -->
+      <div class="row">
+        <div class="col-xl-12 order-xl-1">
+          <div class="card bg-secondary shadow">
+
+            <div class="card-header bg-white border-0">
+
+            </div>
+            <div class="card-body">
+              <div class="pl-lg-4">
+                <div *ngIf=" step == 1">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label for="namePrefix" class="form-control-label">Prefix <span class="text-danger">*</span></label>
+                        <!-- <input type="text" name="leaveReason" id="leaveReason" class="form-control form-control-alternative" formControlName="approvalStatus" [value]="obj?.approvalStatus"> -->
+                        <select name="namePrefix" id="namePrefix" class="form-control form-control-alternative" formControlName="namePrefix" (input)="hideThePrefixValidationMessage()"  >
+                          <!-- <option value="">Days To Leave</option> -->
+                          <option selected disabled [value]="'Prefix'">Prefix</option>
+                          <option value="Mr">Mr</option>
+                          <option value="Mrs">Mrs</option>
+                          <option value="Miss">Miss</option>
+                        </select>
+                        <div *ngIf="PrefixValidationMessage">
+                          <span class="text-danger">{{PrefixValidationMessage}}</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-last-name">First Name <span class="text-danger">*</span></label>
+                        <input type="text" id="input-last-name" class="form-control form-control-alternative" 
+                        (input)="hideThefirstValidationMessage()" 
+                        formControlName="firstName">
+                        <div *ngIf="firstNameValidationMessage">
+                          <span class="text-danger">{{firstNameValidationMessage}}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-father-name">Middle Name </label>
+                        <input type="text" id="input-father-name" class="form-control form-control-alternative" placeholder="" value="" formControlName="middleName">
+                       
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-age">Last Name <span class="text-danger">*</span></label>
+                        <input type="text" id="input-age" class="form-control form-control-alternative" placeholder=""
+                        (input)="hideThelastValidationMessage()" 
+                        formControlName="lastName">
+                        <div *ngIf="lastNameValidationMessage">
+                          <span class="text-danger">{{lastNameValidationMessage}}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label">Code <span class="text-danger"> *</span></label>
+                      <select
+                        name="cars"
+                        id="cars"
+                        class="form-control form-control-alternative"
+                        formControlName="phoneCode"
+                        id="floatingTextInput1"
+                        style="padding-top: 12px"
+                        (input)="hideThePhonecodeValidationMessage()"
+                      >
+                        <option selected disabled [value]="'Code'">Code </option>
+                        <option
+                          *ngFor="let Country of Countries"
+                          [value]="Country.phonecode"
+                        >
+                          {{Country.phonecode}} {{Country.name}} 
+                          <!-- {{ Country.phonecode }} -->
+                        </option>
+                      </select>
+                      <div *ngIf="phoneCodeValidationMessage">
+                        <span class="text-danger">{{phoneCodeValidationMessage}}</span>
+                      </div>
+  
+                      </div>
+                      
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-email">Contact <span class="text-danger"> *</span></label>
+                        <input type="number" id="input-email" class="form-control form-control-alternative"  (input)="hideThePersonalContactValidationMessage()" formControlName="personalContactNo">
+                        <div *ngIf="personalContactValidationMessage">
+                          <span class="text-danger">{{personalContactValidationMessage}}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label for="maritalStatus" class="form-control-label">Martial Status</label>
+                         
+                                                 
+                          <select name="maritalStatus" id="maritalStatus" class="form-control form-control-alternative" formControlName="maritalStatus" (change)="onSelect($event)"  >
+                            <option value="Married">Married</option>
+                            <option value="UnMarried">UnMarried</option>
+                            <!-- <option value="1">1</option>
+                            <option value="2">2</option> -->
+                          </select>
+                        
+                      </div>
+                      
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-email">Email  <span class="text-danger"> *</span></label>
+                        <input type="email" id="input-email" class="form-control form-control-alternative" placeholder=""
+                        (input)="hideTheemailValidationMessage()"
+                        formControlName="email">
+                        <div *ngIf="emailValidationMessage">
+                          <span class="text-danger">{{emailValidationMessage}}</span>
+                        </div>
+                      </div>
+                     
+                      <!-- <div *ngIf="postForm.get('email').invalid && (postForm.get('email').dirty || postForm.get('email').touched)">
+                        <div *ngIf="postForm.get('email').hasError('required')">Email is required.</div>
+                        <div *ngIf="postForm.get('email').hasError('email')">Invalid email address.</div>
+                      </div> -->
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label for="" class="form-control-label">Citizenship</label>
+                      <select
+                        name="cars"
+                        id="cars"
+                        class="form-control form-control-alternative"
+                        formControlName="citizenship"
+                        id="floatingTextInput1"
+                        style="padding-top: 12px"
+                      >
+                        <option selected disabled [value]="'Citizenship'">Citizenship</option>
+                        <option
+                          *ngFor="let Country of Countries"
+                          [value]="Country.name"
+                        >
+                          <!-- {{Country.phonecode}} {{Country.name}} </option> -->
+                          {{ Country.name }}
+                        </option>
+                      </select>
+  
+                      </div>
+                      
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label for="" class="form-control-label">Passport Issuing Country</label>
+                        <select
+                          name="cars"
+                          id="cars"
+                          class="form-control form-control-alternative"
+                          formControlName="passportIssuingCountry"
+                          id="floatingTextInput1"
+                          style="padding-top: 12px"
+                        >
+                          <option selected disabled [value]="'Passport Issuing Country'">Passport Issuing Country</option>
+                          <option
+                            *ngFor="let Country of Countries"
+                            [value]="Country.name"
+                          >
+                            <!-- {{Country.phonecode}} {{Country.name}} </option> -->
+                            {{ Country.name }}
+                          </option>
+                        </select>
+    
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-email">Date Of Birth  <span class="text-danger">*</span></label>
+                        <input
+                        type="Date"
+                        (change)="getAge($event)"
+                        min=""
+                        [max]="maxDate"
+                        class="form-control form-control-alternative"
+                        id="floatingTextInput1"
+                        formControlName="dateOfBirth"
+                        placeholder="Date Of Birth"
+                        (input)="hideThedobValidationMessage()"
+                      />
+                      <div *ngIf="dobValidationMessage">
+                        <span class="text-danger">{{dobValidationMessage}}</span>
+                      </div>
+                      </div>
+                      
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-email">Age </label>
+                        <input
+                        type="text"
+                        class="form-control form-control-alternative"
+                        id="floatingTextInput1"
+                        [(ngModel)]="employeeAge"
+                        formControlName="age"
+                        placeholder="Age"
+                        readonly
+                      />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-email">Passport Size Photo  <span class="text-danger">*</span></label>
+                        <input
+                        type="file"
+                        name="passportSizePhoto"
+                        (change)="uploadFile($event)"
+                        class="form-control form-control-alternative"
+                        id="floatingTextInput1"
+                        
+                        (input)="hideThepassportSizePhotoValidationMessage()"
+                      />
+                      <div *ngIf="passportSizePhotoValidationMessage">
+                        <span class="text-danger">{{passportSizePhotoValidationMessage}}</span>
+                      </div>
+
+                      <span class="text-secondry"> <small>image size 100 kb only</small>   </span>
+                      </div>
+                      
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-email">Passport Number <span class="text-danger">*</span> </label>
+                        <input
+                        type="text"
+                        class="form-control form-control-alternative"
+                        id="floatingTextInput2"
+                        formControlName="passportNumber"
+                        placeholder="Passport Number"
+                        pattern="[A-Za-z0-9]{6,9}"
+  title="Passport number must be between 6 to 9 alphanumeric characters."
+  (input)="hideThepassportNumberValidationMessage()"
+                      />
+                    
+                      <div *ngIf="postForm.get('passportNumber').hasError('pattern') && postForm.get('passportNumber').touched" class="text-danger">
+                        Passport number must be between 6 to 9 alphanumeric characters.
+                      </div>
+
+                      <div *ngIf="passportNumberValidationMessage">
+                        <span class="text-danger">{{passportNumberValidationMessage}}</span>
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-email">Passport Scanned Copy <span class="text-danger">*</span></label>
+                        <input
+                        type="file"
+                        class="form-control form-control-alternative"
+                        id="floatingTextInput2"
+                        name="passportScannedCopy"
+                        (change)="uploadFile($event)"
+                        accept=".pdf"
+                        (input)="hideThepassportScanCopyValidationMessage()"
+                      />
+                      <div *ngIf="passportScanCopyValidationMessage">
+                        <span class="text-danger">{{passportScanCopyValidationMessage}}</span>
+                      </div>
+                      <span class="text-secondry"> <small>PDF SIZE 2 MB ONLY</small>   </span>
+  
+                      </div>
+                      
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-email">Passport Expiry Date </label>
+                        <input
+                        type="Date"
+                        class="form-control form-control-alternative"
+                        formControlName="passportExpiryDate"
+                        id="floatingTextInput1"
+                        [min]="minDate"
+                      />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-email">Driving License</label>
+                        <select
+                        name="drivinglicense"
+                        id="drivinglicense"
+                        class="form-control form-control-alternative"
+                        id="floatingTextInput1"
+                        style="padding-top: 12px; padding-left: 8px"
+                        formControlName="drivinglicense"
+                        (change)="onSelect($event)"
+                      >
+                        <option
+                          selected
+                          disabled
+                          [value]="'Driving License of UAE'"
+                        >
+                          Driving License of UAE
+                        </option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                      </select>
+                      </div>
+                      
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label for="drivinglicense" class="form-control-label">Type Of Lincense</label>
+                        <select
+                          name="licenseType"
+                          id="drivinglicense"
+                          class="form-control form-control-alternative"
+                          id="floatingTextInput1"
+                          style="padding-top: 12px; padding-left: 8px"
+                          formControlName="licenseType"
+                        >
+                          <option selected disabled [value]="'Type Of Lincense'">
+                            Type Of Lincense
+                          </option>
+                          <option value="Two Whelers">Two Whelers</option>
+                          <option value="Four Whelers">Four Whelers</option>
+                          <option value="Heavy Vehicle">Heavy Vehicle</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-email"> Scanned Copy Lincense</label>
+                        <input
+                        type="file"
+                        class="form-control form-control-alternative"
+                        id="floatingTextInput1 "
+                        name="scannedCopyOfLincense"
+                        formControlName="scannedCopyOfLincense"
+                        (change)="uploadFile($event)"
+                        (input)="hideTheLincenseScanCopyValidationMessage()"
+                        
+                      />
+                      <div *ngIf="LincenseScanCopyValidationMessage">
+                        <span class="text-danger">{{LincenseScanCopyValidationMessage}}</span>
+                      </div>
+                      <!-- <div  *ngIf="getPostFormControls['drivinglicense'].value == 'Yes'">
+                      
+                    </div> -->
+                      <span class="text-secondry"> <small>image size 100 kb only</small>   </span>
+  
+                      </div>
+                      
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="">Personal Vehicle  </label>
+                        <select
+                        name="ownvehicle"
+                        id="ownvehicle"
+                        class="form-control form-control-alternative"
+                        id="floatingTextInput1"
+                        formControlName="ownvehicle"
+                        style="padding-top: 12px"
+                      >
+                        <option selected disabled [value]="'Personal Vehicle'">
+                          Personal Vehicle
+                        </option>
+                        <option value="Yes">Yes .</option>
+                        <option value="No">No .</option>
+                      </select>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                
+                <div *ngIf=" step == 2 "> 
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="">Type Of Visa </label>
+                    <select
+                      name="VisaType"
+                      (change)="onSelect($event)"
+                      class="form-control form-control-alternative"
+                      id="floatingTextInput1"
+                      formControlName="VisaType"
+                      style="padding-top: 12px"
+                    >
+                      <option selected disabled [value]="'Type Of Visa'">
+                        Type Of Visa
+                      </option>
+                      <option value="Tourist Visa">Tourist Visa</option>
+                      <option value="Employement Visa">Employement Visa</option>
+                    </select>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="floatingTextInput1" class="form-control-label" > Emirates ID </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-alternative"
+                      id="floatingTextInput1"
+                      formControlName="workVisaEmirateId"
+                      placeholder="Emirates ID"
+                    />
+
+                    </div>
+                    
+                  </div>
+                  
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <!-- <label class="form-control-label" for="">Type Of Visa </label> -->
+                      <label class="form-control-label">Categories Of Visa </label>
+                      <select
+                        name="categoryOfVisa"
+                        id="cars"
+                        (change)="onSelect($event)"
+                        class="form-control form-control-alternative"
+                        id="floatingTextInput1"
+                        formControlName="categoryOfVisa"
+                        style="padding-top: 12px"
+                      >
+                        <option selected disabled [value]="'Categories Of Visa'">
+                          Categories Of Visa
+                        </option>
+                        <option value="Own Work Visa">Own Work Visa .</option>
+                        <option value="SI Global Visa">SI Global Visa .</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label  class="form-control-label" for="">Visa issuing company</label>
+                      <select
+                        name="siGlobalWorkVisaCompany"
+                        id="cars"
+                        class="form-control form-control-alternative"
+                        formControlName="siGlobalWorkVisaCompany"
+                        id="floatingTextInput1"
+                        style="padding-top: 12px"
+                      >
+                        <option
+                          selected
+                          disabled
+                          [value]="'Visa issuing company'"
+                        >
+                          Visa issuing company
+                        </option>
+                        <option value="SI Food Stuff Packing Industry LLC">
+                          SI Food Stuff Packing Industry LLC .
+                        </option>
+                        <option value="SI Global General Trading LLC">
+                          SI Global General Trading LLC
+                        </option>
+                        <option value="SI Global Commodities DMCC">
+                          SI Global Commodities DMCC
+                        </option>
+                        <option
+                          value="SI Global Spices And Grinding Industry LLC"
+                        >
+                          SI Global Spices And Grinding Industry LLC
+                        </option>
+                      </select>
+
+                    </div>
+                    
+                  </div>
+                  
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <!-- <label class="form-control-label" for="">Type Of Visa </label> -->
+                      <label for="floatingTextInput1" class="form-control-label"> Visa Issue Date </label>
+                    <input
+                      type="date"
+                      class="form-control form-control-alternative"
+                      id="floatingTextInput1"
+                      formControlName="visaIssueyDate"
+                      placeholder=""
+                      [max]="minDate"
+                    />
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="floatingTextInput1" class="form-control-label"> Visa Expiry Date . </label>
+                    <input
+                      type="date"
+                      class="form-control form-control-alternative"
+                      formControlName="visaExpiryDate"
+                      id="floatingTextInput1"
+                      placeholder=""
+                      [min]="minDate"
+                    />
+
+                    </div>
+                    
+                  </div>
+                  
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <!-- <label class="form-control-label" for="">Type Of Visa </label> -->
+                      <label for="floatingTextInput1" class="form-control-label">
+                        Visa Scanned Copy Of ID
+                      </label>
+                      <input
+                        type="file"
+                        class="form-control form-control-alternative"
+                        id="floatingTextInput1"
+                        name="VisaScannedCopyOfID"
+                        placeholder=""
+                        (change)="uploadFile($event)"
+                        accept=".pdf"
+                      />
+                      <span class="text-secondry"> <small>PDF SIZE 2 MB ONLY</small>   </span>
+                    </div>
+                  </div>
+                  <!-- <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="floatingTextInput1" class="form-control-label"> Visa Expiry Date . </label>
+                    <input
+                      type="date"
+                      class="form-control form-control-alternative"
+                      formControlName="visaExpiryDate"
+                      id="floatingTextInput1"
+                      placeholder=""
+                      [min]="currentDate"
+                    />
+
+                    </div>
+                    
+                  </div> -->
+                  
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="floatingTextInput1" class="form-control-label"
+                        >Secondary Issuing Authority
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-alternative"
+                      id="floatingTextInput1"
+                      formControlName="secondaryIssuingAuthority"
+                      placeholder="Secondary Issuing Authority"
+                    />
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="floatingTextInput1"  class="form-control-label">
+                        Percentage Or Grade
+                      </label>
+                      <input
+                        type="text"
+                        class="form-control form-control-alternative"
+                        id="floatingTextInput1"
+                        formControlName="secondarymarksOrGrade"
+                        placeholder="Secondary Percentage"
+                      />
+
+                    </div>
+                    
+                  </div>
+                  
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="floatingTextInput1" class="form-control-label"> Year </label>
+                    <!-- <input
+                      type="text"
+                      class="form-control form-control-alternative"
+                      id="floatingTextInput1"
+                      placeholder="Year"
+                      formControlName="secondaryyear"
+                    /> -->
+                    <select class="form-control form-control-alternative" id="floatingTextInput1" 
+                    formControlName="secondaryyear">
+                      <option value="" disabled selected>Select Year</option>
+                      <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+                    </select>
+                    
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="floatingTextInput1" class="form-control-label"> Scanned Copy </label>
+                    <input
+                      type="file"
+                      class="form-control form-control-alternative"
+                      id="floatingTextInput1"
+                      placeholder=""
+                      name="ScannedCopyOfSecondary"
+                      (change)="uploadFile($event)"
+                    />
+                    <span class="text-secondry"> <small>image size 100 kb only</small>   </span>
+
+                    </div>
+                    
+                  </div>
+                  
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="floatingTextInput1" class="form-control-label"
+                        > Senior Secondary Issuing Authority
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-alternative"
+                      id="floatingTextInput1"
+                      formControlName="seniorSecondaryIssuingAuthority"
+                      placeholder="Senior Secondary Issuing Authority"
+                    />
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="floatingTextInput1"  class="form-control-label">
+                      Senior Secondary  Percentage Or Grade
+                      </label>
+                      <input
+                      type="text"
+                      class="form-control form-control-alternative"
+                      id="floatingTextInput1"
+                      placeholder="Senior Secondary Percentage"
+                      formControlName="seniorSecondaryMarksOrGrade"
+                    />
+
+                    </div>
+                    
+                  </div>
+                  
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="floatingTextInput1" class="form-control-label"> Year </label>
+                      <!-- <input
+                      type="text"
+                      class="form-control form-control-alternative"
+                      id="floatingTextInput1"
+                      placeholder="Year"
+                      formControlName="seniorSecondaryYear" /> -->
+                      <select class="form-control form-control-alternative" id="floatingTextInput1" 
+                      formControlName="seniorSecondaryYear">
+                        <option value="" disabled selected>Select Year</option>
+                        <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="floatingTextInput1" class="form-control-label"> Scanned Copy </label>
+                      <input
+                      type="file"
+                      class="form-control form-control-alternative"
+                      id="floatingTextInput1"
+                      placeholder="John"
+                      name="ScannedCopyOfSeniorSecondary"
+                      (change)="uploadFile($event)"
+                    />
+                    <span class="text-secondry"> <small>image size 100 kb only</small>   </span>
+                    </div>
+                    
+                  </div>
+                  
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="floatingTextInput1" class="form-control-label"
+                        > Graduation Issuing Authority
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="floatingTextInput1"
+                      placeholder="Graduation Issuing Authority"
+                      formControlName="graduationIssuingAuthority"
+                    />
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="floatingTextInput1"  class="form-control-label">
+                      Graduation  Percentage Or Grade
+                      </label>
+                      <input
+                      type="text"
+                      class="form-control"
+                      id="floatingTextInput1"
+                      placeholder="Graduation Percentage "
+                      formControlName="graduationMarksOrGrade"
+                    />
+                    </div>
+                    
+                  </div>
+                  
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="floatingTextInput1" class="form-control-label"> Year </label>
+                      <!-- <input
+                      type="text"
+                      class="form-control"
+                      id="floatingTextInput1"
+                      placeholder="Year"
+                      formControlName="graduationYear"
+                    /> -->
+                    <select class="form-control form-control-alternative" id="floatingTextInput1" 
+                    formControlName="graduationYear">
+                      <option value="" disabled selected>Select Year</option>
+                      <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+                    </select>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="floatingTextInput1" class="form-control-label"> Scanned Copy </label>
+                      <input
+                      type="file"
+                      class="form-control"
+                      id="floatingTextInput1"
+                      placeholder="John"
+                      name="ScannedCopyOfGraduation"
+                      (change)="uploadFile($event)"
+                    />
+                    <span class="text-secondry"> <small>image size 100 kb only</small>   </span>
+                    </div>
+                    
+                  </div>
+                  
+                </div>
+              </div>
+
+              <div *ngIf=" step == 3">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="floatingTextInput1" class="form-control-label"
+                        > Post Graduation Issuing Authority
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-alternative"
+                      id="floatingTextInput1"
+                      placeholder="Post Graduation Issuing Authority"
+                      formControlName="postGraduationIssuingAuthority"
+                    />
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="floatingTextInput1"  class="form-control-label">
+                     Post  Graduation  Percentage Or Grade
+                      </label>
+                      <input
+                      type="text"
+                      class="form-control form-control-alternative"
+                      id="floatingTextInput1"
+                      placeholder="John"
+                      formControlName="postGraduationMarksOrGrade"
+                    />
+                    </div>
+                    
+                  </div>
+                  
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="floatingTextInput1" class="form-control-label"> Year </label>
+                      <!-- <input
+                      type="text"
+                      class="form-control form-control-alternative"
+                      id="floatingTextInput1"
+                      placeholder="Year"
+                      formControlName="postGraduationYear"
+                    /> -->
+
+                    <select class="form-control form-control-alternative" id="floatingTextInput1" 
+                    formControlName="postGraduationYear">
+                      <option value="" disabled selected>Select Year</option>
+                      <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+                    </select>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="floatingTextInput1" class="form-control-label"> Scanned Copy </label>
+                      <input
+                      type="file"
+                      class="form-control form-control-alternative"
+                      id="floatingTextInput1"
+                      placeholder=""
+                      name="ScannedCopyOfPostGraduation"
+                      (change)="uploadFile($event)"
+                    />
+                    <span class="text-secondry"> <small>image size 100 kb only</small>   </span>
+                    </div>
+                    
+                  </div>
+                  
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="floatingTextInput1" class="form-control-label"
+                        > Previous Company Name
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-alternative"
+                      formControlName="companyName"
+                      id="floatingTextInput1"
+                      placeholder="Company Name "
+                    />
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="floatingTextInput1"  class="form-control-label">
+                     Previous Designation
+                      </label>
+                      <input
+                      type="text"
+                      class="form-control form-control-alternative"
+                      formControlName="designation"
+                      id="floatingTextInput1"
+                      placeholder="Designation"
+                    />
+                    </div>
+                    
+                  </div>
+                  
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="floatingTextInput1" class="form-control-label"> Worked From  </label>
+                      <input
+                      type="date"
+                      class="form-control form-control-alternative"
+                      formControlName="dateFrom"
+                      id="floatingTextInput1"
+                      placeholder=""
+                    />
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="floatingTextInput1" class="form-control-label"> Worked To</label>
+                      <input
+                      type="date"
+                      class="form-control form-control-alternative"
+                      formControlName="dateTo"
+                      id="floatingTextInput1"
+                      placeholder=""
+                    />
+                    </div>
+                    
+                  </div>
+                  
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="" class="form-control-label">Background Check</label>
+                      <select
+                        name="status"
+                        id="cars"
+                        class="form-control form-control-alternative"
+                        id="floatingTextInput1"
+                        style="padding-top: 12px; padding-left: 8px"
+                        (change)="onSelect($event)"
+                        formControlName="status"
+                        (input)="hideThebgStatusValidationMessage()"
+                      >
+                        <option
+                          selected
+                          disabled
+                          [value]="'Background Check Status'"
+                        >
+                          Background Check Status .
+                        </option>
+                        <option value="Done">Done</option>
+                        <option value="Pending">Pending</option>
+                      </select>
+                      <div *ngIf="bgStatusValidationMessage">
+                        <span class="text-danger">{{bgStatusValidationMessage}}</span>
+                      </div>
+                     
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <div
+                    class="form-floating mb-3"
+                    *ngIf="getPostFormControls['status'].value == 'Done'"
+                  >
+                    <label for="" class="form-control-label">Checked By</label>
+                    <select
+                      name="doneBy"
+                      id="cars"
+                      formControlName="doneBy"
+                      class="form-control form-control-alternative"
+                      id="floatingTextInput1"
+                      style="padding-top: 12px; padding-left: 8px"
+                      (input)="hideThedoneByValidationMessage"
+                      (change)="onSelect($event)"
+                    >
+                      <option selected disabled [value]="'Checked By'">
+                        Checked By
+                      </option>
+                      <option value="Internal">Internal</option>
+                      <option value="External">External</option>
+                    </select>
+                    <div *ngIf="doneByValidationMessage">
+                      <span class="text-danger">{{doneByValidationMessage}}</span>
+                    </div>
+                   
+                  </div>
+                    </div>
+                    
+                  </div>
+                  
+                </div>
+                <div *ngIf="getPostFormControls['status'].value == 'Done'">
+                <div class="row" *ngIf="getPostFormControls['doneBy'].value == 'Internal'">
+                  <div class="col-lg-6">
+                    <div class="form-group" >
+                      <label  class="form-control-label">
+                        Name the Concerned Manager for Internal
+                      </label>
+                      <input
+                        type="text"
+                        class="form-control form-control-alternative"
+                        id="floatingTextInput1"
+                        formControlName="internalConcernedManager"
+                        name="internalConcernedManager"
+                        (input)="hideTheinternalConcernedManagerValidationMessage()"
+                      />
+                      <div *ngIf="internalConcernedManagerValidationMessage">
+                        <span class="text-danger">{{internalConcernedManagerValidationMessage}}</span>
+                      </div>
+                    </div>
+                  </div>
+                  </div> 
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <div
+                      
+                      *ngIf="getPostFormControls['status'].value == 'Done'"
+                    >
+                    
+                      <div
+                        
+                        *ngIf="getPostFormControls['doneBy'].value == 'External'"
+                      >
+                        <label for="floatingTextInput1" class="form-control-label">
+                          Name the Concerned Person
+                        </label>
+                        <input
+                          type="text"
+                          class="form-control form-control-alternative"
+                          id="floatingTextInput1"
+                          placeholder="Name the Concerned Person"
+                          formControlName="externalConcernedPerson"
+                          (input)="hideTheexternalConcernedManagerValidationMessage()"
+                        />
+                        <div *ngIf="externalConcernedManagerValidationMessage">
+                          <span class="text-danger">{{externalConcernedManagerValidationMessage}}</span>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+                    
+                  </div>
+                  
+                </div> 
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <div
+                      
+                      *ngIf="getPostFormControls['status'].value == 'Done'"
+                    >
+                      <!-- <div class="form-floating mb-3" *ngIf="getPostFormControls['doneBy'].value=='External'"> -->
+                      <div
+                        class="form-floating mb-3"
+                        *ngIf="getPostFormControls['doneBy'].value == 'External'"
+                      >
+                        <label for="floatingTextInput1" class="form-control-label"> Post </label>
+                        <input
+                          type="text"
+                          class="form-control form-control-alternative"
+                          id="floatingTextInput1"
+                          placeholder="Post"
+                          formControlName="externalPost"
+                          (input)="hideTheexternalPostManagerValidationMessage()"
+                        />
+                        <div *ngIf="externalPostValidationMessage">
+                          <span class="text-danger">{{externalPostValidationMessage}}</span>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <div
+                  
+                  *ngIf="getPostFormControls['status'].value == 'Done'"
+                >
+                  <!-- <div class="form-floating mb-3" *ngIf="getPostFormControls['doneBy'].value=='External'"> -->
+                  <div
+                    class="form-floating mb-3"
+                    *ngIf="getPostFormControls['doneBy'].value == 'External'"
+                  >
+                    <label for="floatingTextInput1" class="form-control-label"> Company Name </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-alternative"
+                      id="floatingTextInput1"
+                      placeholder="Company Name "
+                      formControlName="externalCompanyName"
+                      (input)="hideTheexternalCompanyNameValidationMessage()"
+                    />
+                    <div *ngIf="externalCompanyNameValidationMessage">
+                      <span class="text-danger">{{externalCompanyNameValidationMessage}}</span>
+                    </div>
+                  </div>
+                </div>
+                    </div>
+                    
+                  </div>
+                  
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <div
+                  
+                  *ngIf="getPostFormControls['status'].value == 'Done'"
+                >
+                  <div
+                    class="form-floating mb-3"
+                    *ngIf="getPostFormControls['doneBy'].value == 'External'"
+                  >
+                    <label for="" class="form-control-label">Code</label>
+                    <select
+                      name="externalPhoneCode"
+                      id="cars"
+                      class=" form-control form-control-alternative"
+                      formControlName="externalPhoneCode"
+                      id="floatingTextInput1"
+                      style="padding-top: 12px; padding-left: 8px"
+                      (input)="hideTheexternalPhoneCodeValidationMessage()"
+                    >
+                      <option selected disabled [value]="'Code'">Code</option>
+                      <option
+                        *ngFor="let Country of Countries"
+                        [value]="Country.phonecode"
+                        style="word-spacing: 30px"
+                      >
+                      {{Country.phonecode}} {{Country.name}} 
+
+                      
+                      </option>
+                    </select>
+                    <div *ngIf="externalPhoneCodeValidationMessage">
+                      <span class="text-danger"> {{externalPhoneCodeValidationMessage}} </span>
+                    </div>
+                  </div>
+                </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <div
+                      
+                      *ngIf="getPostFormControls['status'].value == 'Done'"
+                    >
+                      <div
+                        class="form-floating mb-3 firstName BloodNO"
+                        *ngIf="getPostFormControls['doneBy'].value == 'External'"
+                      >
+                        <label for="floatingTextInput1" class="form-control-label">Hr Number</label>
+                        <input
+                          type="number"
+                          class="form-control form-control-alternative"
+                          id="floatingTextInput1"
+                          formControlName="externalPhoneNo"
+                          placeholder="Hr Number"
+                          (input)="hideTheexternalPhoneNoValidationMessage()"
+                        />
+                        <div *ngIf="externalPhoneNoValidationMessage">
+                          <span class="text-danger"> {{externalPhoneNoValidationMessage}} </span>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+                    
+                  </div>
+                  
+                </div>  
+                
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div
+                    *ngIf="getPostFormControls['status'].value == 'Pending'"
+                  >
+                  <div class="form-group">
+                    <label for="" class="form-control-label">Approved By Manager</label>
+                    <select
+                      name="managerApproval"
+                      id="cars"
+                      class="form-control form-control-alternative"
+                      formControlName="managerApproval"
+                      name="managerApproval"
+                      (change)="onSelect($event)"
+                      id="floatingTextInput1"
+                      style="padding-top: 12px; padding-left: 8px"
+                      (input)="hideThemanagerApprovalforbgValidationMessage()"
+                    >
+                      <option selected disabled [value]="'Approved By Manager'">
+                        Approved By Manager
+                      </option>
+                      <option value="Approved">Approved</option>
+                      <option value="Not Approved">Not Approved</option>
+                    </select>
+                    <div *ngIf="managerApprovalforbgValidationMessage">
+                      <span class="text-danger">
+                        {{managerApprovalforbgValidationMessage}}
+                      </span>
+                    </div>
+                  </div>
+                  </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div
+                    class="form-floating mb-3"
+                    *ngIf="getPostFormControls['status'].value == 'Pending'"
+                  >
+                  <div class="form-group">
+                    <label for="floatingTextInput1" class="form-control-label">
+                      Name Of Approving Manager
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-alternative"
+                      id="floatingTextInput1"
+                      name="managerName"
+                      formControlName="managerName"
+                      (input)="hideThemanagerApprovalNameforbgValidationMessage()"
+                    />
+                    <div *ngIf="managerApprovalNameforbgValidationMessage">
+                      <span class="text-danger">
+                        {{managerApprovalNameforbgValidationMessage}}
+                      </span>
+                    </div>
+                  </div>
+                  </div>
+                    
+                  </div>
+                  
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                   
+                    <div
+                    
+                    *ngIf="getPostFormControls['status'].value == 'Pending'  && getPostFormControls['managerApproval'].value == 'Approved' " 
+                  >
+                  <div class="form-group">
+                    <label for="floatingTextInput1" class="form-control-label"> Remarks </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-alternative"
+                      id="floatingTextInput1"
+                      formControlName="remark"
+                      name="remark"
+                      placeholder="Remarks"
+                    />
+                  </div>
+                  </div>
+                  
+                  </div>
+                  
+                  
+                </div>
+              </div>
+              <div *ngIf="step == 4">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <h6 class="heading-small text-muted mb-4">Document Verification</h6>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          formControlName="addressVerified"
+                          type="checkbox"
+                          [value]="'Yes'"
+                          id="flexCheckDefault"
+                        />
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Address
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          value="Yes"
+                          formControlName="previousEmploymentStatusVerified"
+                          id="flexCheckDefault"
+                        />
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Previous Employee Status
+                        </label>
+                      </div>
+                    </div>
+                    
+                  </div>
+                  
+                </div>
+                
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          formControlName="previousDesignationAndResponsibilityVerified"
+                          type="checkbox"
+                          [value]="'Yes'"
+                          id="flexCheckDefault"
+                        />
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Previous designation Or Responsiblities
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          value="Yes"
+                          formControlName="idProofDocumentVerified"
+                          id="flexCheckDefault"
+                        />
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Id Proof Document Verified
+                        </label>
+                      </div>
+                    </div>
+                    
+                  </div>
+                  
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          formControlName="educationalQualificationVerified"
+                          type="checkbox"
+                          [value]="'Yes'"
+                          id="flexCheckDefault"
+                        />
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Education Qualifications
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                                  
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="" class="form-control-label">Criminal <span class="text-danger">*</span></label>
+                      <select
+                        name="criminalRecords"
+                        id="cars"
+                        formControlName="criminalRecords"
+                        (change)="onSelect($event)"
+                        class="form-control form-control-alternative"
+                        id="floatingTextInput1"
+                        style="padding-top: 12px; padding-left: 8px"
+                        (input)="hideThecriminalRecordsValidationMessage()"
+                      >
+                        <option selected disabled [value]="'Select The Option'">
+                          Select The Option .
+                        </option>
+                        <option value="Yes">Yes .</option>
+                        <option value="No">No .</option>
+                      </select>
+                      <div *ngIf="criminalRecordsValidationMessage">
+                        <span class="text-danger">
+                          {{criminalRecordsValidationMessage}}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <div
+                    class="form-floating mb-3"
+                    *ngIf="
+                      getPostFormControls['criminalRecords'].value == 'Yes'
+                    "
+                  >
+                    <label for="floatingTextInput1" class="form-control-label"> Record Sheet </label>
+                    <input
+                      type="file"
+                      class="form-control form-control-alternative"
+                      id="floatingTextInput1"
+                      formControlName="RecordSheet"
+                      (change)="uploadFile($event)"
+                      name="RecordSheet"
+                      placeholder="Record Sheet"
+                      (input)="hideTheRecordSheetValidationMessage()"
+                    />
+                    <div *ngIf="RecordSheetValidationMessage">
+                      <span class="text-danger">
+                        {{RecordSheetValidationMessage}}
+                      </span>
+                    </div>
+                    <span class="text-secondry"> <small>image size 100 kb only</small>   </span>
+                  </div>
+                    </div>
+                    
+                  </div>
+                  
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <div
+                    class="form-floating mb-3"
+                    *ngIf="
+                      getPostFormControls['criminalRecords'].value == 'Yes'
+                    "
+                  >
+                    <label for="" class="form-control-label">Punishment For Imprisonment</label>
+                    <select
+                      name="punishmentForImprisonmentApproval"
+                      (change)="onSelect($event)"
+                      id="cars"
+                      class="form-control form-control-alternative"
+                      formControlName="punishmentForImprisonmentApproval"
+                      id="floatingTextInput1"
+                      style="padding-top: 12px; padding-left: 8px"
+                    >
+                      <option
+                        selected
+                        disabled
+                        [value]="'Punishment For Imprisonment'"
+                      >
+                        Punishment For Imprisonment
+                      </option>
+                      <option value="Yes">Yes .</option>
+                      <option value="No">No .</option>
+                    </select>
+                  </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <div
+                    class="form-floating mb-3"
+                    *ngIf="
+                      getPostFormControls['criminalRecords'].value == 'Yes'
+                    "
+                  >
+                    <label for="" class="form-control-label">Aprroved By Authority </label>
+                    <select
+                      name="approvalsheet"
+                      id="cars"
+                      class="form-control form-control-alternative"
+                      id="floatingTextInput1"
+                      style="padding-top: 12px; padding-left: 8px"
+                      formControlName="approvalsheet"
+                      (input)="hideTheapprovalsheetValidationMessage()"
+                    >
+                      <option
+                        selected
+                        disabled
+                        [value]="'Aprroved By Authority'"
+                      >
+                        Aprroved By Authority
+                      </option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                    </select>
+                    <div *ngIf="approvalsheetValidationMessage">
+                      <span class="text-danger">{{approvalsheetValidationMessage}}</span>
+                    </div>
+                  </div>
+                    </div>
+                    
+                  </div>
+                  
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <div
+                      class="form-floating mb-3"
+                      *ngIf="getPostFormControls['criminalRecords'].value == 'No'"
+                    >
+                      <label for="floatingTextInput1" class="form-control-label"> Declaration</label>
+                      <input
+                        type="file"
+                        class="form-control form-control-alternative"
+                        id="floatingTextInput1"
+                        (change)="uploadFile($event)"
+                        name="Declaration"
+                        placeholder=""
+                        (input)="hideTheDeclarationValidationMessage()"
+                      />
+                      <div *ngIf="DeclarationValidationMessage">
+                        <span class="text-danger"> {{DeclarationValidationMessage}} </span>
+                      </div>
+                      <span class="text-secondry"> <small>image size 100 kb only</small>   </span>
+                    </div>
+                    </div>
+                  </div>
+                  
+                  
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <h6 class="heading-small text-muted mb-4">Training Details</h6>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="floatingTextInput1" class="form-control-label">Training Type</label>
+                    <input
+                      type="text"
+                      class="form-control form-control-alternative"
+                      formControlName="trainingType"
+                      id="floatingTextInput1"
+                      placeholder=""
+                    />
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="" class="form-control-label">Training Source</label>
+                      <select
+                        name="inHouseOutsource"
+                        id="cars"
+                        formControlName="inHouseOutsource"
+                        class="form-control form-control-alternative"
+                        id="floatingTextInput1"
+                        style="padding-top: 12px; padding-left: 8px"
+                        (change)="onSelect($event)"
+                      >
+                        <option selected disabled [value]="'Training Source'">
+                          Training Source
+                        </option>
+                        <option value="InHouse">In House</option>
+                        <option value="OutSource">OutSource</option>
+                      </select>
+                    </div>
+                    
+                  </div>
+                  
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="" class="form-control-label">Training Details</label>
+                      <select
+                        name="paidUnpaid"
+                        id="cars"
+                        formControlName="paidUnpaid"
+                        class="form-control form-control-alternative"
+                        id="floatingTextInput1"
+                        
+                        (change)="onSelect($event)"
+                      >
+                        <option selected disabled [value]="'Training Details'">
+                          Training Details
+                        </option>
+                        <option value="Paid">Paid .</option>
+                        <option value="Unpaid">Unpaid.</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="floatingTextInput1" class="form-control-label">
+                        Training Start Date
+                      </label>
+                      <input
+                        type="date"
+                        class="form-control form-control-alternative"
+                        formControlName="trainingStartDate"
+                        id="floatingTextInput1"
+                        placeholder="John"
+                      />
+                    </div>
+                    
+                  </div>
+                  
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="floatingTextInput1" class="form-control-label"> Training End Date </label>
+                    <input
+                      type="date"
+                      class="form-control form-control-alternative"
+                      id="floatingTextInput1"
+                      formControlName="trainingEndDate"
+                      placeholder=""
+                    />
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="floatingTextInput1" class="form-control-label"> Trainer Name </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-alternative"
+                      id="floatingTextInput1"
+                      formControlName="trainerName"
+                      placeholder="Trainer Name"
+                    />
+                    </div>
+                    
+                  </div>
+                  
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="floatingTextInput1" class="form-control-label"> Post </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-alternative"
+                      id="floatingTextInput1"
+                      formControlName="trainerPost"
+                      placeholder="Post"
+                    />
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="floatingTextInput1" class="form-control-label"> Departnment </label>
+                      <input
+                        type="text"
+                        class="form-control form-control-alternative"
+                        id="floatingTextInput1"
+                        formControlName="trainerDepartment"
+                        placeholder="Departnment"
+                      />
+                    </div>
+                    
+                  </div>
+                  
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="" class="form-control-label">Code</label>
+                    <select
+                      name="trainerPhoneCode"
+                      id="cars"
+                      class="form-control form-control-alternative"
+                      formControlName="trainerPhoneCode"
+                      id="floatingTextInput1"
+                      
+                    >
+                      <option selected disabled [value]="'Code'">Code.</option>
+                      <option
+                        *ngFor="let Country of Countries"
+                        [value]="Country.phonecode"
+                      >
+                        {{ Country.phonecode }} {{ Country.name }}
+                      </option>
+                    </select>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="floatingTextInput1" class="form-control-label">Phone Number</label>
+                    <input
+                      type="tel"
+                      class="form-control form-control-alternative"
+                      id="floatingTextInput1"
+                      formControlName="trainerPhoneNo"
+                      placeholder="Number"
+                    />
+                    </div>
+                    
+                  </div>
+                  
+                </div>
+                <!-- <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="floatingTextInput1" class="form-control-label">
+                        Job Post & Designation
+                      </label>
+                      <input
+                        type="text"
+                        class="form-control form-control-alternative"
+                        id="floatingTextInput1"
+                        formControlName="jobPostDesignation"
+                        placeholder="Designation"
+                      />
+                    </div>
+                  </div>
+                  
+                  
+                </div> -->
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="" class="form-control-label">Provided Email Id</label>
+                    <select
+                      name="companyEmailIdProvided"
+                      id="cars"
+                      formControlName="companyEmailIdProvided"
+                      (change)="onSelect($event)"
+                      class="form-control form-control-alternative"
+                      id="floatingTextInput1"
+                      
+                    >
+                      <option selected disabled [value]="'Provided Email Id'">
+                        Provided Email Id
+                      </option>
+                      <option value="Yes">Yes .</option>
+                      <option value="No">No.</option>
+                    </select>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="floatingTextInput1" class="form-control-label"> Company Email Id </label>
+                    <input
+                      type="email"
+                      class="form-control form-control-alternative"
+                      id="floatingTextInput1"
+                      formControlName="companyEmailId"
+                      placeholder="Company Email Id "
+                    />
+                    </div>
+                    
+                  </div>
+                  
+                </div>
+                <div class="row">
+                 
+                  <!-- <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="floatingSelect" class="form-control-label">Posted Location</label>
+                      <select class="form-control form-control-alternative" id="floatingSelect" formControlName="postedLocation">
+                        <option value="" disabled selected>Select a location</option>
+                        <option *ngFor="let location of locations" [value]="location.locationId">{{ location.name }}</option>
+                      </select>
+                    </div>
+                    
+
+                  </div> -->
+                  
+                </div>
+              </div>
+              <div *ngIf="step == 5">
+
+              
+               <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                     <label for="floatingTextInput1" class="form-control-label"> Basic </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-alternative"
+                      id="floatingTextInput1"
+                      formControlName="basicAllowance"
+                      placeholder="Basic"
+                    /> 
+                   </div>
+                  </div>
+                 
+                  
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <div class="form-check" style="padding-top: 36px;">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          formControlName="houseRentAllowance"
+                          name="houseRentAllowance"
+                          (change)="onSelect($event)"
+                          id="flexCheckDefault"
+                        
+                        />
+                        <label class="form-check-label" for="flexCheckDefault">
+                          House Rent
+                        </label>
+                        <!-- <div *ngIf="RentAmountValidationMessage">
+                          <span>{{RentAmountValidationMessage}}</span>
+                        </div> -->
+                      </div> 
+                   </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="floatingTextInput1" class="form-control-label"> House Rent Amount </label>
+                      <input
+                        type="number"
+                        class="form-control form-control-alternative"
+                        id="floatingTextInput1"
+                        formControlName="houseRentAmount"
+                        placeholder="House Rent Amount "
+                        (input)="hideTheHouseRentValidationMessage()"
+                      /> 
+                      
+                      <div *ngIf="HouseRentAmountValidationMessage">
+                        <span class="text-danger">{{HouseRentAmountValidationMessage?.length > 0 ? HouseRentAmountValidationMessage : ''}}</span>
+                      </div>
+                      
+                      <!-- <div *ngIf="postForm.get('houseRentAmount')?.errors?.required && postForm.get('houseRentAmount')?.touched" class="alert alert-danger">
+                        House Rent Amount is required.
+                      </div> -->
+                   </div>
+                  </div>
+                 
+                  
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <div class="form-check" style="padding-top: 36px;">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          formControlName="foodAllowance"
+                          name="foodAllowance"
+                      (change)="onSelect($event)"
+                          
+                          id="flexCheckDefault"
+                        />
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Food Allowance
+                        </label>
+                      </div> 
+                   </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="floatingTextInput1" class="form-control-label"> Food Allowance Amount </label>
+                      <input
+                        type="number"
+                        class="form-control form-control-alternative"
+                        id="floatingTextInput1"
+                        formControlName="foodAllowanceAmount"
+                        name="foodAllowanceAmount"
+                        placeholder="House Rent Amount "
+                        (input)="hideTheFoodAllowanceValidationMessage()"
+                      /> 
+                      <div *ngIf="FoodAllowanceAmountValidationMessage">
+                        <span class="text-danger">{{FoodAllowanceAmountValidationMessage}}</span>
+                      </div>
+                   </div>
+                  </div>
+                 
+                  
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <div class="form-check" style="padding-top: 36px;">
+                        <input
+                        class="form-check-input"
+                        type="checkbox"
+                        formControlName="vehicleAllowance"
+                      (change)="onSelect($event)"
+                        name="vehicleAllowance"
+                        id="flexCheckDefault"
+                      />
+                      <label class="form-check-label" for="flexCheckDefault">
+                        Vehicle  Allowance
+                      </label>
+                      </div> 
+                   </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="floatingTextInput1" class="form-control-label"> Vehicle Allowance Amount </label>
+                      <input
+                        type="number"
+                        class="form-control form-control-alternative"
+                        id="floatingTextInput1"
+                        formControlName="vehicleAllowanceAmount"
+
+                        (input)="hideTheVehicleAllowanceValidationMessage()"
+                        
+                      /> 
+                      <div *ngIf="VehicleAllowanceAmountValidationMessage">
+                        <span class="text-danger">{{VehicleAllowanceAmountValidationMessage}}</span>
+                      </div>
+                   </div>
+                  </div>
+                 
+                  
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <div class="form-check" style="padding-top: 36px;">
+                        <input
+                        class="form-check-input"
+                        type="checkbox"
+                        formControlName="uniformAllowance"
+                      (change)="onSelect($event)"
+                        name="uniformAllowance"
+                    
+                        id="flexCheckDefault"
+                      />
+                      <label class="form-check-label" for="flexCheckDefault">
+                        Uniform Allowance
+                      </label>
+                      </div> 
+                   </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="floatingTextInput1" class="form-control-label"> Uniform Allowance Amount </label>
+                      <input
+                        type="number"
+                        class="form-control form-control-alternative"
+                        id="floatingTextInput1"
+                        (input)="hideTheUniformAllowanceValidationMessage()"
+                        formControlName="uniformAllowanceAmount"
+                        placeholder="Uniform Allowance  Amount "
+                      /> 
+                      <div *ngIf="UniformAllowanceAmountValidationMessage"> 
+                        <span class="text-danger">{{UniformAllowanceAmountValidationMessage}}</span>
+                      </div>
+                     
+                   </div>
+                  </div>
+                 
+                  
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <div class="form-check" style="padding-top: 36px;">
+                        <input
+                        class="form-check-input"
+                        type="checkbox"
+                        formControlName="travellingAllowances"
+                        (change)="onSelect($event)"
+                     name="travellingAllowances"
+                        id="flexCheckDefault"
+                      />
+                      <label class="form-check-label" for="flexCheckDefault">
+                        Travelling Allowance
+                      </label>
+                      </div> 
+                   </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="floatingTextInput1" class="form-control-label"> Travelling Allowance Amount </label>
+                      <input
+                        type="number"
+                        class="form-control form-control-alternative"
+                        id="floatingTextInput1"
+                        formControlName="travellingAllowancesAmount"
+                        (input)="hideTheTravellingAllowanceValidationMessage()"
+                      /> 
+                      <div *ngIf="TravellingAllowanceAmountValidationMessage"> 
+                        <span class="text-danger">{{TravellingAllowanceAmountValidationMessage}}</span>
+                      </div>
+                   </div>
+                  </div>
+                 
+                  
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <div class="form-check" style="padding-top: 36px;">
+                        <input
+                        class="form-check-input"
+                        type="checkbox"
+                        formControlName="educationalAllowance"
+                      (change)="onSelect($event)"
+                      name="educationalAllowance"
+                       
+                        id="flexCheckDefault"
+                      />
+                      <label class="form-check-label" for="flexCheckDefault">
+                        Education Allowance
+                      </label>
+                      </div> 
+                   </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="floatingTextInput1" class="form-control-label"> Education Allowance Amount </label>
+                      <input
+                        type="number"
+                        class="form-control form-control-alternative"
+                        id="floatingTextInput1"
+                        formControlName="educationalAllowanceAmount"
+                        (input)="hideTheEducationAllowanceValidationMessage()"
+                      /> 
+                      <div *ngIf="EducationAllowanceAmountValidationMessage">
+                        <span class="text-danger">{{EducationAllowanceAmountValidationMessage}}</span>
+                      </div>
+                   </div>
+                  </div>
+                 
+                  
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <div class="form-check" style="padding-top: 36px;">
+                        <input
+                        class="form-check-input"
+                        type="checkbox"
+                        formControlName="otherAllowance"
+                        (change)="onSelect($event)"
+                        name="otherAllowance"
+                        id="flexCheckDefault"
+                      />
+                      <label class="form-check-label" for="flexCheckDefault">
+                        Other Allowance
+                      </label>
+                      </div> 
+                   </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="floatingTextInput1" class="form-control-label"> Other Allowance Amount </label>
+                      <input
+                        type="number"
+                        class="form-control form-control-alternative"
+                        id="floatingTextInput1"
+                        formControlName="otherAllowanceAmount"
+                        
+                        (input)="hideTheOtherAllowanceValidationMessage()"
+                      /> 
+                      <div *ngIf="OtherAllowanceAmountValidationMessage">
+                        <span class="text-danger">{{OtherAllowanceAmountValidationMessage}}</span>
+                      </div>
+                   </div>
+                  </div>
+                 
+                  
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="" class="form-control-label">Vehicle Issued</label>
+                    <select
+                      name="vehicle"
+                      id="cars"
+                      class="form-control form-control-alternative"
+                      id="floatingTextInput1"
+                      formControlName="vehicle"
+                      style="padding-top: 12px"
+                      (change)="onSelect($event)"
+                      (input)="hideTheVehicleIssuedValidationMessage()"
+                    >
+                      <option selected disabled [value]="'Vehicle Issued'">
+                        Vehicle Issued.
+                      </option>
+                      <option value="Yes">Yes.</option>
+                      <option value="No">No.</option>
+                    </select> 
+                    <div *ngIf="VehicleIssuedValidationMessage">
+                      <span class="text-danger">{{VehicleIssuedValidationMessage}}</span>
+                    </div>
+                   </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="floatingTextInput1" class="form-control-label">Vehicle Number </label>
+                      <input
+                        type="text"
+                        class="form-control form-control-alternative"
+                        id="floatingTextInput1"
+                        formControlName="vehicleNumber"
+                       
+                        (input)="hideThevehicleNumberValidationMessage()"
+                      />
+                      <div *ngIf="vehicleNumberAmountValidationMessage">
+                        <span class="text-danger">
+                          {{vehicleNumberAmountValidationMessage}}
+                        </span>
+                      </div>
+                    
+                   </div>
+                  </div>
+                 
+                  
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="floatingTextInput1" class="form-control-label"> Model Name</label>
+                    <input
+                      type="text"
+                      class="form-control form-control-alternative"
+                      id="floatingTextInput1"
+                      formControlName="vehicleModelName"
+
+                      (input)="hideThevehicleModelNameValidationMessageValidationMessage()"
+                    /> 
+                    <div *ngIf="vehicleModelNameValidationMessage">
+                      <span class="text-danger">
+                        {{vehicleModelNameValidationMessage}}
+                      </span>
+                    </div>
+                 
+
+                   </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="floatingTextInput1" class="form-control-label"> Model Year</label>
+                      <!-- <input
+                        type="text"
+                        class="form-control form-control-alternative"
+                        id="floatingTextInput1"
+                        formControlName="vehicleModelYear"
+                        placeholder="Model Year"
+                      /> -->
+                      <select class="form-control form-control-alternative" id="floatingTextInput1" 
+                      formControlName="vehicleModelYear" (input)="hideThevehicleModelYearValidationMessageValidationMessage()">
+                        <option value="" disabled selected>Select Year</option>
+                        <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+                      </select>
+                      <div *ngIf="vehicleModelYearValidationMessage">
+                        <span class="text-danger">
+                          {{vehicleModelYearValidationMessage}}
+                        </span>
+                      </div>
+
+                   </div>
+                  </div>
+                 
+                  
+                </div>
+              </div>
+              <div *ngIf="step == 6">
+
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="" class="form-control-label">Vehicle type</label>
+                      <select
+                        name="isVehicleNewOrPreowned"
+                        id="cars"
+                        class="form-control form-control-alternative"
+                        id="floatingTextInput1"
+                        formControlName="isVehicleNewOrPreowned"
+                        style="padding-top: 12px"
+                      >
+                        <option selected disabled [value]="'Vehicle Type'">
+                          Vehicle Type .
+                        </option>
+                        <option value="Old">Old.</option>
+                        <option value="New">New.</option>
+                      </select> 
+                   </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="" class="form-control-label">Vehicle Fuel</label>
+                      <select
+                        name="vehicleFuelCashFacility"
+                        
+                        class="form-control form-control-alternative"
+                        
+                        formControlName="vehicleFuelCashFacility"
+                        style="padding-top: 12px"
+                        (change)="onSelect($event)"
+                      >
+                        <option >
+                          Vehicle Fuel .
+                        </option>
+                        <option value="Cash">Cash.</option>
+                        <option value="Chip">Chip.</option>
+                      </select>
+                   </div>
+                  </div>
+                 
+                  
+                </div>
+                <div class="row">
+                  
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="floatingTextInput1" class="form-control-label"> Chips Details</label>
+                      <input
+                        type="text"
+                        class="form-control form-control-alternative"
+                        id="floatingTextInput1"
+                        formControlName="vehicleFuelChipFacility"
+                        (input)="hideThevehicleFuelChipFacilityValidationMessage()"
+                      />
+                      <div *ngIf="vehicleFuelChipFacilityValidationMessage">
+                        <span class="text-danger">
+                          {{vehicleFuelChipFacilityValidationMessage}}
+                        </span>
+                      </div>
+                   </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="floatingTextInput1" class="form-control-label"> Cash Amount</label>
+                      <input
+                        type="number"
+                        class="form-control form-control-alternative"
+                        id="floatingTextInput1"
+                        formControlName="cashAmount"
+                        (input)="hideThecashAmountAmountValidationMessage()"
+                      />
+                      <div *ngIf="cashAmountAmountValidationMessage">
+                        <span class="text-danger">
+                          {{cashAmountAmountValidationMessage}}
+                        </span>
+                      </div>
+                   </div>
+                  </div>
+                 
+                  
+                </div>
+                <div class="row">
+                  
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="" class="form-control-label">Accommodation Issued</label>
+                    <select
+                      name="accommodationYesOrNo"
+                      id="cars"
+                      class="form-control form-control-alternative"
+                      id="floatingTextInput1"
+                      formControlName="accommodationYesOrNo"
+                      style="padding-top: 12px"
+                    >
+                      <option
+                        selected
+                        disabled
+                        [value]="'Accommodation Issued'"
+                      >
+                        Accommodation Issued
+                      </option>
+                      <option value="Yes">Yes.</option>
+                      <option value="No">No.</option>
+                    </select>
+                   </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="" class="form-control-label">Type Of Accomandation</label>
+                      <select
+                        name="isShredOrSeparate"
+                        id="cars"
+                        class="form-control form-control-alternative"
+                        id="floatingTextInput1"
+                        formControlName="isShredOrSeparate"
+                        style="padding-top: 12px"
+                      >
+                        <option
+                          selected
+                          disabled
+                          [value]="'Type of accomodation'"
+                        >
+                          Type of accomodation
+                        </option>
+                        <option value="Shared">Shared.</option>
+                        <option value="Separate">Separate.</option>
+                      </select>
+                   </div>
+                  </div>
+                 
+                  
+                </div>
+                <div class="row">
+                  
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="" class="form-control-label">Type Of Shared</label>
+                    <select
+                      name="isExeutiveOrLabourFacility"
+                      id="cars"
+                      class="form-control form-control-alternative"
+                      id="floatingTextInput1"
+                      formControlName="isExeutiveOrLabourFacility"
+                      style="padding-top: 12px"
+                    >
+                      <option
+                        selected
+                        disabled
+                        [value]="'Type Of Shared Accomodation'"
+                      >
+                        Type Of Shared Accomodation.
+                      </option>
+                      <option value="Executive">Executive.</option>
+                      <option value="Labour">Labour.</option>
+                    </select>
+                   </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="" class="form-control-label" >Electricity Allocation</label>
+                    <select
+                      name="electricityAllocationYesOrNo"
+                      id="cars"
+                      class="form-control form-control-alternative"
+                      id="floatingTextInput1"
+                      formControlName="electricityAllocationYesOrNo"
+                      style="padding-top: 12px"
+                      (change)="onSelect($event)"
+                    >
+                      <option
+                        selected
+                        disabled
+                       
+                      >
+                        Electricity Allocation
+                      </option>
+                      <option value="Yes">Yes.</option>
+                      <option value="No">No.</option>
+                    </select>
+                   </div>
+                  </div>
+                 
+                  
+                </div>
+                <div class="row">
+                  
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="floatingTextInput1" class="form-control-label">
+                        Electricity Allocation Amount</label
+                      >
+                      <input
+                        type="number" 
+                        class="form-control form-control-alternative"
+                        id="floatingTextInput1"
+                        formControlName="electricityAllocationAmount"
+                        (input)="hideTheelectricityAllocationAmountValidationMessage()"
+                      />
+                      <div *ngIf="electricityAllocationAmountValidationMessage">
+                        <span class="text-danger">
+                          {{electricityAllocationAmountValidationMessage}}
+                        </span>
+                      </div>
+                   </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for=" " class="form-control-label">Rent Allocation</label>
+                      <select
+                        name="rentAllocationYesOrNo"
+                        id="cars"
+                        class="form-control form-control-alternative"
+                        id="floatingTextInput1"
+                        formControlName="rentAllocationYesOrNo"
+                        style="padding-top: 12px"
+                        (change)="onSelect($event)"
+                      >
+                        <option selected disabled [value]="'Rent Allocation'">
+                          Rent Allocation
+                        </option>
+                        <option value="Yes">Yes.</option>
+                        <option value="No">No.</option>
+                      </select>
+                   </div>
+                  </div>
+                 
+                  
+                </div>
+                <div class="row">
+                  
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="floatingTextInput1" class="form-control-label">
+                        Rent Allocation Amount</label
+                      >
+                      <input
+                        type="number" 
+                        class="form-control form-control-alternative"
+                        id="floatingTextInput1"
+                        formControlName="rentAllocationAmount"
+                        (input)="hiderentAllocationAmountValidationMessage()"
+                        
+                      />
+                      <div *ngIf="rentAllocationAmountValidationMessage">
+                        <span class="text-danger">
+                          {{rentAllocationAmountValidationMessage}}
+                        </span>
+                      </div>
+                   </div>
+                  </div>
+                 
+                 
+                  
+                </div>
+                <div class="row">
+                  
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="" class="form-control-label">Mobile Issued</label>
+                      <select
+                        name="mobileIssuedOrNot"
+                        id="cars"
+                        class="form-control form-control-alternative"
+                        id="floatingTextInput1"
+                        formControlName="mobileIssuedOrNot"
+                        style="padding-top: 12px"
+                      >
+                        <option selected disabled [value]="'Mobile Issued'">
+                          Mobile Issued
+                        </option>
+                        <option value="Yes">Yes.</option>
+                        <option value="No">No.</option>
+                      </select>
+                   </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="" class="form-control-label">Sim Issued</label>
+                    <select
+                      name="simIssuedOrNot"
+                      id="cars"
+                      class="form-control form-control-alternative"
+                      id="floatingTextInput1"
+                      formControlName="simIssuedOrNot"
+                      style="padding-top: 12px"
+                    >
+                      <option selected disabled [value]="'Sim Issued'">
+                        Sim Issued
+                      </option>
+                      <option value="Yes">Yes.</option>
+                      <option value="No">No.</option>
+                    </select>
+                   </div>
+                  </div>
+                 
+                  
+                </div>
+                <div class="row">
+                  
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="" class="form-control-label">Flight Facilities</label>
+                    <select
+                      name="flightFacilities"
+                      id="cars"
+                      class="form-control form-control-alternative"
+                      id="floatingTextInput1"
+                      formControlName="flightFacilities"
+                      style="padding-top: 12px"
+                      (change)="onSelect($event)"
+                    >
+                      <option selected disabled [value]="'Flight Facilities'">
+                        Flight Facilities
+                      </option>
+                      <option value="Yes">Yes.</option>
+                      <option value="No">No.</option>
+                    </select>
+                   </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="" class="form-control-label">Flight Facilities Period</label>
+                      <select
+                        name="howMuchTime"
+                        id="cars"
+                        class="form-control form-control-alternative"
+                        id="floatingTextInput1"
+                        formControlName="howMuchTime"
+                        style="padding-top: 12px"
+                        (input)="hidehowMuchTimetValidationMessage()"
+                      >
+                        <option
+                          selected
+                          disabled
+                          [value]="'Flight Facilities Period'"
+                        >
+                          Flight Facilities Period
+                        </option>
+                        <option value="Within Every 6 Month">
+                          Within Every 6 Month .
+                        </option>
+                        <option value="Once in a Year">Once in a Year.</option>
+                        <option value="Once in 2 Year">Once in 2 Year.</option>
+                      </select>
+
+                      <div *ngIf="howMuchTimetValidationMessage">
+                        <span class="text-danger">
+                          {{howMuchTimetValidationMessage}}
+                        </span>
+                      </div>
+                   </div>
+                  </div>
+                 
+                  
+                </div>
+                <div class="row">
+                  
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="" class="form-control-label"> Health Insurance Coverage</label>
+                      <select
+                        name="healthInsuranceCoverage"
+                        id=" "
+                        class="form-control form-control-alternative"
+                        (change)="onSelect($event)"
+                        id="floatingTextInput1"
+                        formControlName="healthInsuranceCoverage"
+                        style="padding-top: 12px"
+                      >
+                        <option
+                          selected
+                          disabled
+                          [value]="'Health Insurance Coverage'"
+                        >
+                          Health Insurance Coverage
+                        </option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                      </select>
+                   </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <div
+                    
+                    *ngIf="
+                      getPostFormControls['healthInsuranceCoverage'].value ==
+                      'Yes'
+                    "
+                  >
+                    <label for="floatingTextInput1" class="form-control-label">
+                      Health Insurance Amount</label
+                    >
+                    <input
+                      type="number"
+                      class="form-control form-control-alternative"
+                      id="floatingTextInput1"
+                      formControlName="maximumAmountGiven"
+                      (input)="hidemaximumAmountGivenValidationMessage()"
+                      
+                    />
+                    
+                    <div *ngIf="maximumAmountGivenValidationMessage">
+                      <span class="text-danger">
+                        {{maximumAmountGivenValidationMessage}}
+                      </span>
+                    </div>
+                  </div>
+                   </div>
+                  </div>
+                 
+                  
+                </div>
+                <div class="row">
+                  
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <div
+                    class="form-floating mb-3"
+                    *ngIf="
+                      getPostFormControls['healthInsuranceCoverage'].value ==
+                      'Yes'
+                    "
+                  >
+                    <label for="" class="form-check-label" class="form-control-label">Family Health Insurance</label>
+                    <select
+                      name="familyHealthInsuranceGivenOrNot"
+                      id="cars"
+                      class="form-control form-control-alternative"
+                      (change)="onSelect($event)"
+                      id="floatingTextInput1"
+                      formControlName="familyHealthInsuranceGivenOrNot"
+                      style="padding-top: 12px"
+                    >
+                      <option
+                        selected
+                        disabled
+                        [value]="'Family Health Insurance'"
+                      >
+                        Family Health Insurance
+                      </option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                    </select>
+                  </div>
+                   </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <div
+                      class="form-floating mb-3"
+                      *ngIf="
+                        getPostFormControls['healthInsuranceCoverage'].value ==
+                        'Yes'
+                      "
+                    >
+                      <label for="" class="form-control-label">Type Family Health Insurance</label>
+                      <select
+                        name="familyHealthInsuranceType"
+                        id="cars"
+                        class="form-control form-control-alternative"
+                        id="floatingTextInput1"
+                        formControlName="familyHealthInsuranceType"
+                        style="padding-top: 12px"
+                        (input)="hidefamilyHealthInsuranceTypeValidationMessage()"
+                      >
+                        <option
+                          selected
+                          disabled
+                          [value]="'Type Family Health Insurance'"
+                        >
+                          Type Family Health Insurance
+                        </option>
+                        <option value="only for spouse and children s">
+                          ONLY FOR SPOUSE AND CHILDREN .
+                        </option>
+                        <option value="FOR SPOUSE,CHILDREN AND PARENTS">
+                          FOR SPOUSE,CHILDREN AND PARENTS.
+                        </option>
+                      </select>
+                      
+                      <div *ngIf="familyHealthInsuranceTypeValidationMessage">
+                        <span class="text-danger">
+                          {{familyHealthInsuranceTypeValidationMessage}}
+                        </span>
+                      </div>
+                    </div>
+                   </div>
+                  </div>
+                 
+                  
+                </div>
+
+
+
+
+
+                
+              </div>
+              <div *ngIf="step == 7 ">
+                
+                <div class="row">
+                  
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="floatingTextInput1" class="form-control-label"> Joining Date </label>
+                      <input
+                        type="date"
+                        class="form-control form-control-alternative"
+                        id="floatingTextInput1"
+                        formControlName="joiningDate"
+                        [min]="minDate"
+                        placeholder="Joining Date "
+                      />
+                   </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="" class="form-control-label">Punching Machine</label>
+                    <select
+                      name="punchingMachineYesOrNo"
+                      id="cars"
+                      class="form-control form-control-alternative"
+                      id="floatingTextInput1"
+                      aria-placeholder=""
+                      formControlName="punchingMachineYesOrNo"
+                      style="padding-top: 12px"
+                    >
+                      <option selected disabled [value]="'Punching Machine'">
+                        Punching Machine
+                      </option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                    </select>
+                   </div>
+                  </div>
+                 
+                  
+                </div>
+                <div class="row">
+                  
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="" class="form-control-label">Refered By </label>
+                    <select
+                      name="ReferedBy"
+                      id="cars"
+                      class="form-control form-control-alternative"
+                      formControlName="ReferedBy"
+                      (change)="onSelect($event)"
+                      id="floatingTextInput1"
+                      style="padding-top: 12px; padding-left: 8px"
+                    >
+                      <option selected disabled [value]="'Refered By'">
+                        Refered By
+                      </option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                    </select>
+                   </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="floatingTextInput1" class="form-control-label"> Reference Name</label>
+                      <input
+                        type="text"
+                        class="form-control form-control-alternative"
+                        id="floatingTextInput1"
+                        formControlName="ReferenceName"
+                        placeholder="Reference Name"
+                      />
+                   </div>
+                  </div>
+                 
+                  
+                </div>
+                <div class="row">
+                  
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="" class="form-control-label">Levels <span class="text-danger"> *</span> </label>
+                    <select
+                      name="levelId"
+                      id="cars"
+                      class="form-control form-control-alternative"
+                      
+                      (change)="onDesignation($event)"
+                      id="floatingTextInput1"
+                      style="padding-top: 12px; padding-left: 8px"
+                    >
+                      
+                      <option   *ngFor="let data of get_all_level;"  [value]="data.levelId">{{data.levelName}}</option>
+                      
+                    </select>
+                    <!-- <div *ngIf="postForm.get('levelId').touched && postForm.get('levelId').errors?.required" class="text-danger">
+                      Levels is required.
+                    </div> -->
+                   </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="" class="form-control-label">Designation  <span class="text-danger"> *</span></label>
+                    <select
+                      name="designationId"
+                      id="cars"
+                      class="form-control form-control-alternative"
+                      formControlName="designationId"
+                      
+                      id="floatingTextInput1"
+                      style="padding-top: 12px; padding-left: 8px"
+                    >
+                 
+                      <option *ngFor="let data of designationByLevelId" [value]="data.designationId">{{data.designationName}}</option>
+                      
+                    </select>
+                    <div *ngIf="postForm.get('designationId').touched && postForm.get('designationId').errors?.required" class="text-danger">
+                      Designation is required.
+                    </div>
+                   </div>
+                  </div>
+                
+                 
+                  
+                </div>
+               
+                <div class="row">
+
+
+  <!-- Department Selection -->
+  <div class="col-lg-6">
+    <div class="form-group">
+      <label for="jobdepartment" class="form-control-label">Department <span class="text-danger"> *</span></label>
+      <select class="form-control form-control-alternative" id="jobdepartment" formControlName="jobdepartment">
+        <option selected disabled value="">Select Department</option>
+        <option *ngFor="let department of department" [value]="department.departmentId">{{ department.departmentName }}</option>
+      </select>
+      <div *ngIf="postForm.get('jobdepartment').errors?.required && postForm.get('jobdepartment').touched" class="text-danger">
+        Department is required.
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <div class="form-group">
+      <label for="floatingSelect" class="form-control-label">Posted Location <span class="text-danger"> *</span></label>
+      <select class="form-control form-control-alternative" id="floatingSelect" formControlName="postedLocation">
+        <option value="" disabled selected>Select a location</option>
+        <option *ngFor="let location of locations" [value]="location.locationId">{{ location.name }}</option>
+      </select>
+      <div *ngIf="postForm.get('postedLocation').touched && postForm.get('postedLocation').errors?.required" class="text-danger">
+        Posted Location is required.
+      </div>
+    </div>
+    
+
+  </div>
+                </div>
+
+              </div>
+                <div class="row">
+                  <div class="col-lg-4"  *ngIf="step != 1">
+                    <button
+                  type="button"
+                  class="btn btn-lg w-75 h-100 text-light previousBtn  "
+                  (click)="previous()"
+                >
+                  <h3 class="text-light">Previous</h3>
+                </button>
+                  </div>
+
+                  <!-- <div class="col-lg-4" *ngIf="step !== 6">
+                    <button
+  type="button"
+  class="btn w-75 btn-primary"
+  (click)="next()"
+  [disabled]="(step === 1 && postForm.get('email').invalid) || (step === 2 && postForm.get('VisaType').invalid)"
+>
+  <h3 class="text-light">Next</h3>
+</button>
+
+                  </div> -->
+                  
+
+                  <div class="col-lg-4" *ngIf="step !== 7">
+                    <!-- <button
+                      type="button"
+                      class="btn w-75 btn-primary"
+                      (click)="next()"
+                      
+                      [disabled]="!getPostFormControls.email.value || postForm.get('email').invalid || !postForm.get('phoneCode').value || !postForm.get('personalContactNo').value"
+                      > -->
+                    <button
+                      type="button"
+                      class="btn w-75 btn-primary"
+                      (click)="next()"
+                      >
+                      <h3 class="text-light">Next</h3>
+                    </button>
+                </div>
+            
+                  <div class="col-lg-4" *ngIf="step == 7">
+                    <button
+                    type="submit"
+                    class="btn btn-lg  text-light "
+                  >
+                    <h3 class="text-light">Submit</h3>
+                  </button>
+                  </div>
+                </div>
+
+                
+              
+              </div>
+            </div>
+
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    </form>
+  </div>
+</div>

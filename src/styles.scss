@@ -1,0 +1,29 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* styles.css or your component's style file */
+// @import '@fullcalendar/core/main.css';
+// @import '@fullcalendar/daygrid/main.css';
+@import "~ngx-toastr/toastr.css";
+
+
+:root {
+    // Color Pallete
+    --primaryColor: #1b262c;
+    --secondaryColor: #0f4c75;
+    --bgColor: #d2dce3;
+    --accent: #3883b8;
+    --head-bg: #f0f3f7;
+    --text-bg: #8898aa;
+}
+
+body {
+    background-color: var(--bgColor);
+}
+
+.shadow-set {
+    box-shadow:
+        0 1px 3px rgba(50, 50, 93, 0.15),
+        0 1px 0 rgba(0, 0, 0, 0.02);
+    border: 0;
+    transition: box-shadow 0.15s ease;
+}

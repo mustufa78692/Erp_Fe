@@ -1,0 +1,7 @@
+{
+    "/api" : {
+        "target" : "https://0114-171-60-138-180.ngrok-free.app",
+        
+        "secure" : false
+    }
+}

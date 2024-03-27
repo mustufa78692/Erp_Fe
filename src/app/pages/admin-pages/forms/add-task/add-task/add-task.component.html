@@ -1,0 +1,80 @@
+<div class="card animated-form">
+  <div class="card-body">
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+
+
+         <!-- Sub Duties ID Dropdown -->
+      <div class="mb-3">
+        <label for="subDutiesId" class="form-control-label">Sub Duties Name</label>
+        <select class="form-control form-control-alternative" id="subDutiesId" formControlName="subDutiesId">
+          <!-- Dropdown options go here -->
+          <option  *ngFor="let data of getData"  [value]="data.subDutiesId">{{data.subDutyName}}</option>
+          <!-- <option value="2">Sub Duty 2</option> -->
+          <!-- Add more options as needed -->
+        </select>
+      </div>
+      <!-- Task Name -->
+      <div class="mb-3">
+        <label for="taskName" class="form-control-label">Task Name</label>
+        <input type="text" class="form-control form-control-alternative" id="taskName" formControlName="taskName">
+      </div>
+
+     
+
+      <!-- Submit Button -->
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div>
+
+
+
+<div class="card animated-form  mt-5">
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">S.No</th>
+            <th scope="col">Task Id</th>
+            <th scope="col">Task Name</th>
+            <th scope="col">Operation</th>
+
+            <!-- <th scope="col">Level</th> -->
+            <!-- <th scope="col">Leave Days </th> -->
+         
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of tableData;let i=index">
+            <td>{{i+1}}</td>
+            <td>{{data?.taskId}}</td>
+            <td>{{data?.taskName}}</td>
+            
+            <td> <button class="btn btn-primary" (click)="editData(data?.taskId)">Edit</button></td>
+
+            <!-- <td>{{data?.jobLevel}}</td> -->
+
+          </tr>
+
+
+          <!-- <ng-container *ngFor="let data of getData; let i = index">
+            <tr *ngFor="let location_data of data.locations; let first = first">
+              <td *ngIf="first">{{ i + 1 }}</td>
+              <td *ngIf="first">{{ data.firstApproverEmpId }}</td>
+              <td *ngIf="first">{{ data.secondApproverEmpId }}</td>
+              <td *ngIf="first">{{ data.startDate | date }}</td>
+              <td *ngIf="first">{{ data.endDate | date }}</td>
+              <td>{{ location_data.name }}</td>
+              <td>{{ location_data.address }}</td>
+            </tr>
+          </ng-container> -->
+         
+         
+        </tbody>
+      </table>
+    </div>
+    
+  </div>
+</div>
+

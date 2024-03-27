@@ -1,0 +1,95 @@
+<div class="main-content">
+  <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
+    <div class="container px-4">
+      <a class="navbar-brand" routerLinkActive="active" [routerLink]="['/dashboard']">
+      <img src="./assets/img/brand/logo.png" class="brand-logo navbar-brand-img" alt="..."><br>
+      <span ><i class="text-light" style="margin-left: 5px;"> AN SIG GROUP OF ERP</i> </span>
+      </a>
+      <button class="navbar-toggler" type="button" (click)="isCollapsed=!isCollapsed"
+         aria-controls="sidenav-collapse-main">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse"  [ngbCollapse]="isCollapsed" id="sidenav-collapse-main">
+        <!-- Collapse header -->
+        <div class="navbar-collapse-header d-md-none">
+          <div class="row">
+            <div class="col-6 collapse-brand">
+              <a routerLinkActive="active" [routerLink]="['/dashboard']">
+                <img src="assets/img/brand/blue.png">
+              </a>
+            </div>
+            <div class="col-6 collapse-close">
+              <button type="button" class="navbar-toggler" (click)="isCollapsed=!isCollapsed" >
+                <span></span>
+                <span></span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Navbar items -->
+        <ul class="navbar-nav ml-auto">
+          <!-- <li class="nav-item">
+            <a class="nav-link nav-link-icon" routerLinkActive="active" [routerLink]="['/dashboard']" [class.disabled]="currentRoute.includes('onBoard-updating') || currentRoute.includes('waiting-for-hr-approval') ">
+              <i class="ni ni-planet"></i>
+              <span class="nav-link-inner--text">Dashboard</span>
+            </a>
+          </li> -->
+          <li class="nav-item">
+            <a class="nav-link nav-link-icon" routerLinkActive="active" [routerLink]="['/register']" [class.disabled]="currentRoute.includes('onBoard-updating') || currentRoute.includes('waiting-for-hr-approval')">
+              <i class="ni ni-circle-08"></i>
+              <span class="nav-link-inner--text">Register</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-icon" routerLinkActive="active" [routerLink]="['/login']" [class.disabled]="currentRoute.includes('onBoard-updating') || currentRoute.includes('waiting-for-hr-approval')">
+              <i class="ni ni-key-25"></i>
+              <span class="nav-link-inner--text">Login</span>
+            </a>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link nav-link-icon" routerLinkActive="active"  [class.disabled]="currentRoute.includes('onBoard-updating') || currentRoute.includes('waiting-for-hr-approval')">
+              <i class="ni ni-single-02"></i>
+              <span class="nav-link-inner--text">Profile</span>
+            </a>
+          </li> -->
+          <li class="nav-item"  *ngIf="isLoggedIn">
+            <a class="nav-link nav-link-icon" (click)="doSomething()">
+              <i class="ni ni-some-icon"></i>
+              <span class="nav-link-inner--text">Logout</span>
+            </a>
+          </li>
+        </ul>
+        
+      </div>
+    </div>
+  </nav>
+  <router-outlet></router-outlet>
+</div>
+<footer class="py-5">
+  <div class="container">
+    <div class="row align-items-center justify-content-xl-between">
+      <div class="col-xl-6">
+        <div class="copyright text-center text-xl-left text-muted">
+          &copy; {{ test | date: "yyyy" }} <a  class="font-weight-bold ml-1" >Swift Biz</a> All Rights Reserved <br>
+          <span style="font-size: 11.81px !important;">Designed By Neural Bridge AI Solution Pvt Ltd</span>
+        </div>
+      </div>
+      <!-- <div class="col-xl-6">
+        <ul class="nav nav-footer justify-content-center justify-content-xl-end">
+          <li class="nav-item">
+            <a  class="nav-link" >Erp Software&copy;SWIFTBIZ</a>
+          </li>
+          <li class="nav-item">
+            <a  class="nav-link" >About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" >Blog</a>
+          </li>
+          <li class="nav-item">
+            <a  class="nav-link" >MIT License</a>
+          </li>
+        </ul>
+      </div> -->
+    </div>
+  </div>
+</footer>
