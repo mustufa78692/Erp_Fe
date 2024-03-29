@@ -5,9 +5,9 @@
 export const environment = {
   production: false,
   // hostUrlNgrock: "http://localhost:3000",
-  // hostUrlNgrock: "http://localhost:8080",
+  hostUrlNgrock: "http://localhost:8080",
   // hostUrlNgrock:"https://api.swiftbizerp.com",
-  hostUrlNgrock: "https://839a-223-229-155-251.ngrok-free.app",
+  // hostUrlNgrock: "https://839a-223-229-155-251.ngrok-free.app",
   // hostUrl : "api/auth/v1/"
 };
 

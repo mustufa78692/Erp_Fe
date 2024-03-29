@@ -46,7 +46,7 @@ public userId:any;
     this.currentLocalTime = moment();
 
     this.timeDifference = this.currentLocalTime.diff(this.punchInTimeIST, 'milliseconds');
-    console.log(this.timeDifference)
+    // console.log(this.timeDifference)
   
   }
 
@@ -143,78 +143,7 @@ public userId:any;
   public diffHours:any = "00";
   public Total_Working_Hours:any;
   public attandance_response_data:any
-//   ={
-//     "attendenceId": 3,
-//     "date": "2023-10-18",
-//     "day": "WEDNESDAY",
-//     "punchInTime": "2023-10-20T08:17:37.828+00:00",
-//     "punchOutTime": null,
-//     "workingHours": 0,
-//     "halfDay": false,
-//     "overTime": 0,
-//     "employeeId": 2,
-//     "breaks": null
-// }
 
-
-
-  // public employeeId:any
-  // public puchIn(): void {
-  //   console.log("dfknkdfan")
-  //   if( this.checkedPunchIn=== false){
-  //     if(this.punchType=='In'){
-  //       this.punchInTime = new Date();
-  //     console.log('Punched in at:', this.punchInTime);
-  //     const year = this.punchInTime.getFullYear();
-  //     const month = (this.punchInTime.getMonth() + 1).toString().padStart(2, '0'); // January is 0
-  //     const day = this.punchInTime.getDate().toString().padStart(2, '0');
-  //     console.log()
-  //     this.puncInDate=`${year}-${month}-${day}`
-  //     console.log(this.puncInDate)
-  //     let formData:any={
-  //       date:this.puncInDate, 
-  //       employeeId:+this.userId
-  
-  //     }
-  //     this.services.punchIn(formData).subscribe((data:any)=>{
-  
-  
-        
-  //       console.log("successully post data")
-  //       console.log(data)
-  //       this.attandance_response_data=data.statusAttendence
-  //       console.log(this.attandance_response_data)
-  //      // Change punch type to 'Out' after successful punch in
-  //      this.punchType = "Out";
-  //      // Update checkedPunchIn to prevent further punch ins
-  //      this.checkedPunchIn = this.attandance_response_data;
-  //     })
-  
-  //     }
-      
-
-  //   }
-  //   else{
-  //     let datasend:any={id:this.attandance_response_data.attendenceId
-
-  //     }
-  //         this.services.punchOut(datasend).subscribe((data:any)=>{
-  //           console.log(data)
-
-  //           this.attandance_response_data=data.statusAttendence
-  //       console.log(this.attandance_response_data)
-  //           // Reset punch type to In after punching out
-  //           this.punchType = "In";
-  //           // Reset checkedPunchIn for the next day
-  //           this.checkedPunchIn = this.attandance_response_data;
-  //         })
-
-
-  //   }
-    
-    
-
-  // }
 
 
   formatDuration(milliseconds: number): string {
@@ -377,47 +306,7 @@ let datasend:any={id:this.attandance_response_data.attendenceId
         }
     ]
 }
-//   =[
-//     {
-//         "attendenceId": 1,
-//         "date": "2023-11-20",
-//         "day": "MONDAY",
-//         "punchInTime": "2023-11-22T14:23:52.867+00:00",
-//         "punchOutTime": "2023-11-22T14:24:13.580+00:00",
-//         "workingHours": 20713,
-//         "halfDay": true,
-//         "overTime": 0,
-//         "overtimeStatus": null,
-//         "employeeId": 115435,
-//         "breaks": []
-//     },
-//     {
-//         "attendenceId": 2,
-//         "date": "2023-11-21",
-//         "day": "TUESDAY",
-//         "punchInTime": "2023-11-22T14:24:40.549+00:00",
-//         "punchOutTime": "2023-11-22T14:25:08.253+00:00",
-//         "workingHours": 27703,
-//         "halfDay": true,
-//         "overTime": 0,
-//         "overtimeStatus": null,
-//         "employeeId": 115435,
-//         "breaks": []
-//     },
-//     {
-//         "attendenceId": 3,
-//         "date": "2023-11-19",
-//         "day": "SUNDAY",
-//         "punchInTime": "2023-11-22T14:24:57.463+00:00",
-//         "punchOutTime": null,
-//         "workingHours": 0,
-//         "halfDay": false,
-//         "overTime": 0,
-//         "overtimeStatus": null,
-//         "employeeId": 115435,
-//         "breaks": []
-//     }
-// ]
+
   public initSearchByDate(){
     this.SearchByDate=this.formBuilder.group({
       startDate:[''],

@@ -659,23 +659,38 @@ public add_task(data:any){
   // }
 
   // ----------------------------------------------------------
-  // ================== EMPLOYEE_PAGES SERVICES ==================
+  // ================== Attendance SERVICES ==================
 
   // FOR TIME AND ATTENDANCE (not implemeenvironment./ FOR TIME AND ATTENDANCE (not implemented)
-  public punchIn(data:any) {
-    // let empId = 1001;
-    // punch-In-Time
-    return this.http.post(`${this.url}/punch-In-Time`,data);
-  }
-
+  
   public checkedpunch(data1:any,data2:any){
-    // console.log(data)
     const headers = new HttpHeaders({
       'ngrok-skip-browser-warning': '69420'
     });
     return this.http.get(
-      `${environment.hostUrlNgrock}/checkAttendance/${data2}/${data1}`,{headers}
+      `${environment.hostUrlNgrock}/api/v1/attendance/${data2}/${data1}`,{headers}
     );
+  }
+  
+  public punchIn(data:any) {
+    // let empId = 1001;
+    // punch-In-Time
+    return this.http.post(`${this.url}/api/v1/attendance/punch-in`,data);
+  }
+
+  public punchOut(data:any) {
+   
+    return this.http.post(`${this.url}/api/v1/attendence/punch-out`,data);
+  }
+  public breakStart(data:any) {
+    // let empId = 1001;
+    // punch-In-Time
+    return this.http.post(`${this.url}/api/v1/attendence/break-start`,data);
+  }
+  public breakEnd(data:any) {
+    // let empId = 1001;
+    // punch-In-Time
+    return this.http.post(`${this.url}/api/v1/attendence/break-end`,data);
   }
 
   public getAttendanceByDate(data1: any, data2: any, data3: any) {
@@ -688,7 +703,7 @@ public add_task(data:any){
   
     // Assuming environment.hostUrlNgrock is correctly defined in your environment file
     return this.http.get(
-      `${environment.hostUrlNgrock}/get-attendence-byDate/${data3}/${data1}/${data2}`, 
+      `${environment.hostUrlNgrock}/api/v1/attendence/date/${data3}/${data1}/${data2}`, 
       httpOptions
     );
   }
@@ -701,7 +716,7 @@ public add_task(data:any){
       })
     };
     return  this.http.get(
-      `${environment.hostUrlNgrock}/get-attendence-byMonth/${id}/${year}/${month}`,
+      `${environment.hostUrlNgrock}/api/v1/attendence/month/${id}/${year}/${month}`,
       httpOptions
     )
 
@@ -751,21 +766,7 @@ public add_task(data:any){
 
   }
   
-  public punchOut(data:any) {
-    // let empId = 1001;
-    // punch-In-Time
-    return this.http.post(`${this.url}/punch-out`,data);
-  }
-  public breakStart(data:any) {
-    // let empId = 1001;
-    // punch-In-Time
-    return this.http.post(`${this.url}/break-start`,data);
-  }
-  public breakEnd(data:any) {
-    // let empId = 1001;
-    // punch-In-Time
-    return this.http.post(`${this.url}/break-end`,data);
-  }
+
 
   // ========== NOT IMPLEMENTED YET =============
   // method for getting personal info
